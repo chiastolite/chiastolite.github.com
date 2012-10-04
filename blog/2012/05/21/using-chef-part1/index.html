@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Chef を使ってみる その1 - akadama</title>
+  <meta name="author" content="Hiroyuki MORITA">
+
+  
+  <meta name="description" content="先日のVagrantのエントリー内でちょっと触れたChefを試してみます Chefとは Chef
+Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られたサーバの構成管理ツールです
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://chiastolite.github.com/blog/2012/05/21/using-chef-part1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31815348-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">akadama</a></h1>
+  
+    <h2>そこらへんにいるプログラマが適当にやってます</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:chiastolite.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Chef を使ってみる その1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-21T00:35:00+09:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>先日のVagrantのエントリー内でちょっと触れたChefを試してみます</p>
+
+<h2>Chefとは</h2>
+
+<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br/>
+<a href="http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG">Chef でサーバ管理を楽チンにしよう！|るびま</a></p>
+
+<p>Rubyで作られたサーバの構成管理ツールです<br/>
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです</p>
+
+<p>これで下記みたいな時に幸せになれるのかもしれません</p>
+
+<ul>
+<li>特定のサーバだけ設定がもれてて動かなかった!</li>
+<li>あのサーバだけライブラリのバージョン違うじゃねぇか!!</li>
+<li>100台サーバあるけど、apacheのバージョン更新しといて</li>
+</ul>
+
+
+<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br/>
+最初から完璧にやろうと思うと必ず失敗します。<br/>
+自分もすでに数回目(笑)</p>
+
+<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br/>
+最終的には開発用のVirtualBoxと公開用サーバでアプリとか設定とかを統一していきたいです</p>
+
+<h2>インストール</h2>
+
+<p>Rubyは入っているという想定です</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install chef</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだけでOk</p>
+
+<h2>Chefに関する設定ファイルを作成</h2>
+
+<p>下記のコマンドを実行して設定ファイルを作成します</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ knife configure</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br/>
+ファイルの設定が終わったら、~/.chef/knife.rbにcookbookの保管場所を設定します</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_path</span>            <span class="s1">&#39;~/.chef/cookbooks/&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>レシピ作成</h2>
+
+<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br/>
+インストールするもの毎に作るのが慣習ぽいです<br/>
+apacheならapacheだけ。PHPとかでライブラリを入れる場合は一緒でもいいのかな?</p>
+
+<p>今回は単に静的ファイルを1つ置くだけのレシピを書いてみましょう</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">knife</span> <span class="n">cookbook</span> <span class="n">create</span> <span class="n">static_file</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>cookbook_path以下にstatic_fileというディレクトリが出来ているはずです<br/>
+ここがstatic_fileレシピに関する情報をまとめるディレクトリになります</p>
+
+<h3>レシピディレクトリの中身</h3>
+
+<ul>
+<li>attributes</li>
+<li>definitions</li>
+<li>files</li>
+<li>libraries</li>
+<li>providers</li>
+<li>recipes</li>
+<li>resources</li>
+<li>templates</li>
+</ul>
+
+
+<p>8つのディレクトリと</p>
+
+<ul>
+<li>metadata.rb</li>
+<li>README.md</li>
+</ul>
+
+
+<p>2つのファイルがあります</p>
+
+<p>今回は静的ファイルを置くだけなので、recipesとfilesディレクトリ以外は消しておきます</p>
+
+<h3>ファイルを置いてみる</h3>
+
+<p>ファイルの扱いに関しては<a href="http://wiki.opscode.com/display/chef/Resources#Resources-CookbookFile">ここ</a>を参考にしています</p>
+
+<p>ファイルを置くのは簡単で</p>
+
+<ol>
+<li>files以下に置きたいファイルを置く</li>
+<li>recipes/default.rbに cookbook_file メソッドでファイルを指定</li>
+</ol>
+
+
+<p>といった感じです。</p>
+
+<p>実際にやってみます<br/>
+files 以下にsample.txtを作る<br/>
+recipes/default.rb に以下のようにファイルを配置したいパスを指定</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_file</span> <span class="s1">&#39;/tmp/sample.txt&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">mode</span> <span class="s1">&#39;0644&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでレシピの作成は完了<br/>
+ではこのレシピをVagrantで利用してみましょう<br/>
+Vagrantfileの途中にchef-soloの記述があるのでその部分を以下のように変更します</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 中略</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">cookbooks_path</span> <span class="o">=</span> <span class="s2">&quot;~/.chef/cookbooks&quot;</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;static_file&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">up</span>     <span class="c1"># すでに起動済みの場合はvagrant reload</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>その後以下のコマンドでファイルがあるかを確認してみましょう</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">ssh</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">$</span> <span class="n">ls</span> <span class="sr">/tmp/s</span><span class="n">ample</span><span class="o">.</span><span class="n">txt</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ファイルはちゃんと配置されたでしょうか?<br/>
+まだここだと嬉しさわからないと思うので次回はテンプレートを使って値の書き換え等を行うのを確認したいと思います</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hiroyuki MORITA</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-21T00:35:00+09:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2012/05/21/using-chef-part1/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2012/05/21/using-chef-part1/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/05/18/benefits-of-using-vagrant/" title="Previous Post: Vagrantを利用する理由">&laquo; Vagrantを利用する理由</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/06/05/trable_shooters/" title="Next Post: トラブル☆しゅーたーず #02に行ってきた">トラブル☆しゅーたーず #02に行ってきた &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/06/25/githug-ja-2/">Githugをやってみたついでに問題を意訳してみた その2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/21/starting-scrum/">スクラムの始め方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/20/githug-ja/">Githugをやってみたついでに問題を意訳してみた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/05/trable_shooters/">トラブル☆しゅーたーず #02に行ってきた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/21/using-chef-part1/">Chef を使ってみる その1</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chiastolite',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("chiastolite", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/chiastolite" class="twitter-follow-button" data-show-count="false">Follow @chiastolite</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Hiroyuki MORITA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

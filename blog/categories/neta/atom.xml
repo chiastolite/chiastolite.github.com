@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: neta | akadama]]></title>
+  <link href="http://chiastolite.github.com/blog/categories/neta/atom.xml" rel="self"/>
+  <link href="http://chiastolite.github.com/"/>
+  <updated>2012-10-05T01:34:25+09:00</updated>
+  <id>http://chiastolite.github.com/</id>
+  <author>
+    <name><![CDATA[Hiroyuki MORITA]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[世界最小プラグイン]]></title>
+    <link href="http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin/"/>
+    <updated>2012-01-22T01:59:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin</id>
+    <content type="html"><![CDATA[<p>Redmineを導入した際に頻繁に質問されるものの1つが下記のような内容だと思います</p>
+
+<ul>
+<li>チケットのタイトル編集したいんだけどどこでやればいいの?</li>
+</ul>
+
+
+<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!</p>
+
+<h2>スクリーンショット</h2>
+
+<h3>これが</h3>
+
+<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 " /></p>
+
+<h3>こうなります</h3>
+
+<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 " /></p>
+
+<h2>驚きの中身解説</h2>
+
+<ol>
+<li>locales/ja.ymlのlabel_moreを上書きする</li>
+</ol>
+
+
+<p>以上(え</p>
+
+<p>リポジトリはこちらから<br/>
+<a href="https://github.com/chiastolite/redmine_how_to_modify_the_subject">https://github.com/chiastolite/redmine_how_to_modify_the_subject</a></p>
+]]></content>
+  </entry>
+  
+</feed>
