@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2012-10-05T01:34:25+09:00</updated>
+  <updated>2013-01-02T04:49:59+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[zshを導入してみる]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/01/02/zsh/"/>
+    <updated>2013-01-02T01:26:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/01/02/zsh</id>
+    <content type="html"><![CDATA[<p>正月ということで前から気になっていたzshを試してみることにした</p>
+
+<h1>zshのインストール</h1>
+
+<p>メイン環境はMacなのでhomebrewで入れることに<br/>
+とりあえずinfoを見てみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew info zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>If you have administrator privileges, you must fix an Apple miss
+configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
+/etc/zprofile, or Zsh will have the wrong PATH when executed
+non-interactively by scripts.
+
+Alternatively, install Zsh with /etc disabled:
+
+  brew install --disable-etcdir zsh
+</code></pre>
+
+<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br/>
+もしくは/etcを見ないようにオプションをつけろって感じだろうか</p>
+
+<p>あんまシステム側のファイルに手を出したくないので今回は後者を試してみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install --disable-etcdir zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>zshが起動できることを確認したので次は設定に</p>
+
+<h1>antigenを入れてみる</h1>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>といういろいろ設定をしてくれるツールがあるらしいのだが
+ちょっと過剰な気もしたので、@glidenote さんのブログを元に<a href="https://github.com/zsh-users/antigen">antigen</a>を試してみることに</p>
+
+<p>参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> <span class="nv">$HOME</span>/dotfiles <span class="c"># 自分の設定ファイルがいろいろ入ってるとこ</span>
+</span><span class='line'>mkdir -p <span class="nv">$HOME</span>/dotfiles/zsh
+</span><span class='line'>git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>設定ファイルを追加</h2>
+
+<h3>.zshrc</h3>
+
+<p>@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigenrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>~/dotfiles/zsh/antigenrc</h3>
+
+<p>antigenの設定ファイルを作る</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigen/antigen.zsh
+</span><span class='line'>
+</span><span class='line'>antigen-lib
+</span><span class='line'>
+</span><span class='line'>antigen-bundle git
+</span><span class='line'>antigen-bundle autojump
+</span><span class='line'>antigen-bundle ruby
+</span><span class='line'>antigen-bundle rbenv
+</span><span class='line'>antigen-bundle bundler
+</span><span class='line'>
+</span><span class='line'>antigen-bundle zsh-users/zsh-syntax-highlighting
+</span><span class='line'>
+</span><span class='line'>antigen-theme gallois
+</span><span class='line'>
+</span><span class='line'>antigen-apply
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br/>
+細かい設定は後々詰めるとして今日のところはこの辺で終了</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Githugをやってみたついでに問題を意訳してみた その2]]></title>

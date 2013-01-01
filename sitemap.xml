@@ -2,46 +2,54 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/05/15/create-smartphone-site/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/05/16/vagrant_and_veewee/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/05/21/using-chef-part1/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/06/05/trable_shooters/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/06/20/githug-ja/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/06/21/starting-scrum/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/2012/06/25/githug-ja-2/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-01T23:35:24+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://chiastolite.github.com/blog/2013/01/02/zsh/</loc>
+        <lastmod>2013-01-02T04:48:52+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/blog/archives/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-02T04:48:52+09:00</lastmod>
     </url>
     <url>
         <loc>http://chiastolite.github.com/</loc>
-        <lastmod>2012-10-05T01:34:16+09:00</lastmod>
+        <lastmod>2013-01-02T04:48:52+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://chiastolite.github.com/robots.txt</loc>
+        <lastmod>2013-01-01T23:35:25+09:00</lastmod>
     </url>
 </urlset>
