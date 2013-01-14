@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-01-02T04:49:59+09:00</updated>
+  <updated>2013-01-14T20:47:25+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/"/>
+    <updated>2013-01-14T20:06:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf</id>
+    <content type="html"><![CDATA[<p>東京Ruby会議10にて<del>ささたつ</del>くろたつさんからCodeIQでのコードゴルフの告知があった</p>
+
+<p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
+
+<p>コードゴルフとは<strong>特定の動作をするプログラムのソースコードを、可能な限り短いバイト数で記述するプログラミング・コンテスト</strong>(by Wikipedia)だそうだ</p>
+
+<p>今回は問題がFizzBuzzだったので、前に<a href="http://www.slideshare.net/chiastolite/reading-selfdescriptivefizzbuzz">とあるQuineを読んだとき</a>に知ったロジックを使って書いてみた</p>
+
+<div><script src='https://gist.github.com/4529523.js'></script>
+<noscript><pre><code>eval('%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}'%$*)</code></pre></noscript></div>
+
+
+<p>wcで測ってみたら78バイトだったのでまぁまぁかなーと思ってたら、どうもトップは65とからしい。さて、どこを削ったらいいものやら</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[zshを導入してみる]]></title>

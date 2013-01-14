@@ -9,9 +9,7 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="正月ということで前から気になっていたzshを試してみることにした zshのインストール メイン環境はMacなのでhomebrewで入れることに
-とりあえずinfoを見てみる 1
-brew info zsh If you have administrator privileges, you must &hellip;">
+  <meta name="description" content="東京Ruby会議10にてささたつくろたつさんからCodeIQでのコードゴルフの告知があった 挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ コードゴルフとは特定の動作をするプログラムのソースコードを、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +76,54 @@ brew info zsh If you have administrator privileges, you must &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-14T20:06:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>東京Ruby会議10にて<del>ささたつ</del>くろたつさんからCodeIQでのコードゴルフの告知があった</p>
+
+<p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
+
+<p>コードゴルフとは<strong>特定の動作をするプログラムのソースコードを、可能な限り短いバイト数で記述するプログラミング・コンテスト</strong>(by Wikipedia)だそうだ</p>
+
+<p>今回は問題がFizzBuzzだったので、前に<a href="http://www.slideshare.net/chiastolite/reading-selfdescriptivefizzbuzz">とあるQuineを読んだとき</a>に知ったロジックを使って書いてみた</p>
+
+<div><script src='https://gist.github.com/4529523.js'></script>
+<noscript><pre><code>eval('%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}'%$*)</code></pre></noscript></div>
+
+
+<p>wcで測ってみたら78バイトだったのでまぁまぁかなーと思ってたら、どうもトップは65とからしい。さて、どこを削ったらいいものやら</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1137,72 +1183,9 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/01/22/simplest-redmine-plugin/">世界最小プラグイン</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-22T01:59:00+09:00" pubdate data-updated="true">Jan 22<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Redmineを導入した際に頻繁に質問されるものの1つが下記のような内容だと思います</p>
-
-<ul>
-<li>チケットのタイトル編集したいんだけどどこでやればいいの?</li>
-</ul>
-
-
-<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!</p>
-
-<h2>スクリーンショット</h2>
-
-<h3>これが</h3>
-
-<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 " /></p>
-
-<h3>こうなります</h3>
-
-<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 " /></p>
-
-<h2>驚きの中身解説</h2>
-
-<ol>
-<li>locales/ja.ymlのlabel_moreを上書きする</li>
-</ol>
-
-
-<p>以上(え</p>
-
-<p>リポジトリはこちらから<br/>
-<a href="https://github.com/chiastolite/redmine_how_to_modify_the_subject">https://github.com/chiastolite/redmine_how_to_modify_the_subject</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1213,6 +1196,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/02/zsh/">zshを導入してみる</a>
@@ -1228,10 +1215,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2012/06/20/githug-ja/">Githugをやってみたついでに問題を意訳してみた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/05/trable_shooters/">トラブル☆しゅーたーず #02に行ってきた</a>
       </li>
     
   </ul>
