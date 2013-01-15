@@ -9,7 +9,9 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="東京Ruby会議10にてささたつくろたつさんからCodeIQでのコードゴルフの告知があった 挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ コードゴルフとは特定の動作をするプログラムのソースコードを、 &hellip;">
+  <meta name="description" content="会場は千葉市美浜文化ホール
+最寄りが検見川浜というとで移動時間片道2時間オーバー… カっとなってホテル取った!しかも前泊!!
+(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな) 発表内容に関してはすでにいろんな方が上げてるようなので割愛。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-15T00:00:00+09:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>会場は千葉市美浜文化ホール<br/>
+最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
+
+<p>カっとなってホテル取った!しかも前泊!!<br/>
+(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな)</p>
+
+<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。</p>
+
+<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br/>
+(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)</p>
+
+<hr />
+
+<p>運営のほうを見ると、いろんなコミュニティを運営している人がいるからか、すごい気配りが効いていたなぁと思う。</p>
+
+<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br/>
+正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br/>
+ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。</p>
+
+<p>そして、2日目の雪による影響を考えての英断。<br/>
+運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。</p>
+
+<hr />
+
+<p>今月末には事後懇親会(通称:Q)が控えている。<br/>
+また楽しい時間を過ごせるといいなぁ。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1040,149 +1103,6 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/15/create-smartphone-site/">スマホサイトを作ったときの話</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br/>
-社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
-
-<h2>元の問題</h2>
-
-<ul>
-<li>他のプロジェクトのフォークである</li>
-<li>あっちで更新があるたびマージとか無いわ…</li>
-<li>テストが無い…</li>
-<li>悲しいぐらいに無い</li>
-<li>デプロイは手動</li>
-<li>死ねる……</li>
-</ul>
-
-
-<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br/>
-チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br/>
-ということになった。というかした。</p>
-
-<h2>フロント</h2>
-
-<p>ではアプリケーション作成に使うフレームワークはどうするか?<br/>
-ぱっと以下の3つが思い浮ぶ</p>
-
-<ul>
-<li>Rails</li>
-<li>Sinatra</li>
-<li>Padrino</li>
-</ul>
-
-
-<p>Ruby未経験者がいて教育コストかけてられないのでRailsは即却下</p>
-
-<p>結論から言うとSinatraを採用した。<br/>
-Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br/>
-ただ、後から考えるとPadrinoのほうがよかったかもしれない<br/>
-(ジェネレータもあるし、Controllerの分割等が容易なため)</p>
-
-<p>ViewはスマホだしHTML5。slimとか使いたかったけど教えるの大変なのでerbで記述することにした</p>
-
-<ul>
-<li>jQuery</li>
-<li>jQueryUI</li>
-</ul>
-
-
-<p>スマホのUIを構築するということで当然JavaScriptは必須。<br/>
-この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br/>
-UI系での処理を行うためにjQueryUIも導入</p>
-
-<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br/>
-jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り</p>
-
-<h2>O/Rマッパー</h2>
-
-<ul>
-<li>DataMapper</li>
-</ul>
-
-
-<p>ActiveRecordとどちらを使うか迷ったが、既存テーブルの利用に関して処理の流れがわかりやすかったので採用</p>
-
-<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br/>
-(最終的には既存のメソッドに手を加えることで対応)<br/>
-あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br/>
-(値を消してmigrateしなおし。値が残るのはauto_upgrade)</p>
-
-<h2>テスト</h2>
-
-<ul>
-<li>RSpec</li>
-<li>RR</li>
-<li>Capybara</li>
-<li>(Capybara-webkit)</li>
-</ul>
-
-
-<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br/>
-WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br/>
-Web系のテストはCapybaraで記述。<br/>
-JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br/>
-周りが使えそうもないので見送り</p>
-
-<h2>デプロイ</h2>
-
-<ul>
-<li>Capistrano</li>
-<li>Capistrano-ext</li>
-</ul>
-
-
-<p>Ruby製のデプロイツール<br/>
-Railsでの使用を想定して作られたが他のツールでも利用可能<br/>
-Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用</p>
-
-<h2>CI</h2>
-
-<ul>
-<li>Jenkins</li>
-</ul>
-
-
-<p>言わずと知れたCIツール<br/>
-今回のプロジェクトではリポジトリ(svn)をポーリングして、<br/>
-変更があればユニットテスト、インテグレーションテストを行い、<br/>
-問題がなければステージング環境に自動デプロイを行う環境を構築した</p>
-
-<p>細かい設定等々は後日</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1198,6 +1118,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
@@ -1211,10 +1135,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2012/06/21/starting-scrum/">スクラムの始め方</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/20/githug-ja/">Githugをやってみたついでに問題を意訳してみた</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-01-14T20:47:25+09:00</updated>
+  <updated>2013-01-16T01:52:31+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[東京Ruby会議10に参加してきた]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/01/15/tkrk10/"/>
+    <updated>2013-01-15T00:00:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/01/15/tkrk10</id>
+    <content type="html"><![CDATA[<p>会場は千葉市美浜文化ホール<br/>
+最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
+
+<p>カっとなってホテル取った!しかも前泊!!<br/>
+(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな)</p>
+
+<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。</p>
+
+<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br/>
+(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)</p>
+
+<hr />
+
+<p>運営のほうを見ると、いろんなコミュニティを運営している人がいるからか、すごい気配りが効いていたなぁと思う。</p>
+
+<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br/>
+正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br/>
+ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。</p>
+
+<p>そして、2日目の雪による影響を考えての英断。<br/>
+運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。</p>
+
+<hr />
+
+<p>今月末には事後懇親会(通称:Q)が控えている。<br/>
+また楽しい時間を過ごせるといいなぁ。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた]]></title>

@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Vagrantを利用する理由 - akadama</title>
+  <title>東京Ruby会議10に参加してきた - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える
-結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
-構成管理それぞれがメリットを持っていて、 &hellip;">
+  <meta name="description" content="会場は千葉市美浜文化ホール
+最寄りが検見川浜というとで移動時間片道2時間オーバー… カっとなってホテル取った!しかも前泊!!
+(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな) 発表内容に関してはすでにいろんな方が上げてるようなので割愛。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/">
+  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/01/15/tkrk10/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Vagrantを利用する理由</h1>
+      <h1 class="entry-title">東京Ruby会議10に参加してきた</h1>
     
     
       <p class="meta">
@@ -97,50 +97,39 @@
   
 
 
-<time datetime="2012-05-18T02:14:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2012</time>
+<time datetime="2013-01-15T00:00:00+09:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br/>
-結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
-構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
+<div class="entry-content"><p>会場は千葉市美浜文化ホール<br/>
+最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
 
-<h2>メリット</h2>
+<p>カっとなってホテル取った!しかも前泊!!<br/>
+(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな)</p>
 
-<h3>母艦となるPC/OSの環境が汚れない</h3>
+<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。</p>
 
-<p>必要なライブラリを入れていたら母艦の調子が悪くなるというありがちなパターンから脱却できる</p>
+<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br/>
+(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)</p>
 
-<h3>開発メンバーが共通の環境で作業が行える</h3>
+<hr />
 
-<p>母艦のOSやスペックが異なろうと仮想マシンは統一されているのでトラブル調査が簡単</p>
+<p>運営のほうを見ると、いろんなコミュニティを運営している人がいるからか、すごい気配りが効いていたなぁと思う。</p>
 
-<h3>ステージング/本番と(ほぼ)同じ構成で作業ができる</h3>
+<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br/>
+正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br/>
+ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。</p>
 
-<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br/>
-なので、いざデプロイしたら本番/ステージングで動かない!といったことが減る</p>
+<p>そして、2日目の雪による影響を考えての英断。<br/>
+運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。</p>
 
-<h3>特定の時点での環境が再現可能</h3>
+<hr />
 
-<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br/>
-特定の時点でのOS/アプリの構成がほぼ完全に再現が可能</p>
-
-<h2>デメリット</h2>
-
-<h3>メモリを大量に使う</h3>
-
-<p>仮想マシンだからしかたがない</p>
-
-<h3>ネットワークが遅い</h3>
-
-<p>仮想マシンだからしかたがない</p>
-
-<h3>設定ファイルを書くのが大変</h3>
-
-<p>我慢してください</p>
+<p>今月末には事後懇親会(通称:Q)が控えている。<br/>
+また楽しい時間を過ごせるといいなぁ。</p>
 </div>
 
 
@@ -163,7 +152,7 @@
   
 
 
-<time datetime="2012-05-18T02:14:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2012</time>
+<time datetime="2013-01-15T00:00:00+09:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
       
 
 
@@ -171,7 +160,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/01/15/tkrk10/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/01/15/tkrk10/" >Tweet</a>
   
   
   
@@ -182,20 +171,12 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/05/16/vagrant_and_veewee/" title="Previous Post: VagrantとVeeweeを使ってみた">&laquo; VagrantとVeeweeを使ってみた</a>
+        <a class="basic-alignment left" href="/blog/2013/01/14/ruby-codegolf/" title="Previous Post: 「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた">&laquo; 「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/05/21/using-chef-part1/" title="Next Post: Chef を使ってみる その1">Chef を使ってみる その1 &raquo;</a>
       
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -291,22 +272,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'akadama';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/';
-        var disqus_url = 'http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
