@@ -9,11 +9,8 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話
-社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる 元の問題 他のプロジェクトのフォークである
-あっちで更新があるたびマージとか無いわ…
-テストが無い…
-悲しいぐらいに無い &hellip;">
+  <meta name="description" content="渋谷.rb[:20120516] で飛び込みLTした内容のフォローです 最近こんなエントリーが上がってました 2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界
+ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +77,148 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/16/vagrant_and_veewee/">VagrantとVeeweeを使ってみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-16T19:15:00+09:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>渋谷.rb[:20120516] で飛び込みLTした内容のフォローです</p>
+
+<p>最近こんなエントリーが上がってました</p>
+
+<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
+<a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
+
+<p>正式版が出たVagrantの順位が上がってますね<br/>
+ということで試してみましょう</p>
+
+<h2>Vagrantとは</h2>
+
+<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです</p>
+
+<h3>Vagrantの流れ</h3>
+
+<ol>
+<li>Boxと呼ばれる仮想マシンの雛形を用意する</li>
+<li>ChefやらPuppetで必要なアプリのインストールや設定ファイルを配置する</li>
+<li>(ﾟДﾟ)ｳﾏｰ</li>
+</ol>
+
+
+<h3>実際にやってみる</h3>
+
+<p>ちなみに Ruby は入ってる前提です<br/>
+まずはgemを入れましょう</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
+
+
+<p>終わったら使用するboxを選びます<br/>
+http://vagrantbox.es/ から適当なのを選んでみましょう<br/>
+ここでは<strong>当然</strong> Gentooを選びました</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 指定したURLのBoxをgentooという名前で使えるようにダウンロードしてきます
+</span><span class='line'>vagrant box add gentoo http://dl.dropbox.com/u/4270274/gentoo64-0.7.box
+</span><span class='line'># 雛形となるboxを指定します
+</span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この時点でカレントフォルダにVagrantfileができます<br/>
+Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br/>
+設定し終わったら仮想マシンを立ち上げます</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant up</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはvagrant sshなどで中にはいってゴリゴリ開発が可能です</p>
+
+<h3>ただし…</h3>
+
+<p>この時点ではBoxには何が入ってるかよくわかりません<br/>
+出来ればプレーンなBoxを作りたいですよね<br/>
+ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># gemのインストール
+</span><span class='line'>gem install veewee --pre</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここでは開発版のgemを入れてみます</p>
+
+<p>テンプレートからBoxを作ります<br/>
+使用できるテンプレートの一覧はこれで確認できます</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
+</span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
+
+
+<p>いろいろ出ます<br/>
+もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Box作成用のテンプレートを選択
+</span><span class='line'>veewee vbox define 'ubuntu1204' 'ubuntu-12.04-server-amd64'
+</span><span class='line'>
+</span><span class='line'># Box作成用仮想マシンの作成(ISO等のダウンロードもします)
+</span><span class='line'>veewee vbox build 'ubuntu1204'
+</span><span class='line'>
+</span><span class='line'># vagrant用にアウトプット
+</span><span class='line'>vagrant basebox export 'ubuntu1204'
+</span><span class='line'>
+</span><span class='line'># vagrantで使えるように
+</span><span class='line'>vagrant box add 'ubuntu1204' ubuntu1204.box</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここまで来たら vagrant init から仮想マシンを作ればオッケーです</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -304,6 +443,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/16/ruby-codegolf/">「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
       </li>
     
@@ -317,10 +460,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2012/06/25/githug-ja-2/">Githugをやってみたついでに問題を意訳してみた その2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/21/starting-scrum/">スクラムの始め方</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-01-16T01:52:31+09:00</updated>
+  <updated>2013-01-16T21:44:37+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/"/>
+    <updated>2013-01-16T21:26:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf</id>
+    <content type="html"><![CDATA[<p><a href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/">先日のエントリ</a>、最終結果を見たら78バイトは13位だった。</p>
+
+<p>なんかくやしかったからShibuya.rbでもくもくしてみた</p>
+
+<p>元のはこれ</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br/>
+ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2バイトの削減に成功</p>
+
+<p>@tyabeさんに「スペース無ければシンボルに出来るのに…」と言われていたのでそれを試してみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>1バイトの削減に成功</p>
+
+<p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>動いた!! 2バイトの削減に成功</p>
+
+<p>もしかしたらputsの前のスペースもいらない?と試してみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>動いた!!!! 1バイトの削減に成功</p>
+
+<p>これで72バイト!!<br/>
+今のロジック的にはここが限界かなぁ…?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[東京Ruby会議10に参加してきた]]></title>

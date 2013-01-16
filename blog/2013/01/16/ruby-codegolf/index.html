@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>zshを導入してみる - akadama</title>
+  <title>「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="正月ということで前から気になっていたzshを試してみることにした zshのインストール メイン環境はMacなのでhomebrewで入れることに
-とりあえずinfoを見てみる 1
-brew info zsh If you have administrator privileges, you must &hellip;">
+  <meta name="description" content="先日のエントリ、最終結果を見たら78バイトは13位だった。 なんかくやしかったからShibuya.rbでもくもくしてみた 元のはこれ 1
+eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s). &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ brew info zsh If you have administrator privileges, you must &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/01/02/zsh/">
+  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +80,7 @@ brew info zsh If you have administrator privileges, you must &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Zshを導入してみる</h1>
+      <h1 class="entry-title">「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</h1>
     
     
       <p class="meta">
@@ -97,113 +96,63 @@ brew info zsh If you have administrator privileges, you must &hellip;">
   
 
 
-<time datetime="2013-01-02T01:26:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>正月ということで前から気になっていたzshを試してみることにした</p>
+<div class="entry-content"><p><a href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/">先日のエントリ</a>、最終結果を見たら78バイトは13位だった。</p>
 
-<h1>zshのインストール</h1>
+<p>なんかくやしかったからShibuya.rbでもくもくしてみた</p>
 
-<p>メイン環境はMacなのでhomebrewで入れることに<br/>
-とりあえずinfoを見てみる</p>
+<p>元のはこれ</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew info zsh
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<pre><code>If you have administrator privileges, you must fix an Apple miss
-configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
-/etc/zprofile, or Zsh will have the wrong PATH when executed
-non-interactively by scripts.
-
-Alternatively, install Zsh with /etc disabled:
-
-  brew install --disable-etcdir zsh
-</code></pre>
-
-<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br/>
-もしくは/etcを見ないようにオプションをつけろって感じだろうか</p>
-
-<p>あんまシステム側のファイルに手を出したくないので今回は後者を試してみる</p>
+<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br/>
+ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install --disable-etcdir zsh
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>zshが起動できることを確認したので次は設定に</p>
+<p>2バイトの削減に成功</p>
 
-<h1>antigenを入れてみる</h1>
-
-<p><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>といういろいろ設定をしてくれるツールがあるらしいのだが
-ちょっと過剰な気もしたので、@glidenote さんのブログを元に<a href="https://github.com/zsh-users/antigen">antigen</a>を試してみることに</p>
-
-<p>参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる</p>
+<p>@tyabeさんに「スペース無ければシンボルに出来るのに…」と言われていたのでそれを試してみる</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> <span class="nv">$HOME</span>/dotfiles <span class="c"># 自分の設定ファイルがいろいろ入ってるとこ</span>
-</span><span class='line'>mkdir -p <span class="nv">$HOME</span>/dotfiles/zsh
-</span><span class='line'>git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>設定ファイルを追加</h2>
+<p>1バイトの削減に成功</p>
 
-<h3>.zshrc</h3>
-
-<p>@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに</p>
+<p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigenrc
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>~/dotfiles/zsh/antigenrc</h3>
+<p>動いた!! 2バイトの削減に成功</p>
 
-<p>antigenの設定ファイルを作る</p>
+<p>もしかしたらputsの前のスペースもいらない?と試してみた</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigen/antigen.zsh
-</span><span class='line'>
-</span><span class='line'>antigen-lib
-</span><span class='line'>
-</span><span class='line'>antigen-bundle git
-</span><span class='line'>antigen-bundle autojump
-</span><span class='line'>antigen-bundle ruby
-</span><span class='line'>antigen-bundle rbenv
-</span><span class='line'>antigen-bundle bundler
-</span><span class='line'>
-</span><span class='line'>antigen-bundle zsh-users/zsh-syntax-highlighting
-</span><span class='line'>
-</span><span class='line'>antigen-theme gallois
-</span><span class='line'>
-</span><span class='line'>antigen-apply
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br/>
-細かい設定は後々詰めるとして今日のところはこの辺で終了</p>
+<p>動いた!!!! 1バイトの削減に成功</p>
+
+<p>これで72バイト!!<br/>
+今のロジック的にはここが限界かなぁ…?</p>
 </div>
 
 
@@ -226,7 +175,7 @@ Alternatively, install Zsh with /etc disabled:
   
 
 
-<time datetime="2013-01-02T01:26:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
       
 
 
@@ -234,7 +183,7 @@ Alternatively, install Zsh with /etc disabled:
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/01/02/zsh/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/01/02/zsh/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/" >Tweet</a>
   
   
   
@@ -245,20 +194,12 @@ Alternatively, install Zsh with /etc disabled:
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/06/25/githug-ja-2/" title="Previous Post: Githugをやってみたついでに問題を意訳してみた その2">&laquo; Githugをやってみたついでに問題を意訳してみた その2</a>
+        <a class="basic-alignment left" href="/blog/2013/01/15/tkrk10/" title="Previous Post: 東京Ruby会議10に参加してきた">&laquo; 東京Ruby会議10に参加してきた</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/14/ruby-codegolf/" title="Next Post: 「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた &raquo;</a>
       
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -354,22 +295,6 @@ Alternatively, install Zsh with /etc disabled:
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'akadama';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://chiastolite.github.com/blog/2013/01/02/zsh/';
-        var disqus_url = 'http://chiastolite.github.com/blog/2013/01/02/zsh/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
