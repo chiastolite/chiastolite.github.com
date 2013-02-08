@@ -9,8 +9,8 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="先日のエントリ、最終結果を見たら78バイトは13位だった。 なんかくやしかったからShibuya.rbでもくもくしてみた 元のはこれ 1
-eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s). &hellip;">
+  <meta name="description" content="会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。 sstephenson/rbenv-default-gems · GitHub 作者はrbenvのsstephenson
+ruby- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,112 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/08/try-rbenv-default-gems/">Rbenv-default-gemsを試してみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-08T10:25:00+09:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。</p>
+
+<p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
+
+<p>作者はrbenvのsstephenson<br/>
+ruby-buildを実行した際に指定したgemを同時に入れてくれるプラグインのようです</p>
+
+<p>さっそく試してみます</p>
+
+<p>READMEを参考に ~/.rbenv/default-gems に以下のような内容を書きます</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundler
+</span><span class='line'>pry</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはいつも通りrbenv installをするだけ</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local --enable-shared" rbenv install 1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Downloading yaml-0.1.4.tar.gz...
+</span><span class='line'>-&gt; http://dqw8nmjcqpjn7.cloudfront.net/36c852831d02cf90508c29852361d01b
+</span><span class='line'>Installing yaml-0.1.4...
+</span><span class='line'>Installed yaml-0.1.4 to /Users/morita/.rbenv/versions/1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Downloading ruby-1.9.3-p385.tar.gz...
+</span><span class='line'>-&gt; http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
+</span><span class='line'>Installing ruby-1.9.3-p385...
+</span><span class='line'>Installed ruby-1.9.3-p385 to /Users/morita/.rbenv/versions/1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Fetching: bundler-1.2.3.gem (100%)
+</span><span class='line'>Successfully installed bundler-1.2.3
+</span><span class='line'>1 gem installed
+</span><span class='line'>Fetching: coderay-1.0.8.gem (100%)
+</span><span class='line'>Fetching: slop-3.4.3.gem (100%)
+</span><span class='line'>Fetching: method_source-0.8.1.gem (100%)
+</span><span class='line'>Fetching: pry-0.9.11.4.gem (100%)
+</span><span class='line'>Successfully installed coderay-1.0.8
+</span><span class='line'>Successfully installed slop-3.4.3
+</span><span class='line'>Successfully installed method_source-0.8.1
+</span><span class='line'>Successfully installed pry-0.9.11.4
+</span><span class='line'>4 gems installed</span></code></pre></td></tr></table></div></figure>
+
+
+<p>おぉ入ってる入ってる<br/>
+毎回 gem install bundlerやるのも面倒だなと思っていたので、これはいい拡張ですね</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -973,78 +1079,6 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/18/benefits-of-using-vagrant/">Vagrantを利用する理由</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-18T02:14:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br/>
-結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
-構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
-
-<h2>メリット</h2>
-
-<h3>母艦となるPC/OSの環境が汚れない</h3>
-
-<p>必要なライブラリを入れていたら母艦の調子が悪くなるというありがちなパターンから脱却できる</p>
-
-<h3>開発メンバーが共通の環境で作業が行える</h3>
-
-<p>母艦のOSやスペックが異なろうと仮想マシンは統一されているのでトラブル調査が簡単</p>
-
-<h3>ステージング/本番と(ほぼ)同じ構成で作業ができる</h3>
-
-<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br/>
-なので、いざデプロイしたら本番/ステージングで動かない!といったことが減る</p>
-
-<h3>特定の時点での環境が再現可能</h3>
-
-<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br/>
-特定の時点でのOS/アプリの構成がほぼ完全に再現が可能</p>
-
-<h2>デメリット</h2>
-
-<h3>メモリを大量に使う</h3>
-
-<p>仮想マシンだからしかたがない</p>
-
-<h3>ネットワークが遅い</h3>
-
-<p>仮想マシンだからしかたがない</p>
-
-<h3>設定ファイルを書くのが大変</h3>
-
-<p>我慢してください</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1060,6 +1094,10 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/08/try-rbenv-default-gems/">rbenv-default-gemsを試してみた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/16/ruby-codegolf/">「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</a>
       </li>
     
@@ -1073,10 +1111,6 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
     
       <li class="post">
         <a href="/blog/2013/01/02/zsh/">zshを導入してみる</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/25/githug-ja-2/">Githugをやってみたついでに問題を意訳してみた その2</a>
       </li>
     
   </ul>

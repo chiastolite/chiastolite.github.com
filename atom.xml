@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-01-16T21:44:37+09:00</updated>
+  <updated>2013-02-08T10:38:59+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rbenv-default-gemsを試してみた]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/02/08/try-rbenv-default-gems/"/>
+    <updated>2013-02-08T10:25:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/02/08/try-rbenv-default-gems</id>
+    <content type="html"><![CDATA[<p>会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。</p>
+
+<p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
+
+<p>作者はrbenvのsstephenson<br/>
+ruby-buildを実行した際に指定したgemを同時に入れてくれるプラグインのようです</p>
+
+<p>さっそく試してみます</p>
+
+<p>READMEを参考に ~/.rbenv/default-gems に以下のような内容を書きます</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundler
+</span><span class='line'>pry</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはいつも通りrbenv installをするだけ</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local --enable-shared" rbenv install 1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Downloading yaml-0.1.4.tar.gz...
+</span><span class='line'>-&gt; http://dqw8nmjcqpjn7.cloudfront.net/36c852831d02cf90508c29852361d01b
+</span><span class='line'>Installing yaml-0.1.4...
+</span><span class='line'>Installed yaml-0.1.4 to /Users/morita/.rbenv/versions/1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Downloading ruby-1.9.3-p385.tar.gz...
+</span><span class='line'>-&gt; http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
+</span><span class='line'>Installing ruby-1.9.3-p385...
+</span><span class='line'>Installed ruby-1.9.3-p385 to /Users/morita/.rbenv/versions/1.9.3-p385
+</span><span class='line'>
+</span><span class='line'>Fetching: bundler-1.2.3.gem (100%)
+</span><span class='line'>Successfully installed bundler-1.2.3
+</span><span class='line'>1 gem installed
+</span><span class='line'>Fetching: coderay-1.0.8.gem (100%)
+</span><span class='line'>Fetching: slop-3.4.3.gem (100%)
+</span><span class='line'>Fetching: method_source-0.8.1.gem (100%)
+</span><span class='line'>Fetching: pry-0.9.11.4.gem (100%)
+</span><span class='line'>Successfully installed coderay-1.0.8
+</span><span class='line'>Successfully installed slop-3.4.3
+</span><span class='line'>Successfully installed method_source-0.8.1
+</span><span class='line'>Successfully installed pry-0.9.11.4
+</span><span class='line'>4 gems installed</span></code></pre></td></tr></table></div></figure>
+
+
+<p>おぉ入ってる入ってる<br/>
+毎回 gem install bundlerやるのも面倒だなと思っていたので、これはいい拡張ですね</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた]]></title>
