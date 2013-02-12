@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-02-12T10:59:42+09:00</updated>
+  <updated>2013-02-12T11:51:20+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -18,7 +18,7 @@
     <link href="http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem/"/>
     <updated>2013-02-12T10:40:00+09:00</updated>
     <id>http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem</id>
-    <content type="html"><![CDATA[<p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a>
+    <content type="html"><![CDATA[<p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a><br/>
 <a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env_http_proxy · GitHub</a></p>
 
 <p>簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP.newが呼ばれた際にはそのプロキシを利用するように強制するライブラリ」です。</p>
