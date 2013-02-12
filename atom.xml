@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-02-08T10:38:59+09:00</updated>
+  <updated>2013-02-12T10:59:42+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[env_http_proxy.gem をリリースしました]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem/"/>
+    <updated>2013-02-12T10:40:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem</id>
+    <content type="html"><![CDATA[<p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a>
+<a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env_http_proxy · GitHub</a></p>
+
+<p>簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP.newが呼ばれた際にはそのプロキシを利用するように強制するライブラリ」です。</p>
+
+<p>会社ではプロキシを設定しないと外に出れないのですが、そのせいでプロキシを考慮してないプログラムが動かなくストレスフルな生活をしていました。これで平穏な日常に戻れる気がします。</p>
+
+<h2>Padrinoで使ってみる</h2>
+
+<p>Padrinoでプロキシ対応してないのはプラグインリストの表示</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bundle <span class="nb">exec </span>padrino gem plugin -l
+</span><span class='line'>
+</span><span class='line'>/Users/chiastolite/.rbenv/versions/1.9.3-p385/lib/ruby/1.9.1/net/http.rb:762:in <span class="sb">`</span>initialize<span class="err">&#39;</span>: Operation timed out - connect<span class="o">(</span>2<span class="o">)</span> <span class="o">(</span>Errno::ETIMEDOUT<span class="o">)</span>
+</span><span class='line'><span class="o">(</span>略<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gemfileに以下の行を追加してbundle installを実行</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;env_http_proxy&#39;</span><span class="p">,</span> <span class="ss">group</span><span class="p">:</span> <span class="s1">&#39;development&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>環境変数 http_proxyを設定</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://proxy.example.com:8080/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>再度プラグインリストの表示を行います</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>bundle <span class="nb">exec </span>padrino gem plugin -l
+</span><span class='line'>
+</span><span class='line'>Available plugins:
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;960&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;access&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_permalink_i18n&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_permalink&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_textile&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_translate&quot;</span><span class="o">]</span>
+</span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;auto_locale&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="o">(</span>以下略<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>動いてますね<br/>
+プロキシが対応していないライブラリ/プロダクトってのは結構多く、毎回PullRequest出すのも大変なのでとりあえずこれでしのげればいいなと思います</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[rbenv-default-gemsを試してみた]]></title>
