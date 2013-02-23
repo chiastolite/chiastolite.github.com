@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-02-23T15:13:33+09:00</updated>
+  <updated>2013-02-23T16:08:27+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -85,7 +85,7 @@ SSHも出来てブラックボックスにもならないし、これも要調�
 <p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。
 自分もAMIをVirtualBoxで使えないか調べていたので、考えてることは間違ってなかったみたい。</p>
 
-<p>その点で言うとEngine Yardl Localはすごいいいと思う。
+<p>その点で言うとEngine Yard Localはすごいいいと思う。
 昨日ここの話聞けばよかったなぁ。</p>
 
 <p><a href="http://www.engineyard.co.jp/products/local">ローカル クラウド コンピューティング: Engine Yard Cloud でローカル クラウド環境を作成</a></p>
