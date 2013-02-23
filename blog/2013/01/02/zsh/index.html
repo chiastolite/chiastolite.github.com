@@ -104,19 +104,17 @@ brew info zsh If you have administrator privileges, you must &hellip;">
   </header>
 
 
-<div class="entry-content"><p>正月ということで前から気になっていたzshを試してみることにした</p>
+<div class="entry-content"><p>正月ということで前から気になっていたzshを試してみることにした  </p>
 
 <h1>zshのインストール</h1>
 
-<p>メイン環境はMacなのでhomebrewで入れることに<br/>
+<p>メイン環境はMacなのでhomebrewで入れることに<br>
 とりあえずinfoを見てみる</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>brew info zsh
 </span></code></pre></td></tr></table></div></figure>
-
-
-<pre><code>If you have administrator privileges, you must fix an Apple miss
+<div class="highlight"><pre><code class="text">If you have administrator privileges, you must fix an Apple miss
 configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
 /etc/zprofile, or Zsh will have the wrong PATH when executed
 non-interactively by scripts.
@@ -124,9 +122,8 @@ non-interactively by scripts.
 Alternatively, install Zsh with /etc disabled:
 
   brew install --disable-etcdir zsh
-</code></pre>
-
-<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br/>
+</code></pre></div>
+<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br>
 もしくは/etcを見ないようにオプションをつけろって感じだろうか</p>
 
 <p>あんまシステム側のファイルに手を出したくないので今回は後者を試してみる</p>
@@ -134,7 +131,6 @@ Alternatively, install Zsh with /etc disabled:
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install --disable-etcdir zsh
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>zshが起動できることを確認したので次は設定に</p>
 
@@ -153,7 +149,6 @@ Alternatively, install Zsh with /etc disabled:
 </span><span class='line'>git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
 </span></code></pre></td></tr></table></div></figure>
 
-
 <h2>設定ファイルを追加</h2>
 
 <h3>.zshrc</h3>
@@ -163,7 +158,6 @@ Alternatively, install Zsh with /etc disabled:
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigenrc
 </span></code></pre></td></tr></table></div></figure>
-
 
 <h3>~/dotfiles/zsh/antigenrc</h3>
 
@@ -201,8 +195,7 @@ Alternatively, install Zsh with /etc disabled:
 </span><span class='line'>antigen-apply
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br/>
+<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br>
 細かい設定は後々詰めるとして今日のところはこの辺で終了</p>
 </div>
 
@@ -269,6 +262,10 @@ Alternatively, install Zsh with /etc disabled:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
       </li>
     
@@ -282,10 +279,6 @@ Alternatively, install Zsh with /etc disabled:
     
       <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
   </ul>

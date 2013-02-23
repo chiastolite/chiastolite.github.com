@@ -113,14 +113,12 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br/>
+<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br>
 ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>2バイトの削減に成功</p>
 
@@ -130,7 +128,6 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <p>1バイトの削減に成功</p>
 
 <p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
@@ -138,7 +135,6 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>動いた!! 2バイトの削減に成功</p>
 
@@ -148,10 +144,9 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <p>動いた!!!! 1バイトの削減に成功</p>
 
-<p>これで72バイト!!<br/>
+<p>これで72バイト!!<br>
 今のロジック的にはここが限界かなぁ…?</p>
 </div>
 
@@ -212,6 +207,10 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
       </li>
     
@@ -225,10 +224,6 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
     
       <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
   </ul>

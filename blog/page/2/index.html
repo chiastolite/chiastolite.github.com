@@ -9,9 +9,9 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="先日のVagrantのエントリー内でちょっと触れたChefを試してみます Chefとは Chef
-Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られたサーバの構成管理ツールです
-いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです &hellip;">
+  <meta name="description" content="トラブル☆しゅーたーず＃02　～あいつがまたやらかした～ on Zusaarに参加してきました リンク先にもありますが要は発生した障害に対して 障害を復旧させ
+原因を追求し
+報告書/提案書を作成 というイベントです …… &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +84,112 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/06/05/trable_shooters/">トラブル☆しゅーたーず #02に行ってきた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T22:10:00+09:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.zusaar.com/event/296005">トラブル☆しゅーたーず＃02　～あいつがまたやらかした～ on Zusaar</a>に参加してきました</p>
+
+<p>リンク先にもありますが要は発生した障害に対して</p>
+
+<ol>
+<li>障害を復旧させ</li>
+<li>原因を追求し</li>
+<li>報告書/提案書を作成</li>
+</ol>
+
+<p>というイベントです</p>
+
+<p>……せっかくのお休みに嬉々として障害対応しに行くんだから<del>どうかんがえてもドMですほんとうにありが(ry</del>意識の高い参加者の方々でした</p>
+
+<h2>概要</h2>
+
+<p>運用を受託されているECサイトで障害発生<br>
+18時にはテレビでサイトが放映されるため、それまでに解決しなくてはならない  </p>
+
+<p>タイムテーブル的にはこんな感じ</p>
+
+<pre>
+04:00 <del>あのやろう</del>山◯くんサイト更新作業完了
+14:00 お客様より第一報
+15:30 お客様へ一次報告
+16:00 番宣番組放送
+18:00 本放送
+</pre>
+
+<p>詳細は<a href="http://t.co/DIkEmqof">こんな</a></p>
+
+<p>…今見ても胃がキリキリする(&#8211;;</p>
+
+<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br>
+負荷対策も…といった感じ<br>
+それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br>
+自分は主にアプリの修正等々をやってましたが、DBを調査してくれた方の情報と合わせてなんとかアプリ復旧までこぎつけたのはよかったなと思います  </p>
+
+<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br>
+だから休日なのになんでこんな悲しいお話聞いてるんだろう、自分たち…</p>
+
+<h2>お客様(@tmaeさん)よりのお説教タイム</h2>
+
+<p>マジお通夜状態<br>
+リアルでこんなんなったら泣きます…</p>
+
+<p>@tmaeさんのお話を聞いて思ったこと等々</p>
+
+<h3>もっとお客さんの立場を考えるべき</h3>
+
+<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br>
+大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br>
+お客さんの立場からすれば何が起きているのか、どういう対応をしているのかを知りたいはずなのでまずは状況の説明だけでも構わないので一次報告は迅速にすべきだなぁ</p>
+
+<h3>なにを最優先すべきなのか</h3>
+
+<p>目の前に壊れてるものがあるとどうしても最優先で直したくなっちゃうけど、それがお客様の望んでいることなのかは場合による(今回は自転車の画像を引くのが最優先だった)ので、頭のどこかに置いておかないといけないよな</p>
+
+<h2>馬場さん(@netmarkjp)の解説タイム</h2>
+
+<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥
+そこに気付ければ1時間は変わった気がする</p>
+
+<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br>
+ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br>
+まだまだクラウド脳にシフトしてないな</p>
+
+<p>その後は懇親会で山◯くんどうなん?とかそもそもあの手順書(?)にOK出るのはどうなんだ等々、本当に障害対応後のような空気にw</p>
+
+<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br>
+次回もトラブル直しに来ようと思います</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/05/21/using-chef-part1/">Chef を使ってみる その1</a></h1>
     
     
@@ -111,11 +217,11 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 
 <h2>Chefとは</h2>
 
-<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br/>
+<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br>
 <a href="http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG">Chef でサーバ管理を楽チンにしよう！|るびま</a></p>
 
-<p>Rubyで作られたサーバの構成管理ツールです<br/>
-いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです</p>
+<p>Rubyで作られたサーバの構成管理ツールです<br>
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです  </p>
 
 <p>これで下記みたいな時に幸せになれるのかもしれません</p>
 
@@ -125,12 +231,11 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 <li>100台サーバあるけど、apacheのバージョン更新しといて</li>
 </ul>
 
-
-<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br/>
-最初から完璧にやろうと思うと必ず失敗します。<br/>
+<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br>
+最初から完璧にやろうと思うと必ず失敗します。<br>
 自分もすでに数回目(笑)</p>
 
-<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br/>
+<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br>
 最終的には開発用のVirtualBoxと公開用サーバでアプリとか設定とかを統一していきたいです</p>
 
 <h2>インストール</h2>
@@ -139,7 +244,6 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>gem install chef</span></code></pre></td></tr></table></div></figure>
-
 
 <p>これだけでOk</p>
 
@@ -150,19 +254,17 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ knife configure</span></code></pre></td></tr></table></div></figure>
 
-
-<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br/>
+<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br>
 ファイルの設定が終わったら、~/.chef/knife.rbにcookbookの保管場所を設定します</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_path</span>            <span class="s1">&#39;~/.chef/cookbooks/&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <h2>レシピ作成</h2>
 
-<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br/>
-インストールするもの毎に作るのが慣習ぽいです<br/>
+<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br>
+インストールするもの毎に作るのが慣習ぽいです<br>
 apacheならapacheだけ。PHPとかでライブラリを入れる場合は一緒でもいいのかな?</p>
 
 <p>今回は単に静的ファイルを1つ置くだけのレシピを書いてみましょう</p>
@@ -171,33 +273,30 @@ apacheならapacheだけ。PHPとかでライブラリを入れる場合は一�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">knife</span> <span class="n">cookbook</span> <span class="n">create</span> <span class="n">static_file</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>cookbook_path以下にstatic_fileというディレクトリが出来ているはずです<br/>
+<p>cookbook<em>path以下にstatic</em>fileというディレクトリが出来ているはずです<br>
 ここがstatic_fileレシピに関する情報をまとめるディレクトリになります</p>
 
 <h3>レシピディレクトリの中身</h3>
 
 <ul>
-<li>attributes</li>
-<li>definitions</li>
-<li>files</li>
-<li>libraries</li>
-<li>providers</li>
+<li>attributes<br></li>
+<li>definitions<br></li>
+<li>files<br></li>
+<li>libraries<br></li>
+<li>providers<br></li>
 <li>recipes</li>
 <li>resources</li>
 <li>templates</li>
 </ul>
 
-
 <p>8つのディレクトリと</p>
 
 <ul>
-<li>metadata.rb</li>
-<li>README.md</li>
+<li>metadata.rb<br></li>
+<li>README.md<br></li>
 </ul>
 
-
-<p>2つのファイルがあります</p>
+<p>2つのファイルがあります  </p>
 
 <p>今回は静的ファイルを置くだけなので、recipesとfilesディレクトリ以外は消しておきます</p>
 
@@ -212,11 +311,10 @@ apacheならapacheだけ。PHPとかでライブラリを入れる場合は一�
 <li>recipes/default.rbに cookbook_file メソッドでファイルを指定</li>
 </ol>
 
-
 <p>といった感じです。</p>
 
-<p>実際にやってみます<br/>
-files 以下にsample.txtを作る<br/>
+<p>実際にやってみます<br>
+files 以下にsample.txtを作る<br>
 recipes/default.rb に以下のようにファイルを配置したいパスを指定</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -227,9 +325,8 @@ recipes/default.rb に以下のようにファイルを配置したいパスを�
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>これでレシピの作成は完了<br/>
-ではこのレシピをVagrantで利用してみましょう<br/>
+<p>これでレシピの作成は完了<br>
+ではこのレシピをVagrantで利用してみましょう<br>
 Vagrantfileの途中にchef-soloの記述があるのでその部分を以下のように変更します</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -252,13 +349,11 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです</p>
+<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです  </p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">up</span>     <span class="c1"># すでに起動済みの場合はvagrant reload</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>その後以下のコマンドでファイルがあるかを確認してみましょう</p>
 
@@ -270,8 +365,7 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 </span><span class='line'><span class="err">$</span> <span class="n">ls</span> <span class="sr">/tmp/s</span><span class="n">ample</span><span class="o">.</span><span class="n">txt</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>ファイルはちゃんと配置されたでしょうか?<br/>
+<p>ファイルはちゃんと配置されたでしょうか?<br>
 まだここだと嬉しさわからないと思うので次回はテンプレートを使って値の書き換え等を行うのを確認したいと思います</p>
 </div>
   
@@ -308,7 +402,7 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
   </header>
 
 
-  <div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br/>
+  <div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br>
 結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
 構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
 
@@ -324,12 +418,12 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 
 <h3>ステージング/本番と(ほぼ)同じ構成で作業ができる</h3>
 
-<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br/>
+<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br>
 なので、いざデプロイしたら本番/ステージングで動かない!といったことが減る</p>
 
 <h3>特定の時点での環境が再現可能</h3>
 
-<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br/>
+<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br>
 特定の時点でのOS/アプリの構成がほぼ完全に再現が可能</p>
 
 <h2>デメリット</h2>
@@ -387,12 +481,12 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 <p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
 <a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
 
-<p>正式版が出たVagrantの順位が上がってますね<br/>
+<p>正式版が出たVagrantの順位が上がってますね<br>
 ということで試してみましょう</p>
 
 <h2>Vagrantとは</h2>
 
-<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです</p>
+<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです  </p>
 
 <h3>Vagrantの流れ</h3>
 
@@ -402,18 +496,16 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 <li>(ﾟДﾟ)ｳﾏｰ</li>
 </ol>
 
-
 <h3>実際にやってみる</h3>
 
-<p>ちなみに Ruby は入ってる前提です<br/>
+<p>ちなみに Ruby は入ってる前提です<br>
 まずはgemを入れましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
 
-
-<p>終わったら使用するboxを選びます<br/>
-http://vagrantbox.es/ から適当なのを選んでみましょう<br/>
+<p>終わったら使用するboxを選びます<br>
+http://vagrantbox.es/ から適当なのを選んでみましょう<br>
 ここでは<strong>当然</strong> Gentooを選びました</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -425,21 +517,19 @@ http://vagrantbox.es/ から適当なのを選んでみましょう<br/>
 </span><span class='line'># 雛形となるboxを指定します
 </span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
 
-
-<p>この時点でカレントフォルダにVagrantfileができます<br/>
-Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br/>
+<p>この時点でカレントフォルダにVagrantfileができます<br>
+Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br>
 設定し終わったら仮想マシンを立ち上げます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vagrant up</span></code></pre></td></tr></table></div></figure>
 
-
 <p>あとはvagrant sshなどで中にはいってゴリゴリ開発が可能です</p>
 
 <h3>ただし…</h3>
 
-<p>この時点ではBoxには何が入ってるかよくわかりません<br/>
-出来ればプレーンなBoxを作りたいですよね<br/>
+<p>この時点ではBoxには何が入ってるかよくわかりません<br>
+出来ればプレーンなBoxを作りたいですよね<br>
 ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -447,10 +537,9 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </pre></td><td class='code'><pre><code class=''><span class='line'># gemのインストール
 </span><span class='line'>gem install veewee --pre</span></code></pre></td></tr></table></div></figure>
 
+<p>ここでは開発版のgemを入れてみます  </p>
 
-<p>ここでは開発版のgemを入れてみます</p>
-
-<p>テンプレートからBoxを作ります<br/>
+<p>テンプレートからBoxを作ります<br>
 使用できるテンプレートの一覧はこれで確認できます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -458,8 +547,7 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
 </span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
 
-
-<p>いろいろ出ます<br/>
+<p>いろいろ出ます<br>
 もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -484,7 +572,6 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </span><span class='line'>
 </span><span class='line'># vagrantで使えるように
 </span><span class='line'>vagrant box add 'ubuntu1204' ubuntu1204.box</span></code></pre></td></tr></table></div></figure>
-
 
 <p>ここまで来たら vagrant init から仮想マシンを作ればオッケーです</p>
 </div>
@@ -522,29 +609,37 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
   </header>
 
 
-  <div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br/>
+  <div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br>
 社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
 
 <h2>元の問題</h2>
 
 <ul>
-<li>他のプロジェクトのフォークである</li>
-<li>あっちで更新があるたびマージとか無いわ…</li>
-<li>テストが無い…</li>
-<li>悲しいぐらいに無い</li>
-<li>デプロイは手動</li>
-<li>死ねる……</li>
+<li>他のプロジェクトのフォークである<br>
+
+<ul>
+<li>あっちで更新があるたびマージとか無いわ…<br></li>
+</ul></li>
+<li>テストが無い…<br>
+
+<ul>
+<li>悲しいぐらいに無い<br></li>
+</ul></li>
+<li>デプロイは手動<br>
+
+<ul>
+<li>死ねる……<br></li>
+</ul></li>
 </ul>
 
-
-<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br/>
-チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br/>
-ということになった。というかした。</p>
+<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br>
+チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br>
+ということになった。というかした。  </p>
 
 <h2>フロント</h2>
 
-<p>ではアプリケーション作成に使うフレームワークはどうするか?<br/>
-ぱっと以下の3つが思い浮ぶ</p>
+<p>ではアプリケーション作成に使うフレームワークはどうするか?<br>
+ぱっと以下の3つが思い浮ぶ  </p>
 
 <ul>
 <li>Rails</li>
@@ -552,13 +647,12 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 <li>Padrino</li>
 </ul>
 
-
 <p>Ruby未経験者がいて教育コストかけてられないのでRailsは即却下</p>
 
-<p>結論から言うとSinatraを採用した。<br/>
-Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br/>
-ただ、後から考えるとPadrinoのほうがよかったかもしれない<br/>
-(ジェネレータもあるし、Controllerの分割等が容易なため)</p>
+<p>結論から言うとSinatraを採用した。<br>
+Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br>
+ただ、後から考えるとPadrinoのほうがよかったかもしれない<br>
+(ジェネレータもあるし、Controllerの分割等が容易なため)  </p>
 
 <p>ViewはスマホだしHTML5。slimとか使いたかったけど教えるの大変なのでerbで記述することにした</p>
 
@@ -567,13 +661,12 @@ Padrinoと迷ったが自分が使ったことのあるもののほうがいい�
 <li>jQueryUI</li>
 </ul>
 
+<p>スマホのUIを構築するということで当然JavaScriptは必須。<br>
+この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br>
+UI系での処理を行うためにjQueryUIも導入  </p>
 
-<p>スマホのUIを構築するということで当然JavaScriptは必須。<br/>
-この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br/>
-UI系での処理を行うためにjQueryUIも導入</p>
-
-<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br/>
-jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り</p>
+<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br>
+jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り  </p>
 
 <h2>O/Rマッパー</h2>
 
@@ -581,13 +674,12 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 <li>DataMapper</li>
 </ul>
 
-
 <p>ActiveRecordとどちらを使うか迷ったが、既存テーブルの利用に関して処理の流れがわかりやすかったので採用</p>
 
-<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br/>
-(最終的には既存のメソッドに手を加えることで対応)<br/>
-あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br/>
-(値を消してmigrateしなおし。値が残るのはauto_upgrade)</p>
+<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br>
+(最終的には既存のメソッドに手を加えることで対応)<br>
+あとauto<em>migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br>
+(値を消してmigrateしなおし。値が残るのはauto</em>upgrade)  </p>
 
 <h2>テスト</h2>
 
@@ -598,12 +690,11 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 <li>(Capybara-webkit)</li>
 </ul>
 
-
-<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br/>
-WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br/>
-Web系のテストはCapybaraで記述。<br/>
-JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br/>
-周りが使えそうもないので見送り</p>
+<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br>
+WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br>
+Web系のテストはCapybaraで記述。<br>
+JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br>
+周りが使えそうもないので見送り  </p>
 
 <h2>デプロイ</h2>
 
@@ -612,10 +703,9 @@ JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っ�
 <li>Capistrano-ext</li>
 </ul>
 
-
-<p>Ruby製のデプロイツール<br/>
-Railsでの使用を想定して作られたが他のツールでも利用可能<br/>
-Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用</p>
+<p>Ruby製のデプロイツール<br>
+Railsでの使用を想定して作られたが他のツールでも利用可能<br>
+Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用  </p>
 
 <h2>CI</h2>
 
@@ -623,11 +713,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 <li>Jenkins</li>
 </ul>
 
-
-<p>言わずと知れたCIツール<br/>
-今回のプロジェクトではリポジトリ(svn)をポーリングして、<br/>
-変更があればユニットテスト、インテグレーションテストを行い、<br/>
-問題がなければステージング環境に自動デプロイを行う環境を構築した</p>
+<p>言わずと知れたCIツール<br>
+今回のプロジェクトではリポジトリ(svn)をポーリングして、<br>
+変更があればユニットテスト、インテグレーションテストを行い、<br>
+問題がなければステージング環境に自動デプロイを行う環境を構築した  </p>
 
 <p>細かい設定等々は後日</p>
 </div>
@@ -671,18 +760,17 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 <li>チケットのタイトル編集したいんだけどどこでやればいいの?</li>
 </ul>
 
-
-<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!</p>
+<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!  </p>
 
 <h2>スクリーンショット</h2>
 
 <h3>これが</h3>
 
-<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 " /></p>
+<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 "></p>
 
 <h3>こうなります</h3>
 
-<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 " /></p>
+<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 "></p>
 
 <h2>驚きの中身解説</h2>
 
@@ -690,10 +778,9 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 <li>locales/ja.ymlのlabel_moreを上書きする</li>
 </ol>
 
-
 <p>以上(え</p>
 
-<p>リポジトリはこちらから<br/>
+<p>リポジトリはこちらから<br>
 <a href="https://github.com/chiastolite/redmine_how_to_modify_the_subject">https://github.com/chiastolite/redmine_how_to_modify_the_subject</a></p>
 </div>
   
@@ -717,6 +804,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
       </li>
     
@@ -730,10 +821,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
   </ul>

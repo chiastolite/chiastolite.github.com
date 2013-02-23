@@ -9,8 +9,8 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="env_http_proxy | RubyGems.org | your community gem host
-chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP. &hellip;">
+  <meta name="description" content="envhttpproxy | RubyGems.org | your community gem host
+chiastolite/envhttpproxy · GitHub 簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,8 +103,8 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
   </header>
 
 
-<div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a><br/>
-<a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env_http_proxy · GitHub</a></p>
+<div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env<em>http</em>proxy | RubyGems.org | your community gem host</a><br>
+<a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env<em>http</em>proxy · GitHub</a></p>
 
 <p>簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP.newが呼ばれた際にはそのプロキシを利用するように強制するライブラリ」です。</p>
 
@@ -124,20 +124,17 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 </span><span class='line'><span class="o">(</span>略<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <p>Gemfileに以下の行を追加してbundle installを実行</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;env_http_proxy&#39;</span><span class="p">,</span> <span class="ss">group</span><span class="p">:</span> <span class="s1">&#39;development&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <p>環境変数 http_proxyを設定</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://proxy.example.com:8080/
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>再度プラグインリストの表示を行います</p>
 
@@ -163,12 +160,9 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 </span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_translate&quot;</span><span class="o">]</span>
 </span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;auto_locale&quot;</span><span class="o">]</span>
 </span><span class='line'>  <span class="o">(</span>以下略<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure> 
 
-
-<p></p>
-
-<p>動いてますね<br/>
+<p>動いてますね<br>
 プロキシが対応していないライブラリ/プロダクトってのは結構多く、毎回PullRequest出すのも大変なのでとりあえずこれでしのげればいいなと思います</p>
 </div>
 
@@ -214,6 +208,8 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
         <a class="basic-alignment left" href="/blog/2013/02/08/try-rbenv-default-gems/" title="Previous Post: rbenv-default-gemsを試してみた">&laquo; rbenv-default-gemsを試してみた</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/02/23/chef-for-beginners/" title="Next Post: Chefの勉強会に行ってきた">Chefの勉強会に行ってきた &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -225,6 +221,10 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
@@ -240,10 +240,6 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
     
       <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
   </ul>

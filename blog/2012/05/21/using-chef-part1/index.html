@@ -108,11 +108,11 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 
 <h2>Chefとは</h2>
 
-<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br/>
+<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br>
 <a href="http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG">Chef でサーバ管理を楽チンにしよう！|るびま</a></p>
 
-<p>Rubyで作られたサーバの構成管理ツールです<br/>
-いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです</p>
+<p>Rubyで作られたサーバの構成管理ツールです<br>
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです  </p>
 
 <p>これで下記みたいな時に幸せになれるのかもしれません</p>
 
@@ -122,12 +122,11 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 <li>100台サーバあるけど、apacheのバージョン更新しといて</li>
 </ul>
 
-
-<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br/>
-最初から完璧にやろうと思うと必ず失敗します。<br/>
+<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br>
+最初から完璧にやろうと思うと必ず失敗します。<br>
 自分もすでに数回目(笑)</p>
 
-<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br/>
+<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br>
 最終的には開発用のVirtualBoxと公開用サーバでアプリとか設定とかを統一していきたいです</p>
 
 <h2>インストール</h2>
@@ -136,7 +135,6 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>gem install chef</span></code></pre></td></tr></table></div></figure>
-
 
 <p>これだけでOk</p>
 
@@ -147,19 +145,17 @@ Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られた
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ knife configure</span></code></pre></td></tr></table></div></figure>
 
-
-<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br/>
+<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br>
 ファイルの設定が終わったら、~/.chef/knife.rbにcookbookの保管場所を設定します</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_path</span>            <span class="s1">&#39;~/.chef/cookbooks/&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
 <h2>レシピ作成</h2>
 
-<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br/>
-インストールするもの毎に作るのが慣習ぽいです<br/>
+<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br>
+インストールするもの毎に作るのが慣習ぽいです<br>
 apacheならapacheだけ。PHPとかでライブラリを入れる場合は一緒でもいいのかな?</p>
 
 <p>今回は単に静的ファイルを1つ置くだけのレシピを書いてみましょう</p>
@@ -168,33 +164,30 @@ apacheならapacheだけ。PHPとかでライブラリを入れる場合は一�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">knife</span> <span class="n">cookbook</span> <span class="n">create</span> <span class="n">static_file</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>cookbook_path以下にstatic_fileというディレクトリが出来ているはずです<br/>
+<p>cookbook<em>path以下にstatic</em>fileというディレクトリが出来ているはずです<br>
 ここがstatic_fileレシピに関する情報をまとめるディレクトリになります</p>
 
 <h3>レシピディレクトリの中身</h3>
 
 <ul>
-<li>attributes</li>
-<li>definitions</li>
-<li>files</li>
-<li>libraries</li>
-<li>providers</li>
+<li>attributes<br></li>
+<li>definitions<br></li>
+<li>files<br></li>
+<li>libraries<br></li>
+<li>providers<br></li>
 <li>recipes</li>
 <li>resources</li>
 <li>templates</li>
 </ul>
 
-
 <p>8つのディレクトリと</p>
 
 <ul>
-<li>metadata.rb</li>
-<li>README.md</li>
+<li>metadata.rb<br></li>
+<li>README.md<br></li>
 </ul>
 
-
-<p>2つのファイルがあります</p>
+<p>2つのファイルがあります  </p>
 
 <p>今回は静的ファイルを置くだけなので、recipesとfilesディレクトリ以外は消しておきます</p>
 
@@ -209,11 +202,10 @@ apacheならapacheだけ。PHPとかでライブラリを入れる場合は一�
 <li>recipes/default.rbに cookbook_file メソッドでファイルを指定</li>
 </ol>
 
-
 <p>といった感じです。</p>
 
-<p>実際にやってみます<br/>
-files 以下にsample.txtを作る<br/>
+<p>実際にやってみます<br>
+files 以下にsample.txtを作る<br>
 recipes/default.rb に以下のようにファイルを配置したいパスを指定</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -224,9 +216,8 @@ recipes/default.rb に以下のようにファイルを配置したいパスを�
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>これでレシピの作成は完了<br/>
-ではこのレシピをVagrantで利用してみましょう<br/>
+<p>これでレシピの作成は完了<br>
+ではこのレシピをVagrantで利用してみましょう<br>
 Vagrantfileの途中にchef-soloの記述があるのでその部分を以下のように変更します</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -249,13 +240,11 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです</p>
+<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです  </p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">up</span>     <span class="c1"># すでに起動済みの場合はvagrant reload</span>
 </span></code></pre></td></tr></table></div></figure>
-
 
 <p>その後以下のコマンドでファイルがあるかを確認してみましょう</p>
 
@@ -267,8 +256,7 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 </span><span class='line'><span class="err">$</span> <span class="n">ls</span> <span class="sr">/tmp/s</span><span class="n">ample</span><span class="o">.</span><span class="n">txt</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>ファイルはちゃんと配置されたでしょうか?<br/>
+<p>ファイルはちゃんと配置されたでしょうか?<br>
 まだここだと嬉しさわからないと思うので次回はテンプレートを使って値の書き換え等を行うのを確認したいと思います</p>
 </div>
 
@@ -335,6 +323,10 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
       </li>
     
@@ -348,10 +340,6 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
     
       <li class="post">
         <a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a>
       </li>
     
   </ul>
