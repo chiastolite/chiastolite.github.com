@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた - akadama</title>
+  <title>vagrant + chef 勉強会を開催してきた - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="先日のエントリ、最終結果を見たら78バイトは13位だった。 なんかくやしかったからShibuya.rbでもくもくしてみた 元のはこれ 1
-eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s). &hellip;">
+  <meta name="description" content="詳しくは↓ vagrant + chef 勉強会 - vagrant + chef 勉強会
+vagrant + chef 勉強会 - Togetter 参加者の方のブログ vagrant + chef 勉強会 を開催しました - 実はhokkai7go
+vagrant + chef &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf">
+  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/03/29/vag_chef">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -81,7 +82,7 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
   
   <header>
     
-      <h1 class="entry-title">「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</h1>
+      <h1 class="entry-title">Vagrant + Chef 勉強会を開催してきた</h1>
     
     
       <p class="meta">
@@ -97,58 +98,67 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
   
 
 
-<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
+<time datetime="2013-03-29T10:56:00+09:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><a href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/">先日のエントリ</a>、最終結果を見たら78バイトは13位だった。</p>
+<div class="entry-content"><p>詳しくは↓</p>
 
-<p>なんかくやしかったからShibuya.rbでもくもくしてみた</p>
+<ul>
+<li><a href="https://ishikitakai.com/events/43">vagrant + chef 勉強会 - vagrant + chef 勉強会</a></li>
+<li><a href="http://togetter.com/li/479074">vagrant + chef 勉強会 - Togetter</a></li>
+</ul>
 
-<p>元のはこれ</p>
+<p>参加者の方のブログ</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li><a href="http://d.hatena.ne.jp/lncr_ct9a/20130328/1364488842">vagrant + chef 勉強会 を開催しました - 実はhokkai7go</a></li>
+<li><a href="http://tk0miya.hatenablog.com/entry/2013/03/29/134614">vagrant + chef 勉強会に参加しながら、内職してた話。 - Hack like a rolling stone</a></li>
+<li><a href="http://www.koemu.com/blog/2013/03/30/vag_chef/">vagrant + chef 勉強会へいってきた！ #vag_chef « こえむの編集後記</a></li>
+</ul>
 
-<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br>
-ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
+<p>会場は万葉さん。初めて伺いましたがアットホームな感じですてきな職場でした。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>ちなみに開催してきたとか言ってるけど、@hokkai7goさん、@joker1007さんの話に乗っかった形で
+主催者とか名乗るのはおこがましい(^^;</p>
 
-<p>2バイトの削減に成功</p>
+<p>自己紹介をしてからはVagrant+Chefを使ってのセットアップとプロビジョニングとか、 もくもくと作業したり、気になる話題を話したり、すごい勉強になりました。<br>
+最後は噂の<a href="https://github.com/pivotal/pivotal_workstation">pivotal/pivotal_workstation</a>を見て、みんなで大笑い。</p>
 
-<p>@tyabeさんに「スペース無ければシンボルに出来るのに…」と言われていたのでそれを試してみる</p>
+<h2>思ったこと</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<h3>孤独のChef</h3>
 
-<p>1バイトの削減に成功</p>
+<p>みなさんの共通の悩みっぽいのが職場でのChef/Vagrant仲間がいない(少ないこと)<br>
+興味をもってくれる人はいるけど、そこまで踏み込んでくれる人がいない…</p>
 
-<p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
+<blockquote>
+<p>一人でやってるとなかなか学習進まない→なかなか現場に導入できない→人増えない→最初に戻る</p>
+</blockquote>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>こんな感じになりそうなので打開したいところですね</p>
 
-<p>動いた!! 2バイトの削減に成功</p>
+<h3>(主に)コミュニティのcookbookが使われてた</h3>
 
-<p>もしかしたらputsの前のスペースもいらない?と試してみた</p>
+<p>なんとなく自前のcookbook作って育ててる感じなのかなぁと思っていたんですが、コミュニティのcookbookを使ってるという話が多かった。<br>
+あんまりコミュのほうは調べてなかったので、使いそうなのは追っていこうと思いました。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>rbenvとかは↓この人のがいいかもとのこと。</p>
 
-<p>動いた!!!! 1バイトの削減に成功</p>
+<p><a href="https://github.com/fnichol">fnichol (Fletcher Nichol)</a></p>
 
-<p>これで72バイト!!<br>
-今のロジック的にはここが限界かなぁ…?</p>
+<h3>その他</h3>
+
+<p>@shimizukawaさんとRedmineに関して話をできたり、@tk0miyaさんのroundsmanの話を聞いたり、@joker1007さんたちとBerkshelfの話をしたり。<br>
+あと今回のイベントはishikitakai.comに立てられてたんだけど、「ishikitakai」「ishikitakai」って口に出すたび笑いが起きて、不思議と意識高くなってくるような気がするのでオススメです</p>
+
+<h2>最後に</h2>
+
+<p>発起人の@hokkai7goさん、@joker1007さん、ありがとうございました!<br>
+ぜひ次回もやりましょう!</p>
 </div>
 
 
@@ -171,7 +181,7 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
   
 
 
-<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
+<time datetime="2013-03-29T10:56:00+09:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
       
 
 
@@ -179,7 +189,7 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/03/29/vag_chef/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/03/29/vag_chef/" >Tweet</a>
   
   
   
@@ -190,10 +200,8 @@ eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/15/tkrk10/" title="Previous Post: 東京Ruby会議10に参加してきた">&laquo; 東京Ruby会議10に参加してきた</a>
+        <a class="basic-alignment left" href="/blog/2013/02/23/chef-for-beginners/" title="Previous Post: Chefの勉強会に行ってきた">&laquo; Chefの勉強会に行ってきた</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/08/try-rbenv-default-gems/" title="Next Post: rbenv-default-gemsを試してみた">rbenv-default-gemsを試してみた &raquo;</a>
       
     </p>
   </footer>
