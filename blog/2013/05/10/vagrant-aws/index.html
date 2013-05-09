@@ -5,13 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Githugをやってみたついでに問題を意訳してみた - akadama</title>
+  <title>vagrant-awsを使う際はuser_dataを設定してみよう - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="@HIROCASTERさんのブログにてこんなエントリーが
-「githug」でgitの基本操作を算数ドリルみたいに学ぼう！ Githugという練習プログラムがあるようです Gazler/githug とりあえず一通りやってみました
-(導入方法は@HIROCASTERさんのブログを参照してください) &hellip;">
+  <meta name="description" content="流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ 環境は以下の通り
+* MacOSX
+* Vagrant 1.2.2
+* vagrant-aws 0.2.2
+* AmazonLinux(ami-173fbf16) 基本的な使い方はid: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.com/blog/2012/06/20/githug-ja">
+  <link rel="canonical" href="http://chiastolite.github.com/blog/2013/05/10/vagrant-aws">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -82,7 +84,7 @@
   
   <header>
     
-      <h1 class="entry-title">Githugをやってみたついでに問題を意訳してみた</h1>
+      <h1 class="entry-title">Vagrant-awsを使う際はuser_dataを設定してみよう</h1>
     
     
       <p class="meta">
@@ -98,55 +100,86 @@
   
 
 
-<time datetime="2012-06-20T02:33:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time>
+<time datetime="2013-05-10T02:10:00+09:00" pubdate data-updated="true">May 10<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>@HIROCASTERさんのブログにてこんなエントリーが
-<a href="http://hiroki.jp/2012/06/19/4423/">「githug」でgitの基本操作を算数ドリルみたいに学ぼう！</a></p>
+<div class="entry-content"><p>流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ</p>
 
-<p>Githugという練習プログラムがあるようです</p>
+<p>環境は以下の通り</p>
+<div class="highlight"><pre><code class="text">* MacOSX
+* Vagrant 1.2.2
+* vagrant-aws 0.2.2
+* AmazonLinux(ami-173fbf16)
+</code></pre></div>
+<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br>
+Vagrantfileの書き方に関してはnaoyaさんが試した時点から、SSH関連の設定方法に変更があったのでGitHubのほうも参照したほうがいいです。</p>
 
-<p><a href="https://github.com/Gazler/githug">Gazler/githug</a></p>
+<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br>
+<a href="https://github.com/mitchellh/vagrant-aws">mitchellh/vagrant-aws · GitHub</a></p>
 
-<p>とりあえず一通りやってみました<br>
-(導入方法は@HIROCASTERさんのブログを参照してください)<br>
-Levelは全部で35まであるみたいですね<br>
-githubのほう見たらローカライズのブランチはあるようなのですが、まだ日本語の情報もなさそうなので<br>
-問題文を超意訳してみましたので、参考にしてみてください  </p>
+<p>で、起動してみると最後に↓こんなエラーがでます。</p>
+<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
 
-<h3>1 . Initialize an empty repository</h3>
+mkdir -p &#39;/vagrant&#39;
+</code></pre></div>
+<p>なんだろ? と思ったら <code>/etc/sudoers</code> で<code>Defaults requiretty</code>が設定されているのがエラーが出ている原因らしい</p>
 
-<p>空のリポジトリを作成してください</p>
+<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。
+じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。
+ということでuser_dataを使ってみることにした。</p>
 
-<h3>2 . There is a file in your folder called README, you should add it to your staging area</h3>
+<p>Vagrantfileはこんな感じ</p>
+<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;dummy&quot;
 
-<p>READMEファイルをステージング領域に追加してください</p>
+  config.vm.provider :aws do |aws, override|
+    # 中略
 
-<h3>3 .  The README file has been added to your staging area, now commit it.</h3>
+    # sedでrequitettyのとこをコメントアウト
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+sed -i -e &#39;s/^\\(Defaults.*requiretty\\)/#\\1/&#39; /etc/sudoers
+    USER_DATA
+  end
+end
+</code></pre></div>
+<p>設定は<a href="https://github.com/mitchellh/vagrant-aws/pull/26">このプルリク</a>を参考にした</p>
 
-<p>ステージングエリアにあるREADMEをコミットしてください</p>
+<p>で、<code>vagrant up</code>し直すと</p>
+<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
 
-<h3>4 . Set up your git name and email, this is important so that your commits can be identified</h3>
+mkdir -p &#39;/vagrant&#39;
+</code></pre></div>
+<p>まだエラー…</p>
 
-<p>gitで使うユーザー名とメールアドレスを設定してください(コミットした人を判別するのに必要になります)</p>
+<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br>
+多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br>
+ちょっと気になるけどこれでしかたないかな。</p>
 
-<h3>5 . Clone the repository at https://github.com/Gazler/cloneme</h3>
+<p>ついでにuser_data使えば↓こんな感じでchef clientを入れることも出来ることを確認。</p>
+<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;dummy&quot;
 
-<p>https://github.com/Gazler/cloneme をクローンしてください</p>
+  config.vm.provider :aws do |aws, override|
+    # 中略
 
-<h3>6 . Clone the repository at https://github.com/Gazler/cloneme to &#39;my<em>cloned</em>repo&#39;</h3>
-
-<p>https://github.com/Gazler/cloneme をmy<em>cloned</em>repoという名前でクローンしてください</p>
-
-<h3>7 . The text editor &#39;vim&#39; creates files ending in .swp (swap files) for all files that are currently open.  We don&#39;t want them creeping into the repository.  Make this repository ignore .swp files.</h3>
-
-<p>vimは&#39;ほげほげ.swp&#39;のようなファイルを作ることがありますが、このようなファイルがリポジトリに入らないようにしてください</p>
-
-<p>続きは後日!</p>
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+curl -L https://www.opscode.com/chef/install.sh | bash
+    USER_DATA
+  end
+end
+</code></pre></div>
+<p>これでEC2をvagrant経由で制御することが可能になった。<br>
+インスタンスの立ち上げ、廃止、プロビジョニングが簡単なのはすごい捗るなぁ。</p>
 </div>
 
 
@@ -169,7 +202,7 @@ githubのほう見たらローカライズのブランチはあるようなの�
   
 
 
-<time datetime="2012-06-20T02:33:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time>
+<time datetime="2013-05-10T02:10:00+09:00" pubdate data-updated="true">May 10<span>th</span>, 2013</time>
       
 
 
@@ -177,7 +210,7 @@ githubのほう見たらローカライズのブランチはあるようなの�
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2012/06/20/githug-ja/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2012/06/20/githug-ja/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.com/blog/2013/05/10/vagrant-aws/" data-via="chiastolite" data-counturl="http://chiastolite.github.com/blog/2013/05/10/vagrant-aws/" >Tweet</a>
   
   
   
@@ -188,20 +221,12 @@ githubのほう見たらローカライズのブランチはあるようなの�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/06/05/trable_shooters/" title="Previous Post: トラブル☆しゅーたーず #02に行ってきた">&laquo; トラブル☆しゅーたーず #02に行ってきた</a>
+        <a class="basic-alignment left" href="/blog/2013/03/29/vag_chef/" title="Previous Post: vagrant + chef 勉強会を開催してきた">&laquo; vagrant + chef 勉強会を開催してきた</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/06/21/starting-scrum/" title="Next Post: スクラムの始め方">スクラムの始め方 &raquo;</a>
       
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -280,22 +305,6 @@ githubのほう見たらローカライズのブランチはあるようなの�
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'akadama';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://chiastolite.github.com/blog/2012/06/20/githug-ja/';
-        var disqus_url = 'http://chiastolite.github.com/blog/2012/06/20/githug-ja/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

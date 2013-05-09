@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.com/"/>
-  <updated>2013-03-30T22:06:23+09:00</updated>
+  <updated>2013-05-10T02:06:58+09:00</updated>
   <id>http://chiastolite.github.com/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vagrant-awsを使う際はuser_dataを設定してみよう]]></title>
+    <link href="http://chiastolite.github.com/blog/2013/05/10/vagrant-aws/"/>
+    <updated>2013-05-10T02:10:00+09:00</updated>
+    <id>http://chiastolite.github.com/blog/2013/05/10/vagrant-aws</id>
+    <content type="html"><![CDATA[<p>流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ</p>
+
+<p>環境は以下の通り</p>
+<div class="highlight"><pre><code class="text">* MacOSX
+* Vagrant 1.2.2
+* vagrant-aws 0.2.2
+* AmazonLinux(ami-173fbf16)
+</code></pre></div>
+<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br>
+Vagrantfileの書き方に関してはnaoyaさんが試した時点から、SSH関連の設定方法に変更があったのでGitHubのほうも参照したほうがいいです。</p>
+
+<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br>
+<a href="https://github.com/mitchellh/vagrant-aws">mitchellh/vagrant-aws · GitHub</a></p>
+
+<p>で、起動してみると最後に↓こんなエラーがでます。</p>
+<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mkdir -p &#39;/vagrant&#39;
+</code></pre></div>
+<p>なんだろ? と思ったら <code>/etc/sudoers</code> で<code>Defaults requiretty</code>が設定されているのがエラーが出ている原因らしい</p>
+
+<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。
+じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。
+ということでuser_dataを使ってみることにした。</p>
+
+<p>Vagrantfileはこんな感じ</p>
+<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;dummy&quot;
+
+  config.vm.provider :aws do |aws, override|
+    # 中略
+
+    # sedでrequitettyのとこをコメントアウト
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+sed -i -e &#39;s/^\\(Defaults.*requiretty\\)/#\\1/&#39; /etc/sudoers
+    USER_DATA
+  end
+end
+</code></pre></div>
+<p>設定は<a href="https://github.com/mitchellh/vagrant-aws/pull/26">このプルリク</a>を参考にした</p>
+
+<p>で、<code>vagrant up</code>し直すと</p>
+<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mkdir -p &#39;/vagrant&#39;
+</code></pre></div>
+<p>まだエラー…</p>
+
+<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br>
+多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br>
+ちょっと気になるけどこれでしかたないかな。</p>
+
+<p>ついでにuser_data使えば↓こんな感じでchef clientを入れることも出来ることを確認。</p>
+<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;dummy&quot;
+
+  config.vm.provider :aws do |aws, override|
+    # 中略
+
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+curl -L https://www.opscode.com/chef/install.sh | bash
+    USER_DATA
+  end
+end
+</code></pre></div>
+<p>これでEC2をvagrant経由で制御することが可能になった。<br>
+インスタンスの立ち上げ、廃止、プロビジョニングが簡単なのはすごい捗るなぁ。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[vagrant + chef 勉強会を開催してきた]]></title>
