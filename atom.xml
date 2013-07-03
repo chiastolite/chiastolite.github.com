@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.io/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.io/"/>
-  <updated>2013-07-03T20:30:59+09:00</updated>
+  <updated>2013-07-03T20:32:08+09:00</updated>
   <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -19,7 +19,7 @@
     <updated>2013-07-02T23:03:00+09:00</updated>
     <id>http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate</id>
     <content type="html"><![CDATA[<p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br>
-あまりやることを決めてなかったのでエディタ周りを調べた後は、 <a href="https://github.com/clearsightstudio/ProMotion">ProMotion</a> を試したりソースを読むことに。</p>
+あまりやることを決めてなかったのでエディタ周りを調べた後は、<a href="https://github.com/clearsightstudio/ProMotion">ProMotion</a>を試したりソースを読むことに。</p>
 
 <p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br>
 そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
