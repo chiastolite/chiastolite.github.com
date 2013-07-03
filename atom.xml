@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[akadama]]></title>
-  <link href="http://chiastolite.github.com/atom.xml" rel="self"/>
-  <link href="http://chiastolite.github.com/"/>
-  <updated>2013-05-10T02:06:58+09:00</updated>
-  <id>http://chiastolite.github.com/</id>
+  <link href="http://chiastolite.github.io/atom.xml" rel="self"/>
+  <link href="http://chiastolite.github.io/"/>
+  <updated>2013-07-03T20:28:57+09:00</updated>
+  <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
     
@@ -14,10 +14,77 @@
 
   
   <entry>
+    <title type="html"><![CDATA[RubyMotionでユーザーテンプレートを使ってみる]]></title>
+    <link href="http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate/"/>
+    <updated>2013-07-02T23:03:00+09:00</updated>
+    <id>http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate</id>
+    <content type="html"><![CDATA[<p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br>
+あまりやることを決めてなかったのでエディタ周りを調べた後は、 [ProMotion][https://github.com/clearsightstudio/ProMotion] を試したりソースを読むことに。</p>
+
+<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br>
+そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
+RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。  </p>
+
+<p>試しにテンプレートを作ってみることにした。</p>
+
+<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br>
+とりあえず既存のios用テンプレートをコピーしてこのテンプレートが呼べるかを確認。</p>
+<div class="highlight"><pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
+<span class="nb">cd</span> ~/Library/RubyMotion/template/
+cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
+motion create sample --template<span class="o">=</span>user_template
+</code></pre></div>
+<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br>
+次にProMotionを導入してみる。  </p>
+
+<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br>
+Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
+
+<ul>
+<li>Gemfile</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;ProMotion&#39;</span>
+</code></pre></div>
+<ul>
+<li>Rakefile</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="vg">$:</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;/Library/RubyMotion/lib&quot;</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">&#39;motion/project/template/ios&#39;</span>
+
+<span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+<span class="no">Bundler</span><span class="o">.</span><span class="n">require</span>
+
+<span class="ss">Motion</span><span class="p">:</span><span class="ss">:Project</span><span class="o">::</span><span class="no">App</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
+  <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;%= name %&gt;&#39;</span>
+<span class="k">end</span>
+</code></pre></div>
+<ul>
+<li>app_delegate.rb</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">AppDelegate</span> <span class="o">&lt;</span> <span class="ss">PM</span><span class="p">:</span><span class="ss">:Delegate</span>
+  <span class="k">def</span> <span class="nf">on_load</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>bundle installをして再びmotion create。</p>
+<div class="highlight"><pre><code class="sh">bundle install
+motion create sample --template<span class="o">=</span>user_template
+</code></pre></div>
+<p>ProMotionが使えるようになってる！<br>
+使うライブラリだったりがまとまってきたら、あらかじめテンプレート化することで開発が捗りそうですね。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[vagrant-awsを使う際はuser_dataを設定してみよう]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/05/10/vagrant-aws/"/>
+    <link href="http://chiastolite.github.io/blog/2013/05/10/vagrant-aws/"/>
     <updated>2013-05-10T02:10:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/05/10/vagrant-aws</id>
+    <id>http://chiastolite.github.io/blog/2013/05/10/vagrant-aws</id>
     <content type="html"><![CDATA[<p>流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ</p>
 
 <p>環境は以下の通り</p>
@@ -96,9 +163,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[vagrant + chef 勉強会を開催してきた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/03/29/vag_chef/"/>
+    <link href="http://chiastolite.github.io/blog/2013/03/29/vag_chef/"/>
     <updated>2013-03-29T10:56:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/03/29/vag_chef</id>
+    <id>http://chiastolite.github.io/blog/2013/03/29/vag_chef</id>
     <content type="html"><![CDATA[<p>詳しくは↓</p>
 
 <ul>
@@ -158,9 +225,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Chefの勉強会に行ってきた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/02/23/chef-for-beginners/"/>
+    <link href="http://chiastolite.github.io/blog/2013/02/23/chef-for-beginners/"/>
     <updated>2013-02-23T15:04:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/02/23/chef-for-beginners</id>
+    <id>http://chiastolite.github.io/blog/2013/02/23/chef-for-beginners</id>
     <content type="html"><![CDATA[<p>naoyaさんのブログだったり、AmazonのOpsWorksだったりで最近Chef熱が上がって来てるとこに素敵な勉強会が開催されるということで行ってきた。</p>
 
 <p>イベント内容に関してはUstやTogetterで空気を掴んでいただければ。</p>
@@ -244,9 +311,9 @@ SSHも出来てブラックボックスにもならないし、これも要調�
   
   <entry>
     <title type="html"><![CDATA[env_http_proxy.gem をリリースしました]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem/"/>
+    <link href="http://chiastolite.github.io/blog/2013/02/12/env-http-proxy-gem/"/>
     <updated>2013-02-12T10:40:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/02/12/env-http-proxy-gem</id>
+    <id>http://chiastolite.github.io/blog/2013/02/12/env-http-proxy-gem</id>
     <content type="html"><![CDATA[<p><a href="https://rubygems.org/gems/env_http_proxy">env<em>http</em>proxy | RubyGems.org | your community gem host</a><br>
 <a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env<em>http</em>proxy · GitHub</a></p>
 
@@ -313,9 +380,9 @@ SSHも出来てブラックボックスにもならないし、これも要調�
   
   <entry>
     <title type="html"><![CDATA[rbenv-default-gemsを試してみた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/02/08/try-rbenv-default-gems/"/>
+    <link href="http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems/"/>
     <updated>2013-02-08T10:25:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/02/08/try-rbenv-default-gems</id>
+    <id>http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems</id>
     <content type="html"><![CDATA[<p>会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。</p>
 
 <p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
@@ -390,9 +457,9 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   
   <entry>
     <title type="html"><![CDATA[「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf/"/>
+    <link href="http://chiastolite.github.io/blog/2013/01/16/ruby-codegolf/"/>
     <updated>2013-01-16T21:26:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/01/16/ruby-codegolf</id>
+    <id>http://chiastolite.github.io/blog/2013/01/16/ruby-codegolf</id>
     <content type="html"><![CDATA[<p><a href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/">先日のエントリ</a>、最終結果を見たら78バイトは13位だった。</p>
 
 <p>なんかくやしかったからShibuya.rbでもくもくしてみた</p>
@@ -443,9 +510,9 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   
   <entry>
     <title type="html"><![CDATA[東京Ruby会議10に参加してきた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/01/15/tkrk10/"/>
+    <link href="http://chiastolite.github.io/blog/2013/01/15/tkrk10/"/>
     <updated>2013-01-15T00:00:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/01/15/tkrk10</id>
+    <id>http://chiastolite.github.io/blog/2013/01/15/tkrk10</id>
     <content type="html"><![CDATA[<p>会場は千葉市美浜文化ホール<br>
 最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
 
@@ -477,9 +544,9 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   
   <entry>
     <title type="html"><![CDATA[「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/"/>
+    <link href="http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/"/>
     <updated>2013-01-14T20:06:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf</id>
+    <id>http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf</id>
     <content type="html"><![CDATA[<p>東京Ruby会議10にて~~ささたつ~~くろたつさんからCodeIQでのコードゴルフの告知があった</p>
 
 <p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
@@ -497,9 +564,9 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   
   <entry>
     <title type="html"><![CDATA[zshを導入してみる]]></title>
-    <link href="http://chiastolite.github.com/blog/2013/01/02/zsh/"/>
+    <link href="http://chiastolite.github.io/blog/2013/01/02/zsh/"/>
     <updated>2013-01-02T01:26:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2013/01/02/zsh</id>
+    <id>http://chiastolite.github.io/blog/2013/01/02/zsh</id>
     <content type="html"><![CDATA[<p>正月ということで前から気になっていたzshを試してみることにした  </p>
 
 <h1>zshのインストール</h1>
@@ -598,9 +665,9 @@ Alternatively, install Zsh with /etc disabled:
   
   <entry>
     <title type="html"><![CDATA[Githugをやってみたついでに問題を意訳してみた その2]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/06/25/githug-ja-2/"/>
+    <link href="http://chiastolite.github.io/blog/2012/06/25/githug-ja-2/"/>
     <updated>2012-06-25T01:14:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/06/25/githug-ja-2</id>
+    <id>http://chiastolite.github.io/blog/2012/06/25/githug-ja-2</id>
     <content type="html"><![CDATA[<p>引き続きgithugの超意訳の続きです  </p>
 
 <h3>8. There are some files in this repository, one of the files is untracked, which file is it?</h3>
@@ -672,9 +739,9 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
   
   <entry>
     <title type="html"><![CDATA[スクラムの始め方]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/06/21/starting-scrum/"/>
+    <link href="http://chiastolite.github.io/blog/2012/06/21/starting-scrum/"/>
     <updated>2012-06-21T01:54:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/06/21/starting-scrum</id>
+    <id>http://chiastolite.github.io/blog/2012/06/21/starting-scrum</id>
     <content type="html"><![CDATA[<p>先日参加したshibuya.rbにて、なぜかスクラム開発導入に関しての話になったので、
 ここ数ヶ月勉強してScrum Bootcampにも参加して、現時点での&quot;スクラムを始めるのに必要だと思うこと&quot;をまとめてみる  </p>
 
@@ -723,9 +790,9 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
   
   <entry>
     <title type="html"><![CDATA[Githugをやってみたついでに問題を意訳してみた]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/06/20/githug-ja/"/>
+    <link href="http://chiastolite.github.io/blog/2012/06/20/githug-ja/"/>
     <updated>2012-06-20T02:33:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/06/20/githug-ja</id>
+    <id>http://chiastolite.github.io/blog/2012/06/20/githug-ja</id>
     <content type="html"><![CDATA[<p>@HIROCASTERさんのブログにてこんなエントリーが
 <a href="http://hiroki.jp/2012/06/19/4423/">「githug」でgitの基本操作を算数ドリルみたいに学ぼう！</a></p>
 
@@ -773,9 +840,9 @@ githubのほう見たらローカライズのブランチはあるようなの�
   
   <entry>
     <title type="html"><![CDATA[トラブル☆しゅーたーず #02に行ってきた]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/06/05/trable_shooters/"/>
+    <link href="http://chiastolite.github.io/blog/2012/06/05/trable_shooters/"/>
     <updated>2012-06-05T22:10:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/06/05/trable_shooters</id>
+    <id>http://chiastolite.github.io/blog/2012/06/05/trable_shooters</id>
     <content type="html"><![CDATA[<p><a href="http://www.zusaar.com/event/296005">トラブル☆しゅーたーず＃02　～あいつがまたやらかした～ on Zusaar</a>に参加してきました</p>
 
 <p>リンク先にもありますが要は発生した障害に対して</p>
@@ -852,9 +919,9 @@ githubのほう見たらローカライズのブランチはあるようなの�
   
   <entry>
     <title type="html"><![CDATA[Chef を使ってみる その1]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/05/21/using-chef-part1/"/>
+    <link href="http://chiastolite.github.io/blog/2012/05/21/using-chef-part1/"/>
     <updated>2012-05-21T00:35:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/05/21/using-chef-part1</id>
+    <id>http://chiastolite.github.io/blog/2012/05/21/using-chef-part1</id>
     <content type="html"><![CDATA[<p>先日のVagrantのエントリー内でちょっと触れたChefを試してみます</p>
 
 <h2>Chefとは</h2>
@@ -1014,9 +1081,9 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
   
   <entry>
     <title type="html"><![CDATA[Vagrantを利用する理由]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant/"/>
+    <link href="http://chiastolite.github.io/blog/2012/05/18/benefits-of-using-vagrant/"/>
     <updated>2012-05-18T02:14:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/05/18/benefits-of-using-vagrant</id>
+    <id>http://chiastolite.github.io/blog/2012/05/18/benefits-of-using-vagrant</id>
     <content type="html"><![CDATA[<p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br>
 結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
 構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
@@ -1059,9 +1126,9 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
   
   <entry>
     <title type="html"><![CDATA[VagrantとVeeweeを使ってみた]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/05/16/vagrant_and_veewee/"/>
+    <link href="http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee/"/>
     <updated>2012-05-16T19:15:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/05/16/vagrant_and_veewee</id>
+    <id>http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee</id>
     <content type="html"><![CDATA[<p>渋谷.rb[:20120516] で飛び込みLTした内容のフォローです</p>
 
 <p>最近こんなエントリーが上がってました</p>
@@ -1167,9 +1234,9 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
   
   <entry>
     <title type="html"><![CDATA[スマホサイトを作ったときの話]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/05/15/create-smartphone-site/"/>
+    <link href="http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site/"/>
     <updated>2012-05-15T00:00:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/05/15/create-smartphone-site</id>
+    <id>http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site</id>
     <content type="html"><![CDATA[<p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br>
 社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
 
@@ -1285,9 +1352,9 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   
   <entry>
     <title type="html"><![CDATA[世界最小プラグイン]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin/"/>
+    <link href="http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin/"/>
     <updated>2012-01-22T01:59:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin</id>
+    <id>http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin</id>
     <content type="html"><![CDATA[<p>Redmineを導入した際に頻繁に質問されるものの1つが下記のような内容だと思います</p>
 
 <ul>
@@ -1300,11 +1367,11 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 
 <h3>これが</h3>
 
-<p><img src="http://chiastolite.github.com/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 "></p>
+<p><img src="http://chiastolite.github.io/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 "></p>
 
 <h3>こうなります</h3>
 
-<p><img src="http://chiastolite.github.com/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 "></p>
+<p><img src="http://chiastolite.github.io/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 "></p>
 
 <h2>驚きの中身解説</h2>
 

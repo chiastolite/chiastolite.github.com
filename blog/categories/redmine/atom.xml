@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: redmine | akadama]]></title>
-  <link href="http://chiastolite.github.com/blog/categories/redmine/atom.xml" rel="self"/>
-  <link href="http://chiastolite.github.com/"/>
-  <updated>2013-05-10T02:06:58+09:00</updated>
-  <id>http://chiastolite.github.com/</id>
+  <link href="http://chiastolite.github.io/blog/categories/redmine/atom.xml" rel="self"/>
+  <link href="http://chiastolite.github.io/"/>
+  <updated>2013-07-03T20:28:57+09:00</updated>
+  <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[世界最小プラグイン]]></title>
-    <link href="http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin/"/>
+    <link href="http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin/"/>
     <updated>2012-01-22T01:59:00+09:00</updated>
-    <id>http://chiastolite.github.com/blog/2012/01/22/simplest-redmine-plugin</id>
+    <id>http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin</id>
     <content type="html"><![CDATA[<p>Redmineを導入した際に頻繁に質問されるものの1つが下記のような内容だと思います</p>
 
 <ul>

@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた - akadama</title>
+  <title>RubyMotionでユーザーテンプレートを使ってみる - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="東京Ruby会議10にて~~ささたつ~~くろたつさんからCodeIQでのコードゴルフの告知があった 挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ コードゴルフとは特定の動作をするプログラムのソースコードを、 &hellip;">
+  <meta name="description" content="今日は RubyMotionTokyo meetup#2 に行ってきました。
+あまりやることを決めてなかったのでエディタ周りを調べた後は、 [ProMotion][https://github.com/clearsightstudio/ProMotion] を試したりソースを読むことに。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf">
+  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -80,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</h1>
+      <h1 class="entry-title">RubyMotionでユーザーテンプレートを使ってみる</h1>
     
     
       <p class="meta">
@@ -96,25 +97,72 @@
   
 
 
-<time datetime="2013-01-14T20:06:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+<time datetime="2013-07-02T23:03:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>東京Ruby会議10にて~~ささたつ~~くろたつさんからCodeIQでのコードゴルフの告知があった</p>
+<div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br>
+あまりやることを決めてなかったのでエディタ周りを調べた後は、 [ProMotion][https://github.com/clearsightstudio/ProMotion] を試したりソースを読むことに。</p>
 
-<p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
+<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br>
+そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
+RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。  </p>
 
-<p>コードゴルフとは<strong>特定の動作をするプログラムのソースコードを、可能な限り短いバイト数で記述するプログラミング・コンテスト</strong>(by Wikipedia)だそうだ</p>
+<p>試しにテンプレートを作ってみることにした。</p>
 
-<p>今回は問題がFizzBuzzだったので、前に<a href="http://www.slideshare.net/chiastolite/reading-selfdescriptivefizzbuzz">とあるQuineを読んだとき</a>に知ったロジックを使って書いてみた</p>
+<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br>
+とりあえず既存のios用テンプレートをコピーしてこのテンプレートが呼べるかを確認。</p>
+<div class="highlight"><pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
+<span class="nb">cd</span> ~/Library/RubyMotion/template/
+cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
+motion create sample --template<span class="o">=</span>user_template
+</code></pre></div>
+<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br>
+次にProMotionを導入してみる。  </p>
 
-<div><script src='https://gist.github.com/4529523.js'></script>
-<noscript><pre><code>eval('%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}'%$*)</code></pre></noscript></div>
+<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br>
+Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 
-<p>wcで測ってみたら78バイトだったのでまぁまぁかなーと思ってたら、どうもトップは65とからしい。さて、どこを削ったらいいものやら</p>
+<ul>
+<li>Gemfile</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;ProMotion&#39;</span>
+</code></pre></div>
+<ul>
+<li>Rakefile</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="vg">$:</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;/Library/RubyMotion/lib&quot;</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">&#39;motion/project/template/ios&#39;</span>
+
+<span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+<span class="no">Bundler</span><span class="o">.</span><span class="n">require</span>
+
+<span class="ss">Motion</span><span class="p">:</span><span class="ss">:Project</span><span class="o">::</span><span class="no">App</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
+  <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;%= name %&gt;&#39;</span>
+<span class="k">end</span>
+</code></pre></div>
+<ul>
+<li>app_delegate.rb</li>
+</ul>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">AppDelegate</span> <span class="o">&lt;</span> <span class="ss">PM</span><span class="p">:</span><span class="ss">:Delegate</span>
+  <span class="k">def</span> <span class="nf">on_load</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>bundle installをして再びmotion create。</p>
+<div class="highlight"><pre><code class="sh">bundle install
+motion create sample --template<span class="o">=</span>user_template
+</code></pre></div>
+<p>ProMotionが使えるようになってる！<br>
+使うライブラリだったりがまとまってきたら、あらかじめテンプレート化することで開発が捗りそうですね。</p>
 </div>
 
 
@@ -137,7 +185,7 @@
   
 
 
-<time datetime="2013-01-14T20:06:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+<time datetime="2013-07-02T23:03:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
       
 
 
@@ -145,7 +193,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate/" >Tweet</a>
   
   
   
@@ -156,20 +204,12 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/02/zsh/" title="Previous Post: zshを導入してみる">&laquo; zshを導入してみる</a>
+        <a class="basic-alignment left" href="/blog/2013/05/10/vagrant-aws/" title="Previous Post: vagrant-awsを使う際はuser_dataを設定してみよう">&laquo; vagrant-awsを使う際はuser_dataを設定してみよう</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/15/tkrk10/" title="Next Post: 東京Ruby会議10に参加してきた">東京Ruby会議10に参加してきた &raquo;</a>
       
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 </div>
 
@@ -248,22 +288,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'akadama';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/';
-        var disqus_url = 'http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

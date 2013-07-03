@@ -9,8 +9,7 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="先日参加したshibuya.rbにて、なぜかスクラム開発導入に関しての話になったので、
-ここ数ヶ月勉強してScrum Bootcampにも参加して、現時点での&quot;スクラムを始めるのに必要だと思うこと&quot;をまとめてみる というか自分はこうやって始めようという内容です &hellip;">
+  <meta name="description" content="引き続きgithugの超意訳の続きです 8. There are some files in this repository, one of the files is untracked, which file is it? このディレクトリ内のいくつのファイルはリポジトリに登録されています。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.com/blog/page/2">
+  <link rel="canonical" href="http://chiastolite.github.io/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -63,7 +62,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:chiastolite.github.com" />
+    <input type="hidden" name="q" value="site:chiastolite.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -78,6 +77,107 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/25/githug-ja-2/">Githugをやってみたついでに問題を意訳してみた その2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-25T01:14:00+09:00" pubdate data-updated="true">Jun 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>引き続きgithugの超意訳の続きです  </p>
+
+<h3>8. There are some files in this repository, one of the files is untracked, which file is it?</h3>
+
+<p>このディレクトリ内のいくつのファイルはリポジトリに登録されています。1つだけ登録されていないファイルはどれでしょうか</p>
+
+<h3>9. A file has been removed from the working tree, however the file was not removed from the repository.  Find out what this file was and remove it.</h3>
+
+<p>あるファイルはワーキングツリーからは削除されていますがリポジトリからは消されていません<br>
+あるファイルを見つけてリポジトリからも削除してください</p>
+
+<h3>10. A file (deleteme.rb) has accidentally been added to your staging area, find out which file and remove it from the staging area.  <em>NOTE</em> Do not remove the file system, only from git.</h3>
+
+<p>deleteme.rb が間違ってステージングエリアに登録されてしまいました。ステージングエリアから削除してください<br>
+注! 実ファイルは消さないでください。gitからだけ消してください。</p>
+
+<h3>11. We have a file called oldfile.txt. We want to rename it to newfile.txt and stage this change.</h3>
+
+<p>oldfile.txtというファイルをnewfile.txtにリネームしてステージングエリアに登録してください</p>
+
+<h3>12. You will be asked for the first 7 chars of the hash of most recent commit.  You will need to investigate the logs of the repository for this.</h3>
+
+<p>よくコミットのハッシュ値(7文字)を聞かれることがあります。リポジトリから最新のコミットのハッシュ値(7文字)を調べてください</p>
+
+<h3>13. We have a git repo and we want to tag the current commit with new_tag.</h3>
+
+<p>リポジトリの最新コミットにnew_tagという名前でタグをつけてください</p>
+
+<h3>14. The README file has been committed, but it looks like the file <code>forgotten_file.rb</code> was missing from the commit.  Add the file and amend your previous commit to include it.</h3>
+
+<p>現在READMEというファイルがコミットされていますが一緒にforgotten<em>file.rbをコミットするのを忘れてしまいました<br>
+forgotten</em>file.rbをREADMEファイルと同じコミットに入れてください。</p>
+
+<h3>15. There are two files to be committed.  The goal was to add each file as a separate commit, however both were added by accident.  Unstage the file <code>to_commit_second</code> using the reset command (don&#39;t commit anything)</h3>
+
+<p>これからコミットしようとしているファイルが2つあります。 別のコミットにしたいのですが、間違って一緒にaddを行ってしまいました<br>
+to<em>commit</em>second ファイルをresetコマンドを使ってステージングから削除してください<br>
+(コミットを行う必要はありません)</p>
+
+<h3>16. A file has been modified, but you don&#39;t want to keep the files.  Checkout the <code>config.rb</code> file from the last commit.</h3>
+
+<p>あるファイルに変更を加えたのですがどうもこの変更は不要になったようです。config.rbを最後のコミットの状態に戻してください。</p>
+
+<h3>17. This projects has a remote repository.  Identify it.</h3>
+
+<p>このプロジェクトにはリモートリポジトリが存在します。その名前を答えてください。</p>
+
+<h3>18. The remote repositories have a url associated to them.  Please enter the url of remote_location</h3>
+
+<p>リモートリポジトリにはURLが関連付けられています。リモートリポジトリremote_locationのURLを答えてください。</p>
+
+<h3>19. You need to pull changes from your origin repository.</h3>
+
+<p>origin リポジトリの変更を取り込んでください</p>
+
+<h3>20. Add a remote repository called <code>origin</code> with the url <code>https://github.com/githug/githug</code></h3>
+
+<p>リモートリポジトリ origin を登録してください。 URLは https://github.com/githug/githug になります</p>
+
+<h3>21. There have been modifications to the app.rb file since your last commit.  Find out which line has changed.</h3>
+
+<p>app.rbには最後のコミットからの変更があります。どの行が変更されたか行番号を答えてください</p>
+
+<h3>22. Someone has put a password inside the file &#39;config.rb&#39; find out who it was</h3>
+
+<p>config.rbにパスワードを書いてしまった人がいるようです。その人はだれでしょうか?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -959,11 +1059,15 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/10/vagrant-aws/">vagrant-awsを使う際はuser_dataを設定してみよう</a>
+        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/03/29/vag_chef/">vagrant + chef 勉強会を開催してきた</a>
+        <a href="/blog/2013/05/10/vagrant-aws/">Vagrant-awsを使う際はuser_dataを設定してみよう</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/29/vag_chef/">Vagrant + Chef 勉強会を開催してきた</a>
       </li>
     
       <li class="post">
@@ -972,10 +1076,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/08/try-rbenv-default-gems/">rbenv-default-gemsを試してみた</a>
       </li>
     
   </ul>
@@ -1060,7 +1160,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
