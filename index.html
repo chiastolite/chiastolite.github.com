@@ -9,7 +9,7 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="Vagrant meetup 〜作者 Hashimoto氏の来日講演〜 - Chef Meetup | Doorkeeper 作者の @mitchellh さんが来日するとのことで、これ逃すと直接話を聞けるチャンスはないと思い参加してきました。 @mitchellh &hellip;">
+  <meta name="description" content="Quine-relayはみんな「すごい」「意味がわからない」とか言ってるわりに、実行してみたとかの話が無かったので手軽に動かせる環境を作って Shibuya.rbで実行してきた。 chiastolite/vagrant-quine-relay mame(@mametter) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,103 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-19T19:25:00+09:00" pubdate data-updated="true">Jul 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Quine-relayはみんな「すごい」「意味がわからない」とか言ってるわりに、実行してみたとかの話が無かったので手軽に動かせる環境を作って <a href="http://www.zusaar.com/event/889006">Shibuya.rb</a>で実行してきた。</p>
+
+<p><a href="https://github.com/chiastolite/vagrant-quine-relay">chiastolite/vagrant-quine-relay</a></p>
+
+<p><blockquote class="twitter-tweet"><p>mame(<a href="https://twitter.com/mametter">@mametter</a>)さんのQuineRelayをVagrantで実行するのを作った。 <a href="https://t.co/ZnBm3OMldY">https://t.co/ZnBm3OMldY</a></p>&mdash; Hiroyuki Morita (@chiastolite) <a href="https://twitter.com/chiastolite/statuses/357537694928220160">July 17, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>vagrantが入ってる環境なら<code>git clone</code>後に<code>git submodule update</code>したら、<code>vagrant up</code>すれば実行が完了します。  </p>
+
+<p>Quine Relayは50個の処理系が必要ですが手元で環境構築するのは大変ですが、Vagrantを使えば既存環境への影響無く試すことができます。<br>
+サービスを作った場合にもVagrantで動かせるようにしておけば、いろんな人に試してもらえるかもしれませんね。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-14T12:34:00+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Twitterとか勉強会でVagrantfileやcookbooksはどう管理すべきか？って話題がたまに上がるので、自分の考えをまとめてみる。</p>
+
+<p>自分の意見は「Vagrantfileもcookbooksもアプリと一緒に管理する」<br>
+理由をつらつらと</p>
+
+<h2>「すぐ使えるようにしたい」</h2>
+
+<p>リポジトリからcloneしてすぐvagrant upしてすぐ動作させられるのが理想だと思っているので、 仮に別のリポジトリやブランチに置いた場合、開発者間での環境を統一が面倒になる。その為にはアプリと同じリポジトリに必要だなぁと。</p>
+
+<p>VagrantfileはGemfileと一緒だと思ってるのでそう考えると同じリポジトリだよなぁと。</p>
+
+<h3>cookbooksに関して</h3>
+
+<p>ではcookbooksも同じリポジトリで管理するか？と言われると…</p>
+
+<p>出来ればcoookbooksは再利用可能にしたい。なので同一リポジトリでは扱いづらくなるよなってことで、代替案としてはcookbooks自体は別リポジトリ等で管理してアプリケーションリポジトリにはBerksfile+Bersfile.lockを置くのがいいんじゃないかなと。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -855,114 +952,6 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/15/tkrk10/">東京Ruby会議10に参加してきた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-15T00:00:00+09:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>会場は千葉市美浜文化ホール<br>
-最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
-
-<p>カっとなってホテル取った!しかも前泊!!<br>
-(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな)</p>
-
-<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。  </p>
-
-<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br>
-(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)  </p>
-
-<hr>
-
-<p>運営のほうを見ると、いろんなコミュニティを運営している人がいるからか、すごい気配りが効いていたなぁと思う。</p>
-
-<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br>
-正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br>
-ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。  </p>
-
-<p>そして、2日目の雪による影響を考えての英断。<br>
-運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。  </p>
-
-<hr>
-
-<p>今月末には事後懇親会(通称:Q)が控えている。<br>
-また楽しい時間を過ごせるといいなぁ。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/14/ruby-codegolf/">「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-14T20:06:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>東京Ruby会議10にて~~ささたつ~~くろたつさんからCodeIQでのコードゴルフの告知があった</p>
-
-<p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
-
-<p>コードゴルフとは<strong>特定の動作をするプログラムのソースコードを、可能な限り短いバイト数で記述するプログラミング・コンテスト</strong>(by Wikipedia)だそうだ</p>
-
-<p>今回は問題がFizzBuzzだったので、前に<a href="http://www.slideshare.net/chiastolite/reading-selfdescriptivefizzbuzz">とあるQuineを読んだとき</a>に知ったロジックを使って書いてみた</p>
-
-<div><script src='https://gist.github.com/4529523.js'></script>
-<noscript><pre><code>eval('%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}'%$*)</code></pre></noscript></div>
-
-<p>wcで測ってみたら78バイトだったのでまぁまぁかなーと思ってたら、どうもトップは65とからしい。さて、どこを削ったらいいものやら</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -978,6 +967,14 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
       </li>
     
@@ -987,14 +984,6 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
     
       <li class="post">
         <a href="/blog/2013/05/10/vagrant-aws/">Vagrant-awsを使う際はuser_dataを設定してみよう</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/29/vag_chef/">Vagrant + Chef 勉強会を開催してきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a>
       </li>
     
   </ul>
