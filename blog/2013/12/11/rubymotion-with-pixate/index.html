@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RubyMotionでPixateを使う - akadama</title>
+  <meta name="author" content="Hiroyuki MORITA">
+
+  
+  <meta name="description" content="数ヶ月触ってなかったRubyMotionのリハビリついでに、前から使ってみたかったPixateが使えるのかを試してみた RubyMotionとPixate ちなみにRubyMotionとPixateというとすでに以下のような事例が出てます Pixate - naoyaのはてなダイアリー &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31815348-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">akadama</a></h1>
+  
+    <h2>そこらへんにいるプログラマが適当にやってます</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:chiastolite.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RubyMotionでPixateを使う</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-11T00:05:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>数ヶ月触ってなかったRubyMotionのリハビリついでに、前から使ってみたかったPixateが使えるのかを試してみた</p>
+
+<h2>RubyMotionとPixate</h2>
+
+<p>ちなみにRubyMotionとPixateというとすでに以下のような事例が出てます</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/naoya/20130122/1358859447">Pixate - naoyaのはてなダイアリー</a></li>
+<li><a href="http://rochefort.hatenablog.com/entry/20130220/p1">RubyMotionでPixateを使ってみる - rochefort&#39;s blog</a></li>
+<li><a href="http://pixate.github.io/RubyMotion-Pixate/">RubyMotion-Pixate</a></li>
+</ul>
+
+<p>ただどのエントリもPixateのSDKを別途ダウンロードすることが前提だったので、それcocoapodsとかでなんとかならないのかなーと思ってた</p>
+
+<p>結論としてはなんとかなった<br>
+そのときのリポジトリはこれ↓</p>
+
+<p><a href="https://github.com/chiastolite/rubymotion_pixate_sample">https://github.com/chiastolite/rubymotion_pixate_sample</a></p>
+
+<h2>gemの追加</h2>
+
+<p>追加したgemは以下の2つ</p>
+
+<ol>
+<li>cocoapodsを使うための<code>motion-cocoapods</code></li>
+<li>pixateを使うための<code>motion-pixate</code></li>
+</ol>
+
+<p>ちなみにdotenvが入ってるのは後述するPixateのLicense keyをリポジトリに入れたくなかったから</p>
+
+<figure class='code'><figcaption><span>Gemfile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Gemfile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+</span><span class='line'><span class="c1"># Add your dependencies here:</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;motion-cocoapods&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.4.0&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;motion-pixate&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;Pixate/RubyMotion-Pixate&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;dotenv&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<h2>Pixate</h2>
+
+<p>Pixateのインストールは<a href="http://www.pixate.com/blog/2013-09-18-pixate-cocoapod/index.html">cocoapodsでできるようになってた</a>ので、Rakefileに追記して<code>rake pod:install</code>をすればインストールは完了</p>
+
+<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br>
+<a href="http://download.pixate.com/key">http://download.pixate.com/key</a></p>
+
+<figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- coding: utf-8 -*-</span>
+</span><span class='line'><span class="vg">$:</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;/Library/RubyMotion/lib&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;motion/project/template/ios&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+</span><span class='line'>  <span class="no">Bundler</span><span class="o">.</span><span class="n">require</span>
+</span><span class='line'><span class="k">rescue</span> <span class="no">LoadError</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dotenv</span><span class="o">.</span><span class="n">load</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Motion</span><span class="p">:</span><span class="ss">:Project</span><span class="o">::</span><span class="no">App</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pixate_test&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pods</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">pod</span> <span class="s1">&#39;Pixate&#39;</span> <span class="c1"># Pixateをcocoapodsを利用してインストール</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PIXATE_USER&#39;</span><span class="o">]</span> <span class="c1"># pixateのユーザー名</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">key</span>  <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PIXATE_KEY&#39;</span><span class="o">]</span>  <span class="c1"># pixateのライセンスキー</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">framework</span> <span class="o">=</span> <span class="s1">&#39;vendor/Pods/Pixate/Framework/iOS/Pixate.framework/&#39;</span> <span class="c1"># インストールされたPixateの場所を指定</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>あとは↓のようにコマンドを叩けば使えるようになる</p>
+
+<figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># デフォルトのsass/cssファイルを作成(初回のみ実行)</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span> <span class="ss">pixate</span><span class="p">:</span><span class="n">init</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># sassのコンパイル(sass/*.sassを変更した場合のみ)</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span> <span class="n">sass</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 実行</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>便利！</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hiroyuki MORITA</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-11T00:05:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/19/quine-relay-in-vagrant/" title="Previous Post: Quine-Relayを気軽に試せるようにVagrantの設定を作った">&laquo; Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chiastolite',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hiroyuki MORITA -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.io/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.io/"/>
-  <updated>2013-07-20T01:41:09+09:00</updated>
+  <updated>2013-12-11T01:08:15+09:00</updated>
   <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,136 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RubyMotionでPixateを使う]]></title>
+    <link href="http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate/"/>
+    <updated>2013-12-11T00:05:00+09:00</updated>
+    <id>http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate</id>
+    <content type="html"><![CDATA[<p>数ヶ月触ってなかったRubyMotionのリハビリついでに、前から使ってみたかったPixateが使えるのかを試してみた</p>
+
+<h2>RubyMotionとPixate</h2>
+
+<p>ちなみにRubyMotionとPixateというとすでに以下のような事例が出てます</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/naoya/20130122/1358859447">Pixate - naoyaのはてなダイアリー</a></li>
+<li><a href="http://rochefort.hatenablog.com/entry/20130220/p1">RubyMotionでPixateを使ってみる - rochefort&#39;s blog</a></li>
+<li><a href="http://pixate.github.io/RubyMotion-Pixate/">RubyMotion-Pixate</a></li>
+</ul>
+
+<p>ただどのエントリもPixateのSDKを別途ダウンロードすることが前提だったので、それcocoapodsとかでなんとかならないのかなーと思ってた</p>
+
+<p>結論としてはなんとかなった<br>
+そのときのリポジトリはこれ↓</p>
+
+<p><a href="https://github.com/chiastolite/rubymotion_pixate_sample">https://github.com/chiastolite/rubymotion_pixate_sample</a></p>
+
+<h2>gemの追加</h2>
+
+<p>追加したgemは以下の2つ</p>
+
+<ol>
+<li>cocoapodsを使うための<code>motion-cocoapods</code></li>
+<li>pixateを使うための<code>motion-pixate</code></li>
+</ol>
+
+<p>ちなみにdotenvが入ってるのは後述するPixateのLicense keyをリポジトリに入れたくなかったから</p>
+
+<figure class='code'><figcaption><span>Gemfile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Gemfile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+</span><span class='line'><span class="c1"># Add your dependencies here:</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;motion-cocoapods&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.4.0&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;motion-pixate&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;Pixate/RubyMotion-Pixate&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;dotenv&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<h2>Pixate</h2>
+
+<p>Pixateのインストールは<a href="http://www.pixate.com/blog/2013-09-18-pixate-cocoapod/index.html">cocoapodsでできるようになってた</a>ので、Rakefileに追記して<code>rake pod:install</code>をすればインストールは完了</p>
+
+<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br>
+<a href="http://download.pixate.com/key">http://download.pixate.com/key</a></p>
+
+<figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- coding: utf-8 -*-</span>
+</span><span class='line'><span class="vg">$:</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;/Library/RubyMotion/lib&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;motion/project/template/ios&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+</span><span class='line'>  <span class="no">Bundler</span><span class="o">.</span><span class="n">require</span>
+</span><span class='line'><span class="k">rescue</span> <span class="no">LoadError</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dotenv</span><span class="o">.</span><span class="n">load</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Motion</span><span class="p">:</span><span class="ss">:Project</span><span class="o">::</span><span class="no">App</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pixate_test&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pods</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">pod</span> <span class="s1">&#39;Pixate&#39;</span> <span class="c1"># Pixateをcocoapodsを利用してインストール</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PIXATE_USER&#39;</span><span class="o">]</span> <span class="c1"># pixateのユーザー名</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">key</span>  <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PIXATE_KEY&#39;</span><span class="o">]</span>  <span class="c1"># pixateのライセンスキー</span>
+</span><span class='line'>  <span class="n">app</span><span class="o">.</span><span class="n">pixate</span><span class="o">.</span><span class="n">framework</span> <span class="o">=</span> <span class="s1">&#39;vendor/Pods/Pixate/Framework/iOS/Pixate.framework/&#39;</span> <span class="c1"># インストールされたPixateの場所を指定</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>あとは↓のようにコマンドを叩けば使えるようになる</p>
+
+<figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># デフォルトのsass/cssファイルを作成(初回のみ実行)</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span> <span class="ss">pixate</span><span class="p">:</span><span class="n">init</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># sassのコンパイル(sass/*.sassを変更した場合のみ)</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span> <span class="n">sass</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 実行</span>
+</span><span class='line'><span class="err">$</span> <span class="n">rake</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>便利！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Quine-Relayを気軽に試せるようにVagrantの設定を作った]]></title>
@@ -1230,114 +1360,6 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 <h3>設定ファイルを書くのが大変</h3>
 
 <p>我慢してください</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[VagrantとVeeweeを使ってみた]]></title>
-    <link href="http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee/"/>
-    <updated>2012-05-16T19:15:00+09:00</updated>
-    <id>http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee</id>
-    <content type="html"><![CDATA[<p>渋谷.rb[:20120516] で飛び込みLTした内容のフォローです</p>
-
-<p>最近こんなエントリーが上がってました</p>
-
-<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
-<a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
-
-<p>正式版が出たVagrantの順位が上がってますね<br>
-ということで試してみましょう</p>
-
-<h2>Vagrantとは</h2>
-
-<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです  </p>
-
-<h3>Vagrantの流れ</h3>
-
-<ol>
-<li>Boxと呼ばれる仮想マシンの雛形を用意する</li>
-<li>ChefやらPuppetで必要なアプリのインストールや設定ファイルを配置する</li>
-<li>(ﾟДﾟ)ｳﾏｰ</li>
-</ol>
-
-<h3>実際にやってみる</h3>
-
-<p>ちなみに Ruby は入ってる前提です<br>
-まずはgemを入れましょう</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
-
-<p>終わったら使用するboxを選びます<br>
-http://vagrantbox.es/ から適当なのを選んでみましょう<br>
-ここでは<strong>当然</strong> Gentooを選びました</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># 指定したURLのBoxをgentooという名前で使えるようにダウンロードしてきます
-</span><span class='line'>vagrant box add gentoo http://dl.dropbox.com/u/4270274/gentoo64-0.7.box
-</span><span class='line'># 雛形となるboxを指定します
-</span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
-
-<p>この時点でカレントフォルダにVagrantfileができます<br>
-Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br>
-設定し終わったら仮想マシンを立ち上げます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant up</span></code></pre></td></tr></table></div></figure>
-
-<p>あとはvagrant sshなどで中にはいってゴリゴリ開発が可能です</p>
-
-<h3>ただし…</h3>
-
-<p>この時点ではBoxには何が入ってるかよくわかりません<br>
-出来ればプレーンなBoxを作りたいですよね<br>
-ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># gemのインストール
-</span><span class='line'>gem install veewee --pre</span></code></pre></td></tr></table></div></figure>
-
-<p>ここでは開発版のgemを入れてみます  </p>
-
-<p>テンプレートからBoxを作ります<br>
-使用できるテンプレートの一覧はこれで確認できます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
-</span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
-
-<p>いろいろ出ます<br>
-もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Box作成用のテンプレートを選択
-</span><span class='line'>veewee vbox define 'ubuntu1204' 'ubuntu-12.04-server-amd64'
-</span><span class='line'>
-</span><span class='line'># Box作成用仮想マシンの作成(ISO等のダウンロードもします)
-</span><span class='line'>veewee vbox build 'ubuntu1204'
-</span><span class='line'>
-</span><span class='line'># vagrant用にアウトプット
-</span><span class='line'>vagrant basebox export 'ubuntu1204'
-</span><span class='line'>
-</span><span class='line'># vagrantで使えるように
-</span><span class='line'>vagrant box add 'ubuntu1204' ubuntu1204.box</span></code></pre></td></tr></table></div></figure>
-
-<p>ここまで来たら vagrant init から仮想マシンを作ればオッケーです</p>
 ]]></content>
   </entry>
   

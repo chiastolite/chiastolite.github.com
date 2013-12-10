@@ -9,9 +9,8 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="会場は千葉市美浜文化ホール
-最寄りが検見川浜というとで移動時間片道2時間オーバー… カっとなってホテル取った!しかも前泊!!
-(聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな) 発表内容に関してはすでにいろんな方が上げてるようなので割愛。 &hellip;">
+  <meta name="description" content="先日のエントリ、最終結果を見たら78バイトは13位だった。 なんかくやしかったからShibuya.rbでもくもくしてみた 元のはこれ 1
+eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s). &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/16/ruby-codegolf/">「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://chiastolite.github.com/blog/2013/01/14/ruby-codegolf/">先日のエントリ</a>、最終結果を見たら78バイトは13位だった。</p>
+
+<p>なんかくやしかったからShibuya.rbでもくもくしてみた</p>
+
+<p>元のはこれ</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br>
+ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>2バイトの削減に成功</p>
+
+<p>@tyabeさんに「スペース無ければシンボルに出来るのに…」と言われていたのでそれを試してみる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>1バイトの削減に成功</p>
+
+<p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>動いた!! 2バイトの削減に成功</p>
+
+<p>もしかしたらputsの前のスペースもいらない?と試してみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>動いた!!!! 1バイトの削減に成功</p>
+
+<p>これで72バイト!!<br>
+今のロジック的にはここが限界かなぁ…?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -939,141 +1018,6 @@ Vagrantfileの途中にchef-soloの記述があるのでその部分を以下の
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/05/16/vagrant_and_veewee/">VagrantとVeeweeを使ってみた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-16T19:15:00+09:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>渋谷.rb[:20120516] で飛び込みLTした内容のフォローです</p>
-
-<p>最近こんなエントリーが上がってました</p>
-
-<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
-<a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
-
-<p>正式版が出たVagrantの順位が上がってますね<br>
-ということで試してみましょう</p>
-
-<h2>Vagrantとは</h2>
-
-<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです  </p>
-
-<h3>Vagrantの流れ</h3>
-
-<ol>
-<li>Boxと呼ばれる仮想マシンの雛形を用意する</li>
-<li>ChefやらPuppetで必要なアプリのインストールや設定ファイルを配置する</li>
-<li>(ﾟДﾟ)ｳﾏｰ</li>
-</ol>
-
-<h3>実際にやってみる</h3>
-
-<p>ちなみに Ruby は入ってる前提です<br>
-まずはgemを入れましょう</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
-
-<p>終わったら使用するboxを選びます<br>
-http://vagrantbox.es/ から適当なのを選んでみましょう<br>
-ここでは<strong>当然</strong> Gentooを選びました</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># 指定したURLのBoxをgentooという名前で使えるようにダウンロードしてきます
-</span><span class='line'>vagrant box add gentoo http://dl.dropbox.com/u/4270274/gentoo64-0.7.box
-</span><span class='line'># 雛形となるboxを指定します
-</span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
-
-<p>この時点でカレントフォルダにVagrantfileができます<br>
-Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br>
-設定し終わったら仮想マシンを立ち上げます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant up</span></code></pre></td></tr></table></div></figure>
-
-<p>あとはvagrant sshなどで中にはいってゴリゴリ開発が可能です</p>
-
-<h3>ただし…</h3>
-
-<p>この時点ではBoxには何が入ってるかよくわかりません<br>
-出来ればプレーンなBoxを作りたいですよね<br>
-ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># gemのインストール
-</span><span class='line'>gem install veewee --pre</span></code></pre></td></tr></table></div></figure>
-
-<p>ここでは開発版のgemを入れてみます  </p>
-
-<p>テンプレートからBoxを作ります<br>
-使用できるテンプレートの一覧はこれで確認できます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
-</span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
-
-<p>いろいろ出ます<br>
-もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Box作成用のテンプレートを選択
-</span><span class='line'>veewee vbox define 'ubuntu1204' 'ubuntu-12.04-server-amd64'
-</span><span class='line'>
-</span><span class='line'># Box作成用仮想マシンの作成(ISO等のダウンロードもします)
-</span><span class='line'>veewee vbox build 'ubuntu1204'
-</span><span class='line'>
-</span><span class='line'># vagrant用にアウトプット
-</span><span class='line'>vagrant basebox export 'ubuntu1204'
-</span><span class='line'>
-</span><span class='line'># vagrantで使えるように
-</span><span class='line'>vagrant box add 'ubuntu1204' ubuntu1204.box</span></code></pre></td></tr></table></div></figure>
-
-<p>ここまで来たら vagrant init から仮想マシンを作ればオッケーです</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1091,6 +1035,10 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
@@ -1104,10 +1052,6 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
     
       <li class="post">
         <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/10/vagrant-aws/">Vagrant-awsを使う際はuser_dataを設定してみよう</a>
       </li>
     
   </ul>
