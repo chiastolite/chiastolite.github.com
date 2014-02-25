@@ -26,7 +26,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -105,8 +105,8 @@
   </header>
 
 
-<div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br>
-結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
+<div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br><br>
+結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの<br>
 構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
 
 <h2>メリット</h2>
@@ -121,12 +121,12 @@
 
 <h3>ステージング/本番と(ほぼ)同じ構成で作業ができる</h3>
 
-<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br>
+<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br><br>
 なので、いざデプロイしたら本番/ステージングで動かない!といったことが減る</p>
 
 <h3>特定の時点での環境が再現可能</h3>
 
-<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br>
+<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br><br>
 特定の時点でのOS/アプリの構成がほぼ完全に再現が可能</p>
 
 <h2>デメリット</h2>
@@ -207,6 +207,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -220,10 +224,6 @@
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -269,7 +269,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -287,7 +287,7 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

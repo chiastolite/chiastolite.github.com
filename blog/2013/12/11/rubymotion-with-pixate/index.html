@@ -24,7 +24,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -117,7 +117,7 @@
 
 <p>ただどのエントリもPixateのSDKを別途ダウンロードすることが前提だったので、それcocoapodsとかでなんとかならないのかなーと思ってた</p>
 
-<p>結論としてはなんとかなった<br>
+<p>結論としてはなんとかなった<br><br>
 そのときのリポジトリはこれ↓</p>
 
 <p><a href="https://github.com/chiastolite/rubymotion_pixate_sample">https://github.com/chiastolite/rubymotion_pixate_sample</a></p>
@@ -153,7 +153,7 @@
 
 <p>Pixateのインストールは<a href="http://www.pixate.com/blog/2013-09-18-pixate-cocoapod/index.html">cocoapodsでできるようになってた</a>ので、Rakefileに追記して<code>rake pod:install</code>をすればインストールは完了</p>
 
-<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br>
+<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br><br>
 <a href="http://download.pixate.com/key">http://download.pixate.com/key</a></p>
 
 <figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -269,6 +269,8 @@
         <a class="basic-alignment left" href="/blog/2013/07/19/quine-relay-in-vagrant/" title="Previous Post: Quine-Relayを気軽に試せるようにVagrantの設定を作った">&laquo; Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       
       
+        <a class="basic-alignment right" href="/blog/2014/02/25/travis-meets-ruby-2.1.x/" title="Next Post: Ruby2.1.0以降をTravisCIでテストするには">Ruby2.1.0以降をTravisCIでテストするには &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -280,6 +282,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
@@ -295,10 +301,6 @@
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -344,7 +346,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

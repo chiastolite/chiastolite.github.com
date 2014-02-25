@@ -24,7 +24,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -126,13 +126,13 @@
 
 <p><a href="http://www.opscode.com/chef/install/">Install Chef | Opscode</a></p>
 
-<p>インストールが楽になった(ぽい)というのはかなり嬉しいニュース。
-Chef Serverはセットアップが辛い辛いとよく言われていたが、11では2行のコマンドで実行できるとかなんとか。ミドルウェア周りで必要な手順はないのかな?
+<p>インストールが楽になった(ぽい)というのはかなり嬉しいニュース。<br>
+Chef Serverはセットアップが辛い辛いとよく言われていたが、11では2行のコマンドで実行できるとかなんとか。ミドルウェア周りで必要な手順はないのかな?<br>
 ほんとに2行で出来るなら本当にうれしい</p>
 
 <h2>Vagrantが当たり前になってきそう</h2>
 
-<p>以前@ryuzeeさんのセッションを聞いてから使うようになったVagrant。
+<p>以前@ryuzeeさんのセッションを聞いてから使うようになったVagrant。<br>
 ThoughtWorksのTechnology Radarでの位置付けもドンドン上がってるし、これはブレイクするかな。</p>
 
 <p>ということで自分が思うVagrantが便利だなと思うところ</p>
@@ -157,20 +157,20 @@ ThoughtWorksのTechnology Radarでの位置付けもドンドン上がってる�
 
 <h2>AWS OpsWorksおもしろそう</h2>
 
-<p>内部の仕組みでちょっと気になるとこあるけど(既存インスタンスへのレシピの反映とか、インスタンス生成タイミングの違いによる構成の差が出ないかとか)WebでぽちぽちしてAutoScaleとか、起動時間の設定とかできるのはいいなぁと思った。
+<p>内部の仕組みでちょっと気になるとこあるけど(既存インスタンスへのレシピの反映とか、インスタンス生成タイミングの違いによる構成の差が出ないかとか)WebでぽちぽちしてAutoScaleとか、起動時間の設定とかできるのはいいなぁと思った。<br>
 SSHも出来てブラックボックスにもならないし、これも要調査</p>
 
 <h2>その他</h2>
 
-<p>発表が一通り終わってからnaoyaさんにVagrantのboxは何を使ってますか?と聞いてきた。
+<p>発表が一通り終わってからnaoyaさんにVagrantのboxは何を使ってますか?と聞いてきた。<br>
 (↓ここにあるのを使ってるとのこと)</p>
 
 <p><a href="http://www.vagrantbox.es/">A list of base boxes for Vagrant - Vagrantbox.es</a></p>
 
-<p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。
+<p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。<br>
 自分もAMIをVirtualBoxで使えないか調べていたので、考えてることは間違ってなかったみたい。</p>
 
-<p>その点で言うとEngine Yard Localはすごいいいと思う。
+<p>その点で言うとEngine Yard Localはすごいいいと思う。<br>
 昨日ここの話聞けばよかったなぁ。</p>
 
 <p><a href="http://www.engineyard.co.jp/products/local">ローカル クラウド コンピューティング: Engine Yard Cloud でローカル クラウド環境を作成</a></p>
@@ -179,7 +179,7 @@ SSHも出来てブラックボックスにもならないし、これも要調�
 
 <p>こんなおもしろい勉強会を開催・会場を提供してくださったEngine Yardのみなさま、発表者のみなさまありがとうございました。</p>
 
-<p>会場にはアプリ/インフラの有名人がいたりして、Chefはどちらのポジションにいても重要になってきてるんだなぁというのが印象的でした。
+<p>会場にはアプリ/インフラの有名人がいたりして、Chefはどちらのポジションにいても重要になってきてるんだなぁというのが印象的でした。<br>
 今年はしっかり使いこなせるように頑張ろうと思います。</p>
 </div>
 
@@ -240,6 +240,10 @@ SSHも出来てブラックボックスにもならないし、これも要調�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -253,10 +257,6 @@ SSHも出来てブラックボックスにもならないし、これも要調�
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -302,7 +302,7 @@ SSHも出来てブラックボックスにもならないし、これも要調�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

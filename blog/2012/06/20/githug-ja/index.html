@@ -26,7 +26,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -105,17 +105,17 @@
   </header>
 
 
-<div class="entry-content"><p>@HIROCASTERさんのブログにてこんなエントリーが
+<div class="entry-content"><p>@HIROCASTERさんのブログにてこんなエントリーが<br>
 <a href="http://hiroki.jp/2012/06/19/4423/">「githug」でgitの基本操作を算数ドリルみたいに学ぼう！</a></p>
 
 <p>Githugという練習プログラムがあるようです</p>
 
 <p><a href="https://github.com/Gazler/githug">Gazler/githug</a></p>
 
-<p>とりあえず一通りやってみました<br>
-(導入方法は@HIROCASTERさんのブログを参照してください)<br>
-Levelは全部で35まであるみたいですね<br>
-githubのほう見たらローカライズのブランチはあるようなのですが、まだ日本語の情報もなさそうなので<br>
+<p>とりあえず一通りやってみました<br><br>
+(導入方法は@HIROCASTERさんのブログを参照してください)<br><br>
+Levelは全部で35まであるみたいですね<br><br>
+githubのほう見たらローカライズのブランチはあるようなのですが、まだ日本語の情報もなさそうなので<br><br>
 問題文を超意訳してみましたので、参考にしてみてください  </p>
 
 <h3>1 . Initialize an empty repository</h3>
@@ -134,13 +134,13 @@ githubのほう見たらローカライズのブランチはあるようなの�
 
 <p>gitで使うユーザー名とメールアドレスを設定してください(コミットした人を判別するのに必要になります)</p>
 
-<h3>5 . Clone the repository at https://github.com/Gazler/cloneme</h3>
+<h3>5 . Clone the repository at <a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a></h3>
 
-<p>https://github.com/Gazler/cloneme をクローンしてください</p>
+<p><a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> をクローンしてください</p>
 
-<h3>6 . Clone the repository at https://github.com/Gazler/cloneme to &#39;my<em>cloned</em>repo&#39;</h3>
+<h3>6 . Clone the repository at <a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> to &#39;my_cloned_repo&#39;</h3>
 
-<p>https://github.com/Gazler/cloneme をmy<em>cloned</em>repoという名前でクローンしてください</p>
+<p><a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> をmy_cloned_repoという名前でクローンしてください</p>
 
 <h3>7 . The text editor &#39;vim&#39; creates files ending in .swp (swap files) for all files that are currently open.  We don&#39;t want them creeping into the repository.  Make this repository ignore .swp files.</h3>
 
@@ -212,6 +212,10 @@ githubのほう見たらローカライズのブランチはあるようなの�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -225,10 +229,6 @@ githubのほう見たらローカライズのブランチはあるようなの�
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -274,7 +274,7 @@ githubのほう見たらローカライズのブランチはあるようなの�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -292,7 +292,7 @@ githubのほう見たらローカライズのブランチはあるようなの�
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

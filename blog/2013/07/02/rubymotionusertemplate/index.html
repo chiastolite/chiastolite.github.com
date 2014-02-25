@@ -25,7 +25,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -104,26 +104,26 @@
   </header>
 
 
-<div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br>
+<div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br><br>
 あまりやることを決めてなかったのでエディタ周りを調べた後は、<a href="https://github.com/clearsightstudio/ProMotion">ProMotion</a>を試したりソースを読むことに。</p>
 
-<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br>
-そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
+<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br><br>
+そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、<br>
 RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。  </p>
 
 <p>試しにテンプレートを作ってみることにした。</p>
 
-<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br>
+<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br><br>
 とりあえず既存のios用テンプレートをコピーしてこのテンプレートが呼べるかを確認。</p>
 <div class="highlight"><pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
 <span class="nb">cd</span> ~/Library/RubyMotion/template/
 cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
 motion create sample --template<span class="o">=</span>user_template
 </code></pre></div>
-<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br>
+<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br><br>
 次にProMotionを導入してみる。  </p>
 
-<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br>
+<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br><br>
 Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 
 <ul>
@@ -161,7 +161,7 @@ Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 <div class="highlight"><pre><code class="sh">bundle install
 motion create sample --template<span class="o">=</span>user_template
 </code></pre></div>
-<p>ProMotionが使えるようになってる！<br>
+<p>ProMotionが使えるようになってる！<br><br>
 使うライブラリだったりがまとまってきたら、あらかじめテンプレート化することで開発が捗りそうですね。</p>
 </div>
 
@@ -222,6 +222,10 @@ motion create sample --template<span class="o">=</span>user_template
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -235,10 +239,6 @@ motion create sample --template<span class="o">=</span>user_template
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -284,7 +284,7 @@ motion create sample --template<span class="o">=</span>user_template
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

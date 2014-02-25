@@ -9,8 +9,9 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="渋谷.rb[:20120516] で飛び込みLTした内容のフォローです 最近こんなエントリーが上がってました 2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界
-ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;">
+  <meta name="description" content="昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える
+結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
+構成管理それぞれがメリットを持っていて、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -25,7 +26,7 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -84,6 +85,78 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/05/18/benefits-of-using-vagrant/">Vagrantを利用する理由</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-18T02:14:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える<br><br>
+結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの<br>
+構成管理それぞれがメリットを持っていて、Vagrantによってそのメリットが享受しやすいことなのかな。</p>
+
+<h2>メリット</h2>
+
+<h3>母艦となるPC/OSの環境が汚れない</h3>
+
+<p>必要なライブラリを入れていたら母艦の調子が悪くなるというありがちなパターンから脱却できる</p>
+
+<h3>開発メンバーが共通の環境で作業が行える</h3>
+
+<p>母艦のOSやスペックが異なろうと仮想マシンは統一されているのでトラブル調査が簡単</p>
+
+<h3>ステージング/本番と(ほぼ)同じ構成で作業ができる</h3>
+
+<p>Chef/Puppet等の設定を共有することでほぼ同じ構成を行える<br><br>
+なので、いざデプロイしたら本番/ステージングで動かない!といったことが減る</p>
+
+<h3>特定の時点での環境が再現可能</h3>
+
+<p>仮想マシンの生成+構成管理スクリプトをバージョン管理に入れることで<br><br>
+特定の時点でのOS/アプリの構成がほぼ完全に再現が可能</p>
+
+<h2>デメリット</h2>
+
+<h3>メモリを大量に使う</h3>
+
+<p>仮想マシンだからしかたがない</p>
+
+<h3>ネットワークが遅い</h3>
+
+<p>仮想マシンだからしかたがない</p>
+
+<h3>設定ファイルを書くのが大変</h3>
+
+<p>我慢してください</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/05/16/vagrant_and_veewee/">VagrantとVeeweeを使ってみた</a></h1>
     
     
@@ -111,10 +184,10 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 
 <p>最近こんなエントリーが上がってました</p>
 
-<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
+<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a><br>
 <a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
 
-<p>正式版が出たVagrantの順位が上がってますね<br>
+<p>正式版が出たVagrantの順位が上がってますね<br><br>
 ということで試してみましょう</p>
 
 <h2>Vagrantとは</h2>
@@ -131,14 +204,14 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 
 <h3>実際にやってみる</h3>
 
-<p>ちなみに Ruby は入ってる前提です<br>
+<p>ちなみに Ruby は入ってる前提です<br><br>
 まずはgemを入れましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
 
-<p>終わったら使用するboxを選びます<br>
-http://vagrantbox.es/ から適当なのを選んでみましょう<br>
+<p>終わったら使用するboxを選びます<br><br>
+<a href="http://vagrantbox.es/">http://vagrantbox.es/</a> から適当なのを選んでみましょう<br><br>
 ここでは<strong>当然</strong> Gentooを選びました</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -150,8 +223,8 @@ http://vagrantbox.es/ から適当なのを選んでみましょう<br>
 </span><span class='line'># 雛形となるboxを指定します
 </span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
 
-<p>この時点でカレントフォルダにVagrantfileができます<br>
-Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br>
+<p>この時点でカレントフォルダにVagrantfileができます<br><br>
+Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br><br>
 設定し終わったら仮想マシンを立ち上げます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -161,8 +234,8 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 
 <h3>ただし…</h3>
 
-<p>この時点ではBoxには何が入ってるかよくわかりません<br>
-出来ればプレーンなBoxを作りたいですよね<br>
+<p>この時点ではBoxには何が入ってるかよくわかりません<br><br>
+出来ればプレーンなBoxを作りたいですよね<br><br>
 ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -172,7 +245,7 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 
 <p>ここでは開発版のgemを入れてみます  </p>
 
-<p>テンプレートからBoxを作ります<br>
+<p>テンプレートからBoxを作ります<br><br>
 使用できるテンプレートの一覧はこれで確認できます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -180,7 +253,7 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
 </span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
 
-<p>いろいろ出ます<br>
+<p>いろいろ出ます<br><br>
 もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -235,14 +308,14 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
   
 
 
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time>
+<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true"></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br>
+  <div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br><br>
 社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
 
 <h2>元の問題</h2>
@@ -265,13 +338,13 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </ul></li>
 </ul>
 
-<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br>
-チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br>
+<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br><br>
+チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br><br>
 ということになった。というかした。  </p>
 
 <h2>フロント</h2>
 
-<p>ではアプリケーション作成に使うフレームワークはどうするか?<br>
+<p>ではアプリケーション作成に使うフレームワークはどうするか?<br><br>
 ぱっと以下の3つが思い浮ぶ  </p>
 
 <ul>
@@ -282,9 +355,9 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 
 <p>Ruby未経験者がいて教育コストかけてられないのでRailsは即却下</p>
 
-<p>結論から言うとSinatraを採用した。<br>
-Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br>
-ただ、後から考えるとPadrinoのほうがよかったかもしれない<br>
+<p>結論から言うとSinatraを採用した。<br><br>
+Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br><br>
+ただ、後から考えるとPadrinoのほうがよかったかもしれない<br><br>
 (ジェネレータもあるし、Controllerの分割等が容易なため)  </p>
 
 <p>ViewはスマホだしHTML5。slimとか使いたかったけど教えるの大変なのでerbで記述することにした</p>
@@ -294,11 +367,11 @@ Padrinoと迷ったが自分が使ったことのあるもののほうがいい�
 <li>jQueryUI</li>
 </ul>
 
-<p>スマホのUIを構築するということで当然JavaScriptは必須。<br>
-この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br>
+<p>スマホのUIを構築するということで当然JavaScriptは必須。<br><br>
+この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br><br>
 UI系での処理を行うためにjQueryUIも導入  </p>
 
-<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br>
+<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br><br>
 jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り  </p>
 
 <h2>O/Rマッパー</h2>
@@ -309,10 +382,10 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 
 <p>ActiveRecordとどちらを使うか迷ったが、既存テーブルの利用に関して処理の流れがわかりやすかったので採用</p>
 
-<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br>
-(最終的には既存のメソッドに手を加えることで対応)<br>
-あとauto<em>migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br>
-(値を消してmigrateしなおし。値が残るのはauto</em>upgrade)  </p>
+<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br><br>
+(最終的には既存のメソッドに手を加えることで対応)<br><br>
+あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br><br>
+(値を消してmigrateしなおし。値が残るのはauto_upgrade)  </p>
 
 <h2>テスト</h2>
 
@@ -323,10 +396,10 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 <li>(Capybara-webkit)</li>
 </ul>
 
-<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br>
-WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br>
-Web系のテストはCapybaraで記述。<br>
-JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br>
+<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br><br>
+WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br><br>
+Web系のテストはCapybaraで記述。<br><br>
+JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br><br>
 周りが使えそうもないので見送り  </p>
 
 <h2>デプロイ</h2>
@@ -336,8 +409,8 @@ JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っ�
 <li>Capistrano-ext</li>
 </ul>
 
-<p>Ruby製のデプロイツール<br>
-Railsでの使用を想定して作られたが他のツールでも利用可能<br>
+<p>Ruby製のデプロイツール<br><br>
+Railsでの使用を想定して作られたが他のツールでも利用可能<br><br>
 Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用  </p>
 
 <h2>CI</h2>
@@ -346,9 +419,9 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 <li>Jenkins</li>
 </ul>
 
-<p>言わずと知れたCIツール<br>
-今回のプロジェクトではリポジトリ(svn)をポーリングして、<br>
-変更があればユニットテスト、インテグレーションテストを行い、<br>
+<p>言わずと知れたCIツール<br><br>
+今回のプロジェクトではリポジトリ(svn)をポーリングして、<br><br>
+変更があればユニットテスト、インテグレーションテストを行い、<br><br>
 問題がなければステージング環境に自動デプロイを行う環境を構築した  </p>
 
 <p>細かい設定等々は後日</p>
@@ -413,7 +486,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 
 <p>以上(え</p>
 
-<p>リポジトリはこちらから<br>
+<p>リポジトリはこちらから<br><br>
 <a href="https://github.com/chiastolite/redmine_how_to_modify_the_subject">https://github.com/chiastolite/redmine_how_to_modify_the_subject</a></p>
 </div>
   
@@ -437,6 +510,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -450,10 +527,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -498,7 +571,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -513,7 +586,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

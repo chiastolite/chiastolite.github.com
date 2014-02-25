@@ -9,7 +9,8 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="数ヶ月触ってなかったRubyMotionのリハビリついでに、前から使ってみたかったPixateが使えるのかを試してみた RubyMotionとPixate ちなみにRubyMotionとPixateというとすでに以下のような事例が出てます Pixate - naoyaのはてなダイアリー &hellip;">
+  <meta name="description" content="Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た
+いろいろあってTravisCIでの2.1.0以降のテストについて調べた 発端は@sonotsさんのツイート .travis.yml、2.1.1 にしなくちゃ？&mdash; そのっつ (SEO &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +25,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -83,6 +84,122 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-25T23:18:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た<br>
+いろいろあってTravisCIでの2.1.0以降のテストについて調べた</p>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>発端は@sonotsさんのツイート</p>
+
+<blockquote class="twitter-tweet" lang="ja"><p>.travis.yml、2.1.1 にしなくちゃ？</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438130700789633024">2014, 2月 25</a></blockquote>
+
+<p>そして口は災いの元の見本</p>
+
+<blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/chiastolite">@chiastolite</a> はやく下さい！今後2.1.2が出た時にまたすぐ書き換えなくてもすむように 2.1.* 的な指定ができるかどうかまで調べてくれると大分ハッピー :D</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438134885484478464">2014, 2月 25</a></blockquote>
+
+<h2>調べたのは以下の2点</h2>
+
+<ol>
+<li>すでに2.1.1と指定できるのか</li>
+<li>2.1.*のようにした場合はどうなるか</li>
+</ol>
+
+<h2>2.1.1を指定した場合</h2>
+
+<ul>
+<li>2.1.1動いた</li>
+<li>Travisのコンテナには入ってないバージョンのため取得用のダウンロードが走る(+30secぐらい)</li>
+</ul>
+
+<p>参考: <a href="https://travis-ci.org/chiastolite/travis-test/builds/19588293">https://travis-ci.org/chiastolite/travis-test/builds/19588293</a></p>
+
+<h2>2.1.*のようにした場合</h2>
+
+<p>Travisでは2.1.0が動作した</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -sSL https://get.rvm.io | bash -s 1.25.14
+</span><span class='line'><span class="nv">$ </span>rvm --version
+</span><span class='line'>
+</span><span class='line'>rvm 1.25.14 <span class="o">(</span>version<span class="o">)</span> by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; <span class="o">[</span>https://rvm.io/<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>rvm use 2.1.* --install --binary --fuzzy
+</span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.0
+</span></code></pre></td></tr></table></div></figure>
+
+<p>試しにdocker上でrvmを最新ver(1.25.19)して同様に2.1.*を渡してみたところ、この場合は2.1.1で動作した</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -sSL https://get.rvm.io | bash -s stable
+</span><span class='line'><span class="nv">$ </span>rvm --version
+</span><span class='line'>
+</span><span class='line'>rvm 1.25.19 <span class="o">(</span>version<span class="o">)</span> by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; <span class="o">[</span>https://rvm.io/<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>rvm use 2.1.* --install --binary --fuzzy
+</span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+<p>これにより、現在のTravisCI上ではrvmのバージョンが古いため、2.1.*が最新にはならないことがわかった</p>
+
+<p>rvmを更新できないかというIssueも上がっていたが現状動作を確認することができていない</p>
+
+<p><a href="https://github.com/travis-ci/travis-build/pull/139">Update RVM before selecting Ruby by henrikhodne · Pull Request #139 · travis-ci/travis-build</a></p>
+
+<p>TravisCI側でコンテナが更新されるのを待つしかなさそう</p>
+
+<h2>まとめ</h2>
+
+<p>2.1.*などの指定ではTravisCIの更新を待つ必要があるが、バージョンを直接指定すればRubyの最新バージョンを追うことができることがわかった<br>
+ビッグウェーブに乗る必要がある人はリリースの度にバージョンを更新して、それ以外の場合は2.1.*などとしてTravis側の対応を待てばいいと思う</p>
+
+<p>(Travisの更新速度がどれぐらいかわからないけど)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a></h1>
     
     
@@ -120,7 +237,7 @@
 
 <p>ただどのエントリもPixateのSDKを別途ダウンロードすることが前提だったので、それcocoapodsとかでなんとかならないのかなーと思ってた</p>
 
-<p>結論としてはなんとかなった<br>
+<p>結論としてはなんとかなった<br><br>
 そのときのリポジトリはこれ↓</p>
 
 <p><a href="https://github.com/chiastolite/rubymotion_pixate_sample">https://github.com/chiastolite/rubymotion_pixate_sample</a></p>
@@ -156,7 +273,7 @@
 
 <p>Pixateのインストールは<a href="http://www.pixate.com/blog/2013-09-18-pixate-cocoapod/index.html">cocoapodsでできるようになってた</a>ので、Rakefileに追記して<code>rake pod:install</code>をすればインストールは完了</p>
 
-<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br>
+<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br><br>
 <a href="http://download.pixate.com/key">http://download.pixate.com/key</a></p>
 
 <figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -267,12 +384,12 @@
 
 <p><a href="https://github.com/chiastolite/vagrant-quine-relay">chiastolite/vagrant-quine-relay</a></p>
 
-<p><blockquote class="twitter-tweet"><p>mame(<a href="https://twitter.com/mametter">@mametter</a>)さんのQuineRelayをVagrantで実行するのを作った。 <a href="https://t.co/ZnBm3OMldY">https://t.co/ZnBm3OMldY</a></p>&mdash; Hiroyuki Morita (@chiastolite) <a href="https://twitter.com/chiastolite/statuses/357537694928220160">July 17, 2013</a></blockquote>
+<p><blockquote class="twitter-tweet"><p>mame(<a href="https://twitter.com/mametter">@mametter</a>)さんのQuineRelayをVagrantで実行するのを作った。 <a href="https://t.co/ZnBm3OMldY"><a href="https://t.co/ZnBm3OMldY">https://t.co/ZnBm3OMldY</a></a></p>&mdash; Hiroyuki Morita (@chiastolite) <a href="https://twitter.com/chiastolite/statuses/357537694928220160">July 17, 2013</a></blockquote><br>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
 <p>vagrantが入ってる環境なら<code>git clone</code>後に<code>git submodule update</code>したら、<code>vagrant up</code>すれば実行が完了します。  </p>
 
-<p>Quine Relayは50個の処理系が必要ですが手元で環境構築するのは大変ですが、Vagrantを使えば既存環境への影響無く試すことができます。<br>
+<p>Quine Relayは50個の処理系が必要ですが手元で環境構築するのは大変ですが、Vagrantを使えば既存環境への影響無く試すことができます。<br><br>
 サービスを作った場合にもVagrantで動かせるようにしておけば、いろんな人に試してもらえるかもしれませんね。</p>
 </div>
   
@@ -311,7 +428,7 @@
 
   <div class="entry-content"><p>Twitterとか勉強会でVagrantfileやcookbooksはどう管理すべきか？って話題がたまに上がるので、自分の考えをまとめてみる。</p>
 
-<p>自分の意見は「Vagrantfileもcookbooksもアプリと一緒に管理する」<br>
+<p>自分の意見は「Vagrantfileもcookbooksもアプリと一緒に管理する」<br><br>
 理由をつらつらと</p>
 
 <h2>「すぐ使えるようにしたい」</h2>
@@ -364,7 +481,7 @@
 
 <p>作者の @mitchellh さんが来日するとのことで、これ逃すと直接話を聞けるチャンスはないと思い参加してきました。</p>
 
-<p>@mitchellh さんは写真とかでもわかる通りイケメンすぎてやばすぎ。<br>
+<p>@mitchellh さんは写真とかでもわかる通りイケメンすぎてやばすぎ。<br><br>
 話はVagrantを使うことによるメリットや今後の展望、おまけでPackerの話など。</p>
 
 <p>簡単に話のまとめ</p>
@@ -410,7 +527,7 @@
 
 <h2>まとめ</h2>
 
-<p><strong>Use Vagrant</strong><br>
+<p><strong>Use Vagrant</strong><br><br>
 (Vagrant使え)</p>
 
 <hr>
@@ -453,26 +570,26 @@
   </header>
 
 
-  <div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br>
+  <div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br><br>
 あまりやることを決めてなかったのでエディタ周りを調べた後は、<a href="https://github.com/clearsightstudio/ProMotion">ProMotion</a>を試したりソースを読むことに。</p>
 
-<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br>
-そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
+<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br><br>
+そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、<br>
 RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。  </p>
 
 <p>試しにテンプレートを作ってみることにした。</p>
 
-<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br>
+<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br><br>
 とりあえず既存のios用テンプレートをコピーしてこのテンプレートが呼べるかを確認。</p>
 <div class="highlight"><pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
 <span class="nb">cd</span> ~/Library/RubyMotion/template/
 cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
 motion create sample --template<span class="o">=</span>user_template
 </code></pre></div>
-<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br>
+<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br><br>
 次にProMotionを導入してみる。  </p>
 
-<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br>
+<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br><br>
 Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 
 <ul>
@@ -510,7 +627,7 @@ Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 <div class="highlight"><pre><code class="sh">bundle install
 motion create sample --template<span class="o">=</span>user_template
 </code></pre></div>
-<p>ProMotionが使えるようになってる！<br>
+<p>ProMotionが使えるようになってる！<br><br>
 使うライブラリだったりがまとまってきたら、あらかじめテンプレート化することで開発が捗りそうですね。</p>
 </div>
   
@@ -555,10 +672,10 @@ motion create sample --template<span class="o">=</span>user_template
 * vagrant-aws 0.2.2
 * AmazonLinux(ami-173fbf16)
 </code></pre></div>
-<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br>
+<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br><br>
 Vagrantfileの書き方に関してはnaoyaさんが試した時点から、SSH関連の設定方法に変更があったのでGitHubのほうも参照したほうがいいです。</p>
 
-<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br>
+<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br><br>
 <a href="https://github.com/mitchellh/vagrant-aws">mitchellh/vagrant-aws · GitHub</a></p>
 
 <p>で、起動してみると最後に↓こんなエラーがでます。</p>
@@ -570,8 +687,8 @@ mkdir -p &#39;/vagrant&#39;
 </code></pre></div>
 <p>なんだろ? と思ったら <code>/etc/sudoers</code> で<code>Defaults requiretty</code>が設定されているのがエラーが出ている原因らしい</p>
 
-<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。
-じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。
+<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。<br>
+じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。<br>
 ということでuser_dataを使ってみることにした。</p>
 
 <p>Vagrantfileはこんな感じ</p>
@@ -600,8 +717,8 @@ mkdir -p &#39;/vagrant&#39;
 </code></pre></div>
 <p>まだエラー…</p>
 
-<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br>
-多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br>
+<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br><br>
+多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br><br>
 ちょっと気になるけどこれでしかたないかな。</p>
 
 <p>ついでにuser_data使えば↓こんな感じでchef clientを入れることも出来ることを確認。</p>
@@ -618,7 +735,7 @@ curl -L https://www.opscode.com/chef/install.sh | bash
   end
 end
 </code></pre></div>
-<p>これでEC2をvagrant経由で制御することが可能になった。<br>
+<p>これでEC2をvagrant経由で制御することが可能になった。<br><br>
 インスタンスの立ち上げ、廃止、プロビジョニングが簡単なのはすごい捗るなぁ。</p>
 </div>
   
@@ -672,17 +789,17 @@ end
 
 <p>会場は万葉さん。初めて伺いましたがアットホームな感じですてきな職場でした。</p>
 
-<p>ちなみに開催してきたとか言ってるけど、@hokkai7goさん、@joker1007さんの話に乗っかった形で
+<p>ちなみに開催してきたとか言ってるけど、@hokkai7goさん、@joker1007さんの話に乗っかった形で<br>
 主催者とか名乗るのはおこがましい(^^;</p>
 
-<p>自己紹介をしてからはVagrant+Chefを使ってのセットアップとプロビジョニングとか、 もくもくと作業したり、気になる話題を話したり、すごい勉強になりました。<br>
+<p>自己紹介をしてからはVagrant+Chefを使ってのセットアップとプロビジョニングとか、 もくもくと作業したり、気になる話題を話したり、すごい勉強になりました。<br><br>
 最後は噂の<a href="https://github.com/pivotal/pivotal_workstation">pivotal/pivotal_workstation</a>を見て、みんなで大笑い。</p>
 
 <h2>思ったこと</h2>
 
 <h3>孤独のChef</h3>
 
-<p>みなさんの共通の悩みっぽいのが職場でのChef/Vagrant仲間がいない(少ないこと)<br>
+<p>みなさんの共通の悩みっぽいのが職場でのChef/Vagrant仲間がいない(少ないこと)<br><br>
 興味をもってくれる人はいるけど、そこまで踏み込んでくれる人がいない…</p>
 
 <blockquote>
@@ -693,7 +810,7 @@ end
 
 <h3>(主に)コミュニティのcookbookが使われてた</h3>
 
-<p>なんとなく自前のcookbook作って育ててる感じなのかなぁと思っていたんですが、コミュニティのcookbookを使ってるという話が多かった。<br>
+<p>なんとなく自前のcookbook作って育ててる感じなのかなぁと思っていたんですが、コミュニティのcookbookを使ってるという話が多かった。<br><br>
 あんまりコミュのほうは調べてなかったので、使いそうなのは追っていこうと思いました。</p>
 
 <p>rbenvとかは↓この人のがいいかもとのこと。</p>
@@ -702,12 +819,12 @@ end
 
 <h3>その他</h3>
 
-<p>@shimizukawaさんとRedmineに関して話をできたり、@tk0miyaさんのroundsmanの話を聞いたり、@joker1007さんたちとBerkshelfの話をしたり。<br>
+<p>@shimizukawaさんとRedmineに関して話をできたり、@tk0miyaさんのroundsmanの話を聞いたり、@joker1007さんたちとBerkshelfの話をしたり。<br><br>
 あと今回のイベントはishikitakai.comに立てられてたんだけど、「ishikitakai」「ishikitakai」って口に出すたび笑いが起きて、不思議と意識高くなってくるような気がするのでオススメです</p>
 
 <h2>最後に</h2>
 
-<p>発起人の@hokkai7goさん、@joker1007さん、ありがとうございました!<br>
+<p>発起人の@hokkai7goさん、@joker1007さん、ありがとうございました!<br><br>
 ぜひ次回もやりましょう!</p>
 </div>
   
@@ -767,13 +884,13 @@ end
 
 <p><a href="http://www.opscode.com/chef/install/">Install Chef | Opscode</a></p>
 
-<p>インストールが楽になった(ぽい)というのはかなり嬉しいニュース。
-Chef Serverはセットアップが辛い辛いとよく言われていたが、11では2行のコマンドで実行できるとかなんとか。ミドルウェア周りで必要な手順はないのかな?
+<p>インストールが楽になった(ぽい)というのはかなり嬉しいニュース。<br>
+Chef Serverはセットアップが辛い辛いとよく言われていたが、11では2行のコマンドで実行できるとかなんとか。ミドルウェア周りで必要な手順はないのかな?<br>
 ほんとに2行で出来るなら本当にうれしい</p>
 
 <h2>Vagrantが当たり前になってきそう</h2>
 
-<p>以前@ryuzeeさんのセッションを聞いてから使うようになったVagrant。
+<p>以前@ryuzeeさんのセッションを聞いてから使うようになったVagrant。<br>
 ThoughtWorksのTechnology Radarでの位置付けもドンドン上がってるし、これはブレイクするかな。</p>
 
 <p>ということで自分が思うVagrantが便利だなと思うところ</p>
@@ -798,20 +915,20 @@ ThoughtWorksのTechnology Radarでの位置付けもドンドン上がってる�
 
 <h2>AWS OpsWorksおもしろそう</h2>
 
-<p>内部の仕組みでちょっと気になるとこあるけど(既存インスタンスへのレシピの反映とか、インスタンス生成タイミングの違いによる構成の差が出ないかとか)WebでぽちぽちしてAutoScaleとか、起動時間の設定とかできるのはいいなぁと思った。
+<p>内部の仕組みでちょっと気になるとこあるけど(既存インスタンスへのレシピの反映とか、インスタンス生成タイミングの違いによる構成の差が出ないかとか)WebでぽちぽちしてAutoScaleとか、起動時間の設定とかできるのはいいなぁと思った。<br>
 SSHも出来てブラックボックスにもならないし、これも要調査</p>
 
 <h2>その他</h2>
 
-<p>発表が一通り終わってからnaoyaさんにVagrantのboxは何を使ってますか?と聞いてきた。
+<p>発表が一通り終わってからnaoyaさんにVagrantのboxは何を使ってますか?と聞いてきた。<br>
 (↓ここにあるのを使ってるとのこと)</p>
 
 <p><a href="http://www.vagrantbox.es/">A list of base boxes for Vagrant - Vagrantbox.es</a></p>
 
-<p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。
+<p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。<br>
 自分もAMIをVirtualBoxで使えないか調べていたので、考えてることは間違ってなかったみたい。</p>
 
-<p>その点で言うとEngine Yard Localはすごいいいと思う。
+<p>その点で言うとEngine Yard Localはすごいいいと思う。<br>
 昨日ここの話聞けばよかったなぁ。</p>
 
 <p><a href="http://www.engineyard.co.jp/products/local">ローカル クラウド コンピューティング: Engine Yard Cloud でローカル クラウド環境を作成</a></p>
@@ -820,7 +937,7 @@ SSHも出来てブラックボックスにもならないし、これも要調�
 
 <p>こんなおもしろい勉強会を開催・会場を提供してくださったEngine Yardのみなさま、発表者のみなさまありがとうございました。</p>
 
-<p>会場にはアプリ/インフラの有名人がいたりして、Chefはどちらのポジションにいても重要になってきてるんだなぁというのが印象的でした。
+<p>会場にはアプリ/インフラの有名人がいたりして、Chefはどちらのポジションにいても重要になってきてるんだなぁというのが印象的でした。<br>
 今年はしっかり使いこなせるように頑張ろうと思います。</p>
 </div>
   
@@ -857,8 +974,8 @@ SSHも出来てブラックボックスにもならないし、これも要調�
   </header>
 
 
-  <div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env<em>http</em>proxy | RubyGems.org | your community gem host</a><br>
-<a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env<em>http</em>proxy · GitHub</a></p>
+  <div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a><br><br>
+<a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env_http_proxy · GitHub</a></p>
 
 <p>簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP.newが呼ばれた際にはそのプロキシを利用するように強制するライブラリ」です。</p>
 
@@ -916,112 +1033,8 @@ SSHも出来てブラックボックスにもならないし、これも要調�
 </span><span class='line'>  <span class="o">(</span>以下略<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure> 
 
-<p>動いてますね<br>
+<p>動いてますね<br><br>
 プロキシが対応していないライブラリ/プロダクトってのは結構多く、毎回PullRequest出すのも大変なのでとりあえずこれでしのげればいいなと思います</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/08/try-rbenv-default-gems/">Rbenv-default-gemsを試してみた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-08T10:25:00+09:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。</p>
-
-<p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
-
-<p>作者はrbenvのsstephenson<br>
-ruby-buildを実行した際に指定したgemを同時に入れてくれるプラグインのようです</p>
-
-<p>さっそく試してみます</p>
-
-<p>READMEを参考に ~/.rbenv/default-gems に以下のような内容を書きます</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundler
-</span><span class='line'>pry</span></code></pre></td></tr></table></div></figure>
-
-<p>あとはいつも通りrbenv installをするだけ</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local --enable-shared" rbenv install 1.9.3-p385
-</span><span class='line'>
-</span><span class='line'>Downloading yaml-0.1.4.tar.gz...
-</span><span class='line'>-&gt; http://dqw8nmjcqpjn7.cloudfront.net/36c852831d02cf90508c29852361d01b
-</span><span class='line'>Installing yaml-0.1.4...
-</span><span class='line'>Installed yaml-0.1.4 to /Users/morita/.rbenv/versions/1.9.3-p385
-</span><span class='line'>
-</span><span class='line'>Downloading ruby-1.9.3-p385.tar.gz...
-</span><span class='line'>-&gt; http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
-</span><span class='line'>Installing ruby-1.9.3-p385...
-</span><span class='line'>Installed ruby-1.9.3-p385 to /Users/morita/.rbenv/versions/1.9.3-p385
-</span><span class='line'>
-</span><span class='line'>Fetching: bundler-1.2.3.gem (100%)
-</span><span class='line'>Successfully installed bundler-1.2.3
-</span><span class='line'>1 gem installed
-</span><span class='line'>Fetching: coderay-1.0.8.gem (100%)
-</span><span class='line'>Fetching: slop-3.4.3.gem (100%)
-</span><span class='line'>Fetching: method_source-0.8.1.gem (100%)
-</span><span class='line'>Fetching: pry-0.9.11.4.gem (100%)
-</span><span class='line'>Successfully installed coderay-1.0.8
-</span><span class='line'>Successfully installed slop-3.4.3
-</span><span class='line'>Successfully installed method_source-0.8.1
-</span><span class='line'>Successfully installed pry-0.9.11.4
-</span><span class='line'>4 gems installed</span></code></pre></td></tr></table></div></figure>
-
-<p>おぉ入ってる入ってる<br>
-毎回 gem install bundlerやるのも面倒だなと思っていたので、これはいい拡張ですね</p>
 </div>
   
   
@@ -1044,6 +1057,10 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -1057,10 +1074,6 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -1105,7 +1118,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -1120,7 +1133,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

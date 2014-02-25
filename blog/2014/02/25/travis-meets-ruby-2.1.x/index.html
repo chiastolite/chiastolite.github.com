@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rbenv-default-gemsを試してみた - akadama</title>
+  <title>Ruby2.1.0以降をTravisCIでテストするには - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。 sstephenson/rbenv-default-gems · GitHub 作者はrbenvのsstephenson
-ruby- &hellip;">
+  <meta name="description" content="Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た
+いろいろあってTravisCIでの2.1.0以降のテストについて調べた 発端は@sonotsさんのツイート .travis.yml、2.1.1 にしなくちゃ？&mdash; そのっつ (SEO &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ ruby- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems">
+  <link rel="canonical" href="http://chiastolite.github.io/blog/2014/02/25/travis-meets-ruby-2.1.x">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -81,7 +81,7 @@ ruby- &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Rbenv-default-gemsを試してみた</h1>
+      <h1 class="entry-title">Ruby2.1.0以降をTravisCIでテストするには</h1>
     
     
       <p class="meta">
@@ -97,82 +97,94 @@ ruby- &hellip;">
   
 
 
-<time datetime="2013-02-08T10:25:00+09:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+<time datetime="2014-02-25T23:18:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>会社に行くと毎朝必ずbrew updateをしてるのですが、rbenv-default-gemsというFormulaが追加されてるのに気づきました。</p>
+<div class="entry-content"><p>Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た<br>
+いろいろあってTravisCIでの2.1.0以降のテストについて調べた</p>
 
-<p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p>作者はrbenvのsstephenson<br><br>
-ruby-buildを実行した際に指定したgemを同時に入れてくれるプラグインのようです</p>
+<p>発端は@sonotsさんのツイート</p>
 
-<p>さっそく試してみます</p>
+<blockquote class="twitter-tweet" lang="ja"><p>.travis.yml、2.1.1 にしなくちゃ？</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438130700789633024">2014, 2月 25</a></blockquote>
 
-<p>READMEを参考に ~/.rbenv/default-gems に以下のような内容を書きます</p>
+<p>そして口は災いの元の見本</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundler
-</span><span class='line'>pry</span></code></pre></td></tr></table></div></figure>
+<blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/chiastolite">@chiastolite</a> はやく下さい！今後2.1.2が出た時にまたすぐ書き換えなくてもすむように 2.1.* 的な指定ができるかどうかまで調べてくれると大分ハッピー :D</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438134885484478464">2014, 2月 25</a></blockquote>
 
-<p>あとはいつも通りrbenv installをするだけ</p>
+<h2>調べたのは以下の2点</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<ol>
+<li>すでに2.1.1と指定できるのか</li>
+<li>2.1.*のようにした場合はどうなるか</li>
+</ol>
+
+<h2>2.1.1を指定した場合</h2>
+
+<ul>
+<li>2.1.1動いた</li>
+<li>Travisのコンテナには入ってないバージョンのため取得用のダウンロードが走る(+30secぐらい)</li>
+</ul>
+
+<p>参考: <a href="https://travis-ci.org/chiastolite/travis-test/builds/19588293">https://travis-ci.org/chiastolite/travis-test/builds/19588293</a></p>
+
+<h2>2.1.*のようにした場合</h2>
+
+<p>Travisでは2.1.0が動作した</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local --enable-shared" rbenv install 1.9.3-p385
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -sSL https://get.rvm.io | bash -s 1.25.14
+</span><span class='line'><span class="nv">$ </span>rvm --version
 </span><span class='line'>
-</span><span class='line'>Downloading yaml-0.1.4.tar.gz...
-</span><span class='line'>-&gt; http://dqw8nmjcqpjn7.cloudfront.net/36c852831d02cf90508c29852361d01b
-</span><span class='line'>Installing yaml-0.1.4...
-</span><span class='line'>Installed yaml-0.1.4 to /Users/morita/.rbenv/versions/1.9.3-p385
+</span><span class='line'>rvm 1.25.14 <span class="o">(</span>version<span class="o">)</span> by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; <span class="o">[</span>https://rvm.io/<span class="o">]</span>
 </span><span class='line'>
-</span><span class='line'>Downloading ruby-1.9.3-p385.tar.gz...
-</span><span class='line'>-&gt; http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
-</span><span class='line'>Installing ruby-1.9.3-p385...
-</span><span class='line'>Installed ruby-1.9.3-p385 to /Users/morita/.rbenv/versions/1.9.3-p385
-</span><span class='line'>
-</span><span class='line'>Fetching: bundler-1.2.3.gem (100%)
-</span><span class='line'>Successfully installed bundler-1.2.3
-</span><span class='line'>1 gem installed
-</span><span class='line'>Fetching: coderay-1.0.8.gem (100%)
-</span><span class='line'>Fetching: slop-3.4.3.gem (100%)
-</span><span class='line'>Fetching: method_source-0.8.1.gem (100%)
-</span><span class='line'>Fetching: pry-0.9.11.4.gem (100%)
-</span><span class='line'>Successfully installed coderay-1.0.8
-</span><span class='line'>Successfully installed slop-3.4.3
-</span><span class='line'>Successfully installed method_source-0.8.1
-</span><span class='line'>Successfully installed pry-0.9.11.4
-</span><span class='line'>4 gems installed</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="nv">$ </span>rvm use 2.1.* --install --binary --fuzzy
+</span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.0
+</span></code></pre></td></tr></table></div></figure>
 
-<p>おぉ入ってる入ってる<br><br>
-毎回 gem install bundlerやるのも面倒だなと思っていたので、これはいい拡張ですね</p>
+<p>試しにdocker上でrvmを最新ver(1.25.19)して同様に2.1.*を渡してみたところ、この場合は2.1.1で動作した</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -sSL https://get.rvm.io | bash -s stable
+</span><span class='line'><span class="nv">$ </span>rvm --version
+</span><span class='line'>
+</span><span class='line'>rvm 1.25.19 <span class="o">(</span>version<span class="o">)</span> by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; <span class="o">[</span>https://rvm.io/<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>rvm use 2.1.* --install --binary --fuzzy
+</span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+<p>これにより、現在のTravisCI上ではrvmのバージョンが古いため、2.1.*が最新にはならないことがわかった</p>
+
+<p>rvmを更新できないかというIssueも上がっていたが現状動作を確認することができていない</p>
+
+<p><a href="https://github.com/travis-ci/travis-build/pull/139">Update RVM before selecting Ruby by henrikhodne · Pull Request #139 · travis-ci/travis-build</a></p>
+
+<p>TravisCI側でコンテナが更新されるのを待つしかなさそう</p>
+
+<h2>まとめ</h2>
+
+<p>2.1.*などの指定ではTravisCIの更新を待つ必要があるが、バージョンを直接指定すればRubyの最新バージョンを追うことができることがわかった<br>
+ビッグウェーブに乗る必要がある人はリリースの度にバージョンを更新して、それ以外の場合は2.1.*などとしてTravis側の対応を待てばいいと思う</p>
+
+<p>(Travisの更新速度がどれぐらいかわからないけど)</p>
 </div>
 
 
@@ -195,7 +207,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
   
 
 
-<time datetime="2013-02-08T10:25:00+09:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+<time datetime="2014-02-25T23:18:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
       
 
 
@@ -203,7 +215,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2014/02/25/travis-meets-ruby-2.1.x/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2014/02/25/travis-meets-ruby-2.1.x/" >Tweet</a>
   
   
   
@@ -214,10 +226,8 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/16/ruby-codegolf/" title="Previous Post: 「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた">&laquo; 「「コードゴルフに挑戦！ in 東京Ruby会議10」に挑戦してみた」にさらに挑戦してみた</a>
+        <a class="basic-alignment left" href="/blog/2013/12/11/rubymotion-with-pixate/" title="Previous Post: RubyMotionでPixateを使う">&laquo; RubyMotionでPixateを使う</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/02/12/env-http-proxy-gem/" title="Next Post: env_http_proxy.gem をリリースしました">env_http_proxy.gem をリリースしました &raquo;</a>
       
     </p>
   </footer>

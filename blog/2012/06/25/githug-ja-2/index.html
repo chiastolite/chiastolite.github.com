@@ -24,7 +24,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -111,12 +111,12 @@
 
 <h3>9. A file has been removed from the working tree, however the file was not removed from the repository.  Find out what this file was and remove it.</h3>
 
-<p>あるファイルはワーキングツリーからは削除されていますがリポジトリからは消されていません<br>
+<p>あるファイルはワーキングツリーからは削除されていますがリポジトリからは消されていません<br><br>
 あるファイルを見つけてリポジトリからも削除してください</p>
 
 <h3>10. A file (deleteme.rb) has accidentally been added to your staging area, find out which file and remove it from the staging area.  <em>NOTE</em> Do not remove the file system, only from git.</h3>
 
-<p>deleteme.rb が間違ってステージングエリアに登録されてしまいました。ステージングエリアから削除してください<br>
+<p>deleteme.rb が間違ってステージングエリアに登録されてしまいました。ステージングエリアから削除してください<br><br>
 注! 実ファイルは消さないでください。gitからだけ消してください。</p>
 
 <h3>11. We have a file called oldfile.txt. We want to rename it to newfile.txt and stage this change.</h3>
@@ -133,13 +133,13 @@
 
 <h3>14. The README file has been committed, but it looks like the file <code>forgotten_file.rb</code> was missing from the commit.  Add the file and amend your previous commit to include it.</h3>
 
-<p>現在READMEというファイルがコミットされていますが一緒にforgotten<em>file.rbをコミットするのを忘れてしまいました<br>
-forgotten</em>file.rbをREADMEファイルと同じコミットに入れてください。</p>
+<p>現在READMEというファイルがコミットされていますが一緒にforgotten_file.rbをコミットするのを忘れてしまいました<br><br>
+forgotten_file.rbをREADMEファイルと同じコミットに入れてください。</p>
 
 <h3>15. There are two files to be committed.  The goal was to add each file as a separate commit, however both were added by accident.  Unstage the file <code>to_commit_second</code> using the reset command (don&#39;t commit anything)</h3>
 
-<p>これからコミットしようとしているファイルが2つあります。 別のコミットにしたいのですが、間違って一緒にaddを行ってしまいました<br>
-to<em>commit</em>second ファイルをresetコマンドを使ってステージングから削除してください<br>
+<p>これからコミットしようとしているファイルが2つあります。 別のコミットにしたいのですが、間違って一緒にaddを行ってしまいました<br><br>
+to_commit_second ファイルをresetコマンドを使ってステージングから削除してください<br><br>
 (コミットを行う必要はありません)</p>
 
 <h3>16. A file has been modified, but you don&#39;t want to keep the files.  Checkout the <code>config.rb</code> file from the last commit.</h3>
@@ -160,7 +160,7 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
 
 <h3>20. Add a remote repository called <code>origin</code> with the url <code>https://github.com/githug/githug</code></h3>
 
-<p>リモートリポジトリ origin を登録してください。 URLは https://github.com/githug/githug になります</p>
+<p>リモートリポジトリ origin を登録してください。 URLは <a href="https://github.com/githug/githug">https://github.com/githug/githug</a> になります</p>
 
 <h3>21. There have been modifications to the app.rb file since your last commit.  Find out which line has changed.</h3>
 
@@ -228,6 +228,10 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -241,10 +245,6 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -290,7 +290,7 @@ to<em>commit</em>second ファイルをresetコマンドを使ってステージ
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

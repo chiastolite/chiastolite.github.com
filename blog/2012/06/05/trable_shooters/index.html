@@ -26,7 +26,7 @@
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -121,7 +121,7 @@
 
 <h2>概要</h2>
 
-<p>運用を受託されているECサイトで障害発生<br>
+<p>運用を受託されているECサイトで障害発生<br><br>
 18時にはテレビでサイトが放映されるため、それまでに解決しなくてはならない  </p>
 
 <p>タイムテーブル的にはこんな感じ</p>
@@ -138,25 +138,25 @@
 
 <p>…今見ても胃がキリキリする(&#8211;;</p>
 
-<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br>
-負荷対策も…といった感じ<br>
-それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br>
+<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br><br>
+負荷対策も…といった感じ<br><br>
+それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br><br>
 自分は主にアプリの修正等々をやってましたが、DBを調査してくれた方の情報と合わせてなんとかアプリ復旧までこぎつけたのはよかったなと思います  </p>
 
-<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br>
+<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br><br>
 だから休日なのになんでこんな悲しいお話聞いてるんだろう、自分たち…</p>
 
 <h2>お客様(@tmaeさん)よりのお説教タイム</h2>
 
-<p>マジお通夜状態<br>
+<p>マジお通夜状態<br><br>
 リアルでこんなんなったら泣きます…</p>
 
 <p>@tmaeさんのお話を聞いて思ったこと等々</p>
 
 <h3>もっとお客さんの立場を考えるべき</h3>
 
-<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br>
-大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br>
+<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br><br>
+大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br><br>
 お客さんの立場からすれば何が起きているのか、どういう対応をしているのかを知りたいはずなのでまずは状況の説明だけでも構わないので一次報告は迅速にすべきだなぁ</p>
 
 <h3>なにを最優先すべきなのか</h3>
@@ -165,16 +165,16 @@
 
 <h2>馬場さん(@netmarkjp)の解説タイム</h2>
 
-<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥
+<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥<br>
 そこに気付ければ1時間は変わった気がする</p>
 
-<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br>
-ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br>
+<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br><br>
+ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br><br>
 まだまだクラウド脳にシフトしてないな</p>
 
 <p>その後は懇親会で山◯くんどうなん?とかそもそもあの手順書(?)にOK出るのはどうなんだ等々、本当に障害対応後のような空気にw</p>
 
-<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br>
+<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br><br>
 次回もトラブル直しに来ようと思います</p>
 </div>
 
@@ -241,6 +241,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
@@ -254,10 +258,6 @@
     
       <li class="post">
         <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/02/rubymotionusertemplate/">RubyMotionでユーザーテンプレートを使ってみる</a>
       </li>
     
   </ul>
@@ -303,7 +303,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hiroyuki MORITA -
+  Copyright &copy; 2014 - Hiroyuki MORITA -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -321,7 +321,7 @@
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
