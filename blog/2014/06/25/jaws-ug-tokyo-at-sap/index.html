@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>スマホサイトを作ったときの話 - akadama</title>
+  <title>JAWS-UG TOKYOに行ってきた - akadama</title>
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="">
+  <meta name="description" content="http://jawsug-tokyo.doorkeeper.jp/events/11988
+http://togetter.com/li/669904 今回のテーマは「AWS運用管理自動化祭り(Immutableもあるよ)」
+もしかしたらJAWS-UG初参戦だったかも NulabとAWSと私(仮 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site">
+  <link rel="canonical" href="http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -80,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">スマホサイトを作ったときの話</h1>
+      <h1 class="entry-title">JAWS-UG TOKYOに行ってきた</h1>
     
     
       <p class="meta">
@@ -96,123 +98,77 @@
   
 
 
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true"></time>
+<time datetime="2014-06-25T01:40:00+09:00" pubdate data-updated="true">Jun 25<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br><br>
-社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
+<div class="entry-content"><p><a href="http://jawsug-tokyo.doorkeeper.jp/events/11988">http://jawsug-tokyo.doorkeeper.jp/events/11988</a><br>
+<a href="http://togetter.com/li/669904">http://togetter.com/li/669904</a></p>
 
-<h2>元の問題</h2>
+<p>今回のテーマは<strong>「AWS運用管理自動化祭り(Immutableもあるよ)」</strong><br>
+もしかしたらJAWS-UG初参戦だったかも</p>
 
-<ul>
-<li>他のプロジェクトのフォークである<br>
+<h2>NulabとAWSと私(仮) - ヌーラボ 中村(@ikikko)さん</h2>
 
-<ul>
-<li>あっちで更新があるたびマージとか無いわ…<br></li>
-</ul></li>
-<li>テストが無い…<br>
+<p>Nulabさんの中での自動化の取り組みについてのお話。<br>
+構成図は何度かネット見たことがあったけど、お話を聞くのは初めてだった。<br>
+「プロセスも回数を重ねて洗練させていく」というは本当重要だと思うので、ちゃんと回せるように環境を整えないといけないなぁと。<br>
+毎週作っているAMIの管理とか、そこらへんの話聞きそびれた…</p>
 
-<ul>
-<li>悲しいぐらいに無い<br></li>
-</ul></li>
-<li>デプロイは手動<br>
+<h2>運用自動化時代のドキュメンテーション - 運用設計ラボ 波田野さん</h2>
 
-<ul>
-<li>死ねる……<br></li>
-</ul></li>
-</ul>
+<p>「What,Howはコードに残るが、Whyは人が自らドキュメントに書かなれば残らない」<br>
+ここらへん、自分はコミットメッセージに関して思っていることだったので、<br>
+ドキュメント化する場合も同じこと気をつけよう。</p>
 
-<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br><br>
-チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br><br>
-ということになった。というかした。  </p>
+<h2>KAIZEN platform Inc.における運用自動化 - KAIZEN platform 伊藤直也(@naoya_ito)さん</h2>
 
-<h2>フロント</h2>
+<p>この日一番聞きたかったセッション<br>
+KAIZEN platformの行動指針「3度同じ事を繰り返す時は自動化」とかは、是非取り入れたい。<br>
+BrowserStackなどのサービスやEC2とpecoを組み合せた使い方など、すごいためになる話ばっかりだった。 botとbotを協調させるって発想はなかった</p>
 
-<p>ではアプリケーション作成に使うフレームワークはどうするか?<br><br>
-ぱっと以下の3つが思い浮ぶ  </p>
+<h2>AWSアカウント開設からインスタンスを立ち上げるまでの作業自動化について - gumi 本間さん</h2>
 
-<ul>
-<li>Rails</li>
-<li>Sinatra</li>
-<li>Padrino</li>
-</ul>
+<p>(そういえばAWSのイベントだったw)<br>
+サービスや子会社などでアカウントを細かく分けているとのこと。インフラの面倒見れるようならあのやりかたのほうが、制約が少なくてよさそう。<br>
+aws-cli、いろいろできそうなのでちゃんと調べてみないと</p>
 
-<p>Ruby未経験者がいて教育コストかけてられないのでRailsは即却下</p>
+<h2>Sensu on AWS - Amazon 吉羽(@ryuzee)さん</h2>
 
-<p>結論から言うとSinatraを採用した。<br><br>
-Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br><br>
-ただ、後から考えるとPadrinoのほうがよかったかもしれない<br><br>
-(ジェネレータもあるし、Controllerの分割等が容易なため)  </p>
+<p>Sensuは前のDevOpsDaysあたりで聞いてからずっと気になってるんだけど、業務上使う機会がなかなかない…<br>
+チェックスクリプトも書き易そうだしどっかで試してみたい。</p>
 
-<p>ViewはスマホだしHTML5。slimとか使いたかったけど教えるの大変なのでerbで記述することにした</p>
+<p>監視項目について「絶対壊れちゃいけないオンプレ」と「壊れてもいい(復旧できることが重要)クラウド」の特性の違いはちゃんと考えるべきというのはその通りで、既存のをそのまま持ってくるんじゃ意味ないよなぁと思った。</p>
 
-<ul>
-<li>jQuery</li>
-<li>jQueryUI</li>
-</ul>
+<h2>ちょっといいSensuの話（仮） - cloudpack 山口さん</h2>
 
-<p>スマホのUIを構築するということで当然JavaScriptは必須。<br><br>
-この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br><br>
-UI系での処理を行うためにjQueryUIも導入  </p>
+<p>最近作ったプラグインの紹介。便利そうだ。<br>
+懇親会で聞きそびれちゃったんだけど、こういうプラグインのテストってどうすんだろう？</p>
 
-<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br><br>
-jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り  </p>
+<h2>Pandora FMSを使って監視もオートスケール対応 - Rworks 北川さん、山田さん</h2>
 
-<h2>O/Rマッパー</h2>
+<p>Pandora FMSって知らなかったんだけど、公式見たらデザインもおしゃれだしなんかよさそう。<br>
+時間あったら調べてみよう</p>
 
-<ul>
-<li>DataMapper</li>
-</ul>
+<h2>懇親会にて</h2>
 
-<p>ActiveRecordとどちらを使うか迷ったが、既存テーブルの利用に関して処理の流れがわかりやすかったので採用</p>
+<p>@naoya_itoさんとお話できる機会があったので、気になったところをいろいろ聞いてみた。(話かけるきっかけにもなるしプルリクはしておくものだなぁ)</p>
 
-<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br><br>
-(最終的には既存のメソッドに手を加えることで対応)<br><br>
-あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br><br>
-(値を消してmigrateしなおし。値が残るのはauto_upgrade)  </p>
+<p>Q. 今の開発フローやChatOps等々の設計とかはやったりしたんですか？<br>
+A. 自然とああなっていった感じ。必要であれば今後また変わっていくかもしれない。</p>
 
-<h2>テスト</h2>
+<p>Q. bot等々の管理とかは俗人化しないですか？<br>
+A. そこらへんもPRベースでやってるので人依存とかはしてない。hubotの使い方とかはhelpやログからわかるようになってる</p>
 
-<ul>
-<li>RSpec</li>
-<li>RR</li>
-<li>Capybara</li>
-<li>(Capybara-webkit)</li>
-</ul>
+<p>Q. 今の仕組みってどれぐらいで構築したんですか？<br>
+A. ここ3ヶ月ぐらいに大きく動いた。効率開発をミッションとするメンバーを置けたのが大きい(2人程度で開発業務よりも効率化を優先している)。あと、元々Qiita::Teamでの共有文化の形成していた(努力や工夫の見える化)のも大切</p>
 
-<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br><br>
-WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br><br>
-Web系のテストはCapybaraで記述。<br><br>
-JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br><br>
-周りが使えそうもないので見送り  </p>
+<h2>その他</h2>
 
-<h2>デプロイ</h2>
-
-<ul>
-<li>Capistrano</li>
-<li>Capistrano-ext</li>
-</ul>
-
-<p>Ruby製のデプロイツール<br><br>
-Railsでの使用を想定して作られたが他のツールでも利用可能<br><br>
-Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用  </p>
-
-<h2>CI</h2>
-
-<ul>
-<li>Jenkins</li>
-</ul>
-
-<p>言わずと知れたCIツール<br><br>
-今回のプロジェクトではリポジトリ(svn)をポーリングして、<br><br>
-変更があればユニットテスト、インテグレーションテストを行い、<br><br>
-問題がなければステージング環境に自動デプロイを行う環境を構築した  </p>
-
-<p>細かい設定等々は後日</p>
+<p>懇親会でChefかAnsibleかみたいな話をしていたら@ijinさんにSaltStackというプロダクトを教えてもらった。調べてみないとだ</p>
 </div>
 
 
@@ -235,7 +191,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   
 
 
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true"></time>
+<time datetime="2014-06-25T01:40:00+09:00" pubdate data-updated="true">Jun 25<span>th</span>, 2014</time>
       
 
 
@@ -243,7 +199,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap/" >Tweet</a>
   
   
   
@@ -254,10 +210,8 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/01/22/simplest-redmine-plugin/" title="Previous Post: 世界最小プラグイン">&laquo; 世界最小プラグイン</a>
+        <a class="basic-alignment left" href="/blog/2014/02/25/travis-meets-ruby-2.1.x/" title="Previous Post: Ruby2.1.0以降をTravisCIでテストするには">&laquo; Ruby2.1.0以降をTravisCIでテストするには</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/05/16/vagrant_and_veewee/" title="Next Post: VagrantとVeeweeを使ってみた">VagrantとVeeweeを使ってみた &raquo;</a>
       
     </p>
   </footer>
@@ -340,19 +294,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'akadama';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

@@ -9,9 +9,9 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="昨日のエントリーに対する補足として、なぜVagrantを利用するのかということを考える
-結論から言うとVagrantが素晴しい!!ということよりも、仮想マシンを使った開発 + Chef/Puppetでの
-構成管理それぞれがメリットを持っていて、 &hellip;">
+  <meta name="description" content="先日のVagrantのエントリー内でちょっと触れたChefを試してみます Chefとは Chef
+Chef でサーバ管理を楽チンにしよう！|るびま Rubyで作られたサーバの構成管理ツールです
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,195 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/21/using-chef-part1/">Chef を使ってみる その1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-21T00:35:00+09:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>先日のVagrantのエントリー内でちょっと触れたChefを試してみます</p>
+
+<h2>Chefとは</h2>
+
+<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br><br>
+<a href="http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG">Chef でサーバ管理を楽チンにしよう！|るびま</a></p>
+
+<p>Rubyで作られたサーバの構成管理ツールです<br><br>
+いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです  </p>
+
+<p>これで下記みたいな時に幸せになれるのかもしれません</p>
+
+<ul>
+<li>特定のサーバだけ設定がもれてて動かなかった!</li>
+<li>あのサーバだけライブラリのバージョン違うじゃねぇか!!</li>
+<li>100台サーバあるけど、apacheのバージョン更新しといて</li>
+</ul>
+
+<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br><br>
+最初から完璧にやろうと思うと必ず失敗します。<br><br>
+自分もすでに数回目(笑)</p>
+
+<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br><br>
+最終的には開発用のVirtualBoxと公開用サーバでアプリとか設定とかを統一していきたいです</p>
+
+<h2>インストール</h2>
+
+<p>Rubyは入っているという想定です</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install chef</span></code></pre></td></tr></table></div></figure>
+
+<p>これだけでOk</p>
+
+<h2>Chefに関する設定ファイルを作成</h2>
+
+<p>下記のコマンドを実行して設定ファイルを作成します</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ knife configure</span></code></pre></td></tr></table></div></figure>
+
+<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br><br>
+ファイルの設定が終わったら、~/.chef/knife.rbにcookbookの保管場所を設定します</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_path</span>            <span class="s1">&#39;~/.chef/cookbooks/&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<h2>レシピ作成</h2>
+
+<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br><br>
+インストールするもの毎に作るのが慣習ぽいです<br><br>
+apacheならapacheだけ。PHPとかでライブラリを入れる場合は一緒でもいいのかな?</p>
+
+<p>今回は単に静的ファイルを1つ置くだけのレシピを書いてみましょう</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">knife</span> <span class="n">cookbook</span> <span class="n">create</span> <span class="n">static_file</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>cookbook_path以下にstatic_fileというディレクトリが出来ているはずです<br><br>
+ここがstatic_fileレシピに関する情報をまとめるディレクトリになります</p>
+
+<h3>レシピディレクトリの中身</h3>
+
+<ul>
+<li>attributes<br></li>
+<li>definitions<br></li>
+<li>files<br></li>
+<li>libraries<br></li>
+<li>providers<br></li>
+<li>recipes</li>
+<li>resources</li>
+<li>templates</li>
+</ul>
+
+<p>8つのディレクトリと</p>
+
+<ul>
+<li>metadata.rb<br></li>
+<li>README.md<br></li>
+</ul>
+
+<p>2つのファイルがあります  </p>
+
+<p>今回は静的ファイルを置くだけなので、recipesとfilesディレクトリ以外は消しておきます</p>
+
+<h3>ファイルを置いてみる</h3>
+
+<p>ファイルの扱いに関しては<a href="http://wiki.opscode.com/display/chef/Resources#Resources-CookbookFile">ここ</a>を参考にしています</p>
+
+<p>ファイルを置くのは簡単で</p>
+
+<ol>
+<li>files以下に置きたいファイルを置く</li>
+<li>recipes/default.rbに cookbook_file メソッドでファイルを指定</li>
+</ol>
+
+<p>といった感じです。</p>
+
+<p>実際にやってみます<br><br>
+files 以下にsample.txtを作る<br><br>
+recipes/default.rb に以下のようにファイルを配置したいパスを指定</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_file</span> <span class="s1">&#39;/tmp/sample.txt&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">mode</span> <span class="s1">&#39;0644&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>これでレシピの作成は完了<br><br>
+ではこのレシピをVagrantで利用してみましょう<br><br>
+Vagrantfileの途中にchef-soloの記述があるのでその部分を以下のように変更します</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 中略</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">cookbooks_path</span> <span class="o">=</span> <span class="s2">&quot;~/.chef/cookbooks&quot;</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;static_file&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです  </p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">up</span>     <span class="c1"># すでに起動済みの場合はvagrant reload</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>その後以下のコマンドでファイルがあるかを確認してみましょう</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">ssh</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">$</span> <span class="n">ls</span> <span class="sr">/tmp/s</span><span class="n">ample</span><span class="o">.</span><span class="n">txt</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>ファイルはちゃんと配置されたでしょうか?<br><br>
+まだここだと嬉しさわからないと思うので次回はテンプレートを使って値の書き換え等を行うのを確認したいと思います</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -510,6 +699,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
       </li>
     
@@ -523,10 +716,6 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
     
       <li class="post">
         <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/13/vagrant-meetup/">Vagrant Meetupに行ってきた</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[akadama]]></title>
   <link href="http://chiastolite.github.io/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.io/"/>
-  <updated>2014-02-26T01:45:48+09:00</updated>
+  <updated>2014-06-25T01:42:08+09:00</updated>
   <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JAWS-UG TOKYOに行ってきた]]></title>
+    <link href="http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap/"/>
+    <updated>2014-06-25T01:40:00+09:00</updated>
+    <id>http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap</id>
+    <content type="html"><![CDATA[<p><a href="http://jawsug-tokyo.doorkeeper.jp/events/11988">http://jawsug-tokyo.doorkeeper.jp/events/11988</a><br>
+<a href="http://togetter.com/li/669904">http://togetter.com/li/669904</a></p>
+
+<p>今回のテーマは<strong>「AWS運用管理自動化祭り(Immutableもあるよ)」</strong><br>
+もしかしたらJAWS-UG初参戦だったかも</p>
+
+<h2>NulabとAWSと私(仮) - ヌーラボ 中村(@ikikko)さん</h2>
+
+<p>Nulabさんの中での自動化の取り組みについてのお話。<br>
+構成図は何度かネット見たことがあったけど、お話を聞くのは初めてだった。<br>
+「プロセスも回数を重ねて洗練させていく」というは本当重要だと思うので、ちゃんと回せるように環境を整えないといけないなぁと。<br>
+毎週作っているAMIの管理とか、そこらへんの話聞きそびれた…</p>
+
+<h2>運用自動化時代のドキュメンテーション - 運用設計ラボ 波田野さん</h2>
+
+<p>「What,Howはコードに残るが、Whyは人が自らドキュメントに書かなれば残らない」<br>
+ここらへん、自分はコミットメッセージに関して思っていることだったので、<br>
+ドキュメント化する場合も同じこと気をつけよう。</p>
+
+<h2>KAIZEN platform Inc.における運用自動化 - KAIZEN platform 伊藤直也(@naoya_ito)さん</h2>
+
+<p>この日一番聞きたかったセッション<br>
+KAIZEN platformの行動指針「3度同じ事を繰り返す時は自動化」とかは、是非取り入れたい。<br>
+BrowserStackなどのサービスやEC2とpecoを組み合せた使い方など、すごいためになる話ばっかりだった。 botとbotを協調させるって発想はなかった</p>
+
+<h2>AWSアカウント開設からインスタンスを立ち上げるまでの作業自動化について - gumi 本間さん</h2>
+
+<p>(そういえばAWSのイベントだったw)<br>
+サービスや子会社などでアカウントを細かく分けているとのこと。インフラの面倒見れるようならあのやりかたのほうが、制約が少なくてよさそう。<br>
+aws-cli、いろいろできそうなのでちゃんと調べてみないと</p>
+
+<h2>Sensu on AWS - Amazon 吉羽(@ryuzee)さん</h2>
+
+<p>Sensuは前のDevOpsDaysあたりで聞いてからずっと気になってるんだけど、業務上使う機会がなかなかない…<br>
+チェックスクリプトも書き易そうだしどっかで試してみたい。</p>
+
+<p>監視項目について「絶対壊れちゃいけないオンプレ」と「壊れてもいい(復旧できることが重要)クラウド」の特性の違いはちゃんと考えるべきというのはその通りで、既存のをそのまま持ってくるんじゃ意味ないよなぁと思った。</p>
+
+<h2>ちょっといいSensuの話（仮） - cloudpack 山口さん</h2>
+
+<p>最近作ったプラグインの紹介。便利そうだ。<br>
+懇親会で聞きそびれちゃったんだけど、こういうプラグインのテストってどうすんだろう？</p>
+
+<h2>Pandora FMSを使って監視もオートスケール対応 - Rworks 北川さん、山田さん</h2>
+
+<p>Pandora FMSって知らなかったんだけど、公式見たらデザインもおしゃれだしなんかよさそう。<br>
+時間あったら調べてみよう</p>
+
+<h2>懇親会にて</h2>
+
+<p>@naoya_itoさんとお話できる機会があったので、気になったところをいろいろ聞いてみた。(話かけるきっかけにもなるしプルリクはしておくものだなぁ)</p>
+
+<p>Q. 今の開発フローやChatOps等々の設計とかはやったりしたんですか？<br>
+A. 自然とああなっていった感じ。必要であれば今後また変わっていくかもしれない。</p>
+
+<p>Q. bot等々の管理とかは俗人化しないですか？<br>
+A. そこらへんもPRベースでやってるので人依存とかはしてない。hubotの使い方とかはhelpやログからわかるようになってる</p>
+
+<p>Q. 今の仕組みってどれぐらいで構築したんですか？<br>
+A. ここ3ヶ月ぐらいに大きく動いた。効率開発をミッションとするメンバーを置けたのが大きい(2人程度で開発業務よりも効率化を優先している)。あと、元々Qiita::Teamでの共有文化の形成していた(努力や工夫の見える化)のも大切</p>
+
+<h2>その他</h2>
+
+<p>懇親会でChefかAnsibleかみたいな話をしていたら@ijinさんにSaltStackというプロダクトを教えてもらった。調べてみないとだ</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby2.1.0以降をTravisCIでテストするには]]></title>
@@ -1242,168 +1314,6 @@ githubのほう見たらローカライズのブランチはあるようなの�
 
 <p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br><br>
 次回もトラブル直しに来ようと思います</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Chef を使ってみる その1]]></title>
-    <link href="http://chiastolite.github.io/blog/2012/05/21/using-chef-part1/"/>
-    <updated>2012-05-21T00:35:00+09:00</updated>
-    <id>http://chiastolite.github.io/blog/2012/05/21/using-chef-part1</id>
-    <content type="html"><![CDATA[<p>先日のVagrantのエントリー内でちょっと触れたChefを試してみます</p>
-
-<h2>Chefとは</h2>
-
-<p><a href="http://wiki.opscode.com/display/chef/Home">Chef</a><br><br>
-<a href="http://jp.rubyist.net/magazine/?0035-ChefInDECOLOG">Chef でサーバ管理を楽チンにしよう！|るびま</a></p>
-
-<p>Rubyで作られたサーバの構成管理ツールです<br><br>
-いろんなサーバにapacheとか入れたり設定ファイルも配置しちゃったりできるようです  </p>
-
-<p>これで下記みたいな時に幸せになれるのかもしれません</p>
-
-<ul>
-<li>特定のサーバだけ設定がもれてて動かなかった!</li>
-<li>あのサーバだけライブラリのバージョン違うじゃねぇか!!</li>
-<li>100台サーバあるけど、apacheのバージョン更新しといて</li>
-</ul>
-
-<p>ただ、ChefにはServerやらClientやらNodeやらRoleやらいろんな考えがあって、<br><br>
-最初から完璧にやろうと思うと必ず失敗します。<br><br>
-自分もすでに数回目(笑)</p>
-
-<p>今回はVagrantで使うことを目的としていますので、chef-soloだけで試そうと思います<br><br>
-最終的には開発用のVirtualBoxと公開用サーバでアプリとか設定とかを統一していきたいです</p>
-
-<h2>インストール</h2>
-
-<p>Rubyは入っているという想定です</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install chef</span></code></pre></td></tr></table></div></figure>
-
-<p>これだけでOk</p>
-
-<h2>Chefに関する設定ファイルを作成</h2>
-
-<p>下記のコマンドを実行して設定ファイルを作成します</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ knife configure</span></code></pre></td></tr></table></div></figure>
-
-<p>設定ファイルの置き場所とかが聞かれると思うので $HOME/.chef/ にしてみましょう<br><br>
-ファイルの設定が終わったら、~/.chef/knife.rbにcookbookの保管場所を設定します</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_path</span>            <span class="s1">&#39;~/.chef/cookbooks/&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<h2>レシピ作成</h2>
-
-<p>…ここではレシピと言うべきなのかクックブックと言うべきなのか<br><br>
-インストールするもの毎に作るのが慣習ぽいです<br><br>
-apacheならapacheだけ。PHPとかでライブラリを入れる場合は一緒でもいいのかな?</p>
-
-<p>今回は単に静的ファイルを1つ置くだけのレシピを書いてみましょう</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">knife</span> <span class="n">cookbook</span> <span class="n">create</span> <span class="n">static_file</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>cookbook_path以下にstatic_fileというディレクトリが出来ているはずです<br><br>
-ここがstatic_fileレシピに関する情報をまとめるディレクトリになります</p>
-
-<h3>レシピディレクトリの中身</h3>
-
-<ul>
-<li>attributes<br></li>
-<li>definitions<br></li>
-<li>files<br></li>
-<li>libraries<br></li>
-<li>providers<br></li>
-<li>recipes</li>
-<li>resources</li>
-<li>templates</li>
-</ul>
-
-<p>8つのディレクトリと</p>
-
-<ul>
-<li>metadata.rb<br></li>
-<li>README.md<br></li>
-</ul>
-
-<p>2つのファイルがあります  </p>
-
-<p>今回は静的ファイルを置くだけなので、recipesとfilesディレクトリ以外は消しておきます</p>
-
-<h3>ファイルを置いてみる</h3>
-
-<p>ファイルの扱いに関しては<a href="http://wiki.opscode.com/display/chef/Resources#Resources-CookbookFile">ここ</a>を参考にしています</p>
-
-<p>ファイルを置くのは簡単で</p>
-
-<ol>
-<li>files以下に置きたいファイルを置く</li>
-<li>recipes/default.rbに cookbook_file メソッドでファイルを指定</li>
-</ol>
-
-<p>といった感じです。</p>
-
-<p>実際にやってみます<br><br>
-files 以下にsample.txtを作る<br><br>
-recipes/default.rb に以下のようにファイルを配置したいパスを指定</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cookbook_file</span> <span class="s1">&#39;/tmp/sample.txt&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">mode</span> <span class="s1">&#39;0644&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>これでレシピの作成は完了<br><br>
-ではこのレシピをVagrantで利用してみましょう<br><br>
-Vagrantfileの途中にchef-soloの記述があるのでその部分を以下のように変更します</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># 中略</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="ss">:chef_solo</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">cookbooks_path</span> <span class="o">=</span> <span class="s2">&quot;~/.chef/cookbooks&quot;</span>
-</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;static_file&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>あとはVagrantから仮想マシンを立ちげれば反映されてるはずです  </p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">up</span>     <span class="c1"># すでに起動済みの場合はvagrant reload</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>その後以下のコマンドでファイルがあるかを確認してみましょう</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">vagrant</span> <span class="n">ssh</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">$</span> <span class="n">ls</span> <span class="sr">/tmp/s</span><span class="n">ample</span><span class="o">.</span><span class="n">txt</span>
-</span></code></pre></td></tr></table></div></figure>
-
-<p>ファイルはちゃんと配置されたでしょうか?<br><br>
-まだここだと嬉しさわからないと思うので次回はテンプレートを使って値の書き換え等を行うのを確認したいと思います</p>
 ]]></content>
   </entry>
   
