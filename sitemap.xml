@@ -1,115 +1,183 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/05/18/benefits-of-using-vagrant/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/05/21/using-chef-part1/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/06/05/trable_shooters/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/06/20/githug-ja/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/06/21/starting-scrum/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2012/06/25/githug-ja-2/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/01/02/zsh/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/01/15/tkrk10/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/01/16/ruby-codegolf/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/02/12/env-http-proxy-gem/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/02/23/chef-for-beginners/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/03/29/vag_chef/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/05/10/vagrant-aws/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/07/13/vagrant-meetup/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/07/14/how-to-manage-vagrantfile/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/07/19/quine-relay-in-vagrant/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate/</loc>
-        <lastmod>2014-02-25T23:42:34+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2014/02/25/travis-meets-ruby-2.1.x/</loc>
-        <lastmod>2014-02-26T01:44:59+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap/</loc>
-        <lastmod>2014-06-25T01:39:59+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/blog/archives/</loc>
-        <lastmod>2014-06-25T01:39:59+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/</loc>
-        <lastmod>2014-06-25T01:39:59+09:00</lastmod>
-    </url>
-    <url>
-        <loc>http://chiastolite.github.io/robots.txt</loc>
-        <lastmod>2014-02-25T23:42:35+09:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2014/09/02/join-to-unicon-pte-ltd/</loc>
+    <lastmod>2014-09-02T02:47:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2014/06/25/jaws-ug-tokyo-at-sap/</loc>
+    <lastmod>2014-06-25T01:40:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2014/02/25/travis-meets-ruby-2.1.x/</loc>
+    <lastmod>2014-02-25T23:18:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/12/11/rubymotion-with-pixate/</loc>
+    <lastmod>2013-12-11T00:05:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/07/19/quine-relay-in-vagrant/</loc>
+    <lastmod>2013-07-19T19:25:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/07/14/how-to-manage-vagrantfile/</loc>
+    <lastmod>2013-07-14T12:34:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/07/13/vagrant-meetup/</loc>
+    <lastmod>2013-07-13T13:38:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/07/02/rubymotionusertemplate/</loc>
+    <lastmod>2013-07-02T23:03:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/05/10/vagrant-aws/</loc>
+    <lastmod>2013-05-10T02:10:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/03/29/vag_chef/</loc>
+    <lastmod>2013-03-29T10:56:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/02/23/chef-for-beginners/</loc>
+    <lastmod>2013-02-23T15:04:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/02/12/env-http-proxy-gem/</loc>
+    <lastmod>2013-02-12T10:40:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/02/08/try-rbenv-default-gems/</loc>
+    <lastmod>2013-02-08T10:25:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/01/16/ruby-codegolf/</loc>
+    <lastmod>2013-01-16T21:26:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/01/15/tkrk10/</loc>
+    <lastmod>2013-01-15T00:00:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/01/14/ruby-codegolf/</loc>
+    <lastmod>2013-01-14T20:06:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2013/01/02/zsh.markdown/</loc>
+    <lastmod>2013-01-02T01:26:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/06/25/githug-ja-2/</loc>
+    <lastmod>2012-06-25T01:14:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/06/21/starting-scrum/</loc>
+    <lastmod>2012-06-21T01:54:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/06/20/githug-ja/</loc>
+    <lastmod>2012-06-20T02:33:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/06/05/trable_shooters/</loc>
+    <lastmod>2012-06-05T22:10:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/05/21/using-chef-part1.markdown/</loc>
+    <lastmod>2012-05-21T00:35:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/05/21/using-chef-part1/</loc>
+    <lastmod>2012-05-21T00:35:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/05/18/benefits-of-using-vagrant/</loc>
+    <lastmod>2012-05-18T02:14:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/05/16/vagrant_and_veewee/</loc>
+    <lastmod>2012-05-16T19:15:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/05/15/create-smartphone-site/</loc>
+    <lastmod>2012-05-15T00:00:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/2012/01/22/simplest-redmine-plugin/</loc>
+    <lastmod>2012-01-22T01:59:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://chiastolite.github.io/blog/archives/</loc>
+    <lastmod>2014-09-02T04:22:59+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://chiastolite.github.io/</loc>
+    <lastmod>2014-09-02T04:22:59+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  
 </urlset>

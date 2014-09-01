@@ -89,14 +89,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-12-11T00:05:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-12-11T00:05:00+09:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:05 am</span></time>
         
       </p>
     
@@ -111,13 +104,14 @@
 
 <ul>
 <li><a href="http://d.hatena.ne.jp/naoya/20130122/1358859447">Pixate - naoyaのはてなダイアリー</a></li>
-<li><a href="http://rochefort.hatenablog.com/entry/20130220/p1">RubyMotionでPixateを使ってみる - rochefort&#39;s blog</a></li>
+<li><a href="http://rochefort.hatenablog.com/entry/20130220/p1">RubyMotionでPixateを使ってみる - rochefort&rsquo;s blog</a></li>
 <li><a href="http://pixate.github.io/RubyMotion-Pixate/">RubyMotion-Pixate</a></li>
 </ul>
 
+
 <p>ただどのエントリもPixateのSDKを別途ダウンロードすることが前提だったので、それcocoapodsとかでなんとかならないのかなーと思ってた</p>
 
-<p>結論としてはなんとかなった<br><br>
+<p>結論としてはなんとかなった<br/>
 そのときのリポジトリはこれ↓</p>
 
 <p><a href="https://github.com/chiastolite/rubymotion_pixate_sample">https://github.com/chiastolite/rubymotion_pixate_sample</a></p>
@@ -130,6 +124,7 @@
 <li>cocoapodsを使うための<code>motion-cocoapods</code></li>
 <li>pixateを使うための<code>motion-pixate</code></li>
 </ol>
+
 
 <p>ちなみにdotenvが入ってるのは後述するPixateのLicense keyをリポジトリに入れたくなかったから</p>
 
@@ -149,11 +144,12 @@
 </span><span class='line'><span class="n">gem</span> <span class="s1">&#39;dotenv&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <h2>Pixate</h2>
 
 <p>Pixateのインストールは<a href="http://www.pixate.com/blog/2013-09-18-pixate-cocoapod/index.html">cocoapodsでできるようになってた</a>ので、Rakefileに追記して<code>rake pod:install</code>をすればインストールは完了</p>
 
-<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br><br>
+<p>ちなみにPixateは無料利用も可能だけどライセンスキーは必要なのでサイトでユーザー登録が必要<br/>
 <a href="http://download.pixate.com/key">http://download.pixate.com/key</a></p>
 
 <figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -204,6 +200,7 @@
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>あとは↓のようにコマンドを叩けば使えるようになる</p>
 
 <figure class='code'><figcaption><span>Rakefile</span><a href='https://github.com/chiastolite/rubymotion_pixate_sample/blob/a1bc4d35a0a1d399d72c08cad271b9994c2752b3/Rakefile'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -224,6 +221,7 @@
 </span><span class='line'><span class="err">$</span> <span class="n">rake</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>便利！</p>
 </div>
 
@@ -240,14 +238,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-12-11T00:05:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-12-11T00:05:00+09:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:05 am</span></time>
       
 
 
@@ -284,6 +275,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -299,17 +294,13 @@
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

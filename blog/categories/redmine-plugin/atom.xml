@@ -4,7 +4,7 @@
   <title><![CDATA[Category: redmine_plugin | akadama]]></title>
   <link href="http://chiastolite.github.io/blog/categories/redmine-plugin/atom.xml" rel="self"/>
   <link href="http://chiastolite.github.io/"/>
-  <updated>2014-06-25T01:42:08+09:00</updated>
+  <updated>2014-09-02T04:22:59+09:00</updated>
   <id>http://chiastolite.github.io/</id>
   <author>
     <name><![CDATA[Hiroyuki MORITA]]></name>
@@ -24,17 +24,18 @@
 <li>チケットのタイトル編集したいんだけどどこでやればいいの?</li>
 </ul>
 
-<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!  </p>
+
+<p>この長年多くのユーザー・管理者を悩ませていた問題を解決するプラグイン開発しました!!!</p>
 
 <h2>スクリーンショット</h2>
 
 <h3>これが</h3>
 
-<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 "></p>
+<p><img src="/images/2012/01/simplest-redmine-plugin-before.png" alt=" 導入前 " /></p>
 
 <h3>こうなります</h3>
 
-<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 "></p>
+<p><img src="/images/2012/01/simplest-redmine-plugin-after.png" alt=" 導入後 " /></p>
 
 <h2>驚きの中身解説</h2>
 
@@ -42,9 +43,10 @@
 <li>locales/ja.ymlのlabel_moreを上書きする</li>
 </ol>
 
+
 <p>以上(え</p>
 
-<p>リポジトリはこちらから<br><br>
+<p>リポジトリはこちらから<br/>
 <a href="https://github.com/chiastolite/redmine_how_to_modify_the_subject">https://github.com/chiastolite/redmine_how_to_modify_the_subject</a></p>
 ]]></content>
   </entry>

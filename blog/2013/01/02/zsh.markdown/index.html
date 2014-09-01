@@ -9,9 +9,10 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="正月ということで前から気になっていたzshを試してみることにした zshのインストール メイン環境はMacなのでhomebrewで入れることに
-とりあえずinfoを見てみる 1
-brew info zsh If you have administrator privileges, you must &hellip;">
+  <meta name="description" content="正月ということで前から気になっていたzshを試してみることにした zshのインストール
+=== メイン環境はMacなのでhomebrewで入れることに とりあえずinfoを見てみる ``` sh
+brew info zsh
+``` If you have administrator &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +21,7 @@ brew info zsh If you have administrator privileges, you must &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/01/02/zsh">
+  <link rel="canonical" href="http://chiastolite.github.io/blog/2013/01/02/zsh.markdown">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -91,113 +92,96 @@ brew info zsh If you have administrator privileges, you must &hellip;">
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-02T01:26:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-02T01:26:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>1:26 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>正月ということで前から気になっていたzshを試してみることにした  </p>
+<div class="entry-content">正月ということで前から気になっていたzshを試してみることにした  
 
-<h1>zshのインストール</h1>
+zshのインストール
+===
 
-<p>メイン環境はMacなのでhomebrewで入れることに<br><br>
-とりあえずinfoを見てみる</p>
+メイン環境はMacなのでhomebrewで入れることに  
+とりあえずinfoを見てみる
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew info zsh
-</span></code></pre></td></tr></table></div></figure>
-<div class="highlight"><pre><code class="text">If you have administrator privileges, you must fix an Apple miss
-configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
-/etc/zprofile, or Zsh will have the wrong PATH when executed
-non-interactively by scripts.
+&#8220;` sh
+brew info zsh
+&#8220;`
 
-Alternatively, install Zsh with /etc disabled:
+    If you have administrator privileges, you must fix an Apple miss
+    configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
+    /etc/zprofile, or Zsh will have the wrong PATH when executed
+    non-interactively by scripts.
+    
+    Alternatively, install Zsh with /etc disabled:
+    
+      brew install &#8211;disable-etcdir zsh
 
-  brew install --disable-etcdir zsh
-</code></pre></div>
-<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br><br>
-もしくは/etcを見ないようにオプションをつけろって感じだろうか</p>
+よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?  
+もしくは/etcを見ないようにオプションをつけろって感じだろうか
 
-<p>あんまシステム側のファイルに手を出したくないので今回は後者を試してみる</p>
+あんまシステム側のファイルに手を出したくないので今回は後者を試してみる
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install --disable-etcdir zsh
-</span></code></pre></td></tr></table></div></figure>
+&#8220;` sh
+brew install &#8211;disable-etcdir zsh
+&#8220;`
 
-<p>zshが起動できることを確認したので次は設定に</p>
+zshが起動できることを確認したので次は設定に
 
-<h1>antigenを入れてみる</h1>
 
-<p><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>といういろいろ設定をしてくれるツールがあるらしいのだが<br>
-ちょっと過剰な気もしたので、@glidenote さんのブログを元に<a href="https://github.com/zsh-users/antigen">antigen</a>を試してみることに</p>
+antigenを入れてみる
+===
 
-<p>参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる</p>
+[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)といういろいろ設定をしてくれるツールがあるらしいのだが
+ちょっと過剰な気もしたので、@glidenote さんのブログを元に[antigen](https://github.com/zsh-users/antigen)を試してみることに
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> <span class="nv">$HOME</span>/dotfiles <span class="c"># 自分の設定ファイルがいろいろ入ってるとこ</span>
-</span><span class='line'>mkdir -p <span class="nv">$HOME</span>/dotfiles/zsh
-</span><span class='line'>git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
-</span></code></pre></td></tr></table></div></figure>
+参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる
 
-<h2>設定ファイルを追加</h2>
+&#8220;` sh
+cd $HOME/dotfiles # 自分の設定ファイルがいろいろ入ってるとこ
+mkdir -p $HOME/dotfiles/zsh
+git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
+&#8220;`
 
-<h3>.zshrc</h3>
+設定ファイルを追加
+&#8212;
 
-<p>@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに</p>
+### .zshrc
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigenrc
-</span></code></pre></td></tr></table></div></figure>
+@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに
 
-<h3>~/dotfiles/zsh/antigenrc</h3>
+&#8220;`
+source ~/dotfiles/zsh/antigenrc
+&#8220;`
 
-<p>antigenの設定ファイルを作る</p>
+### ~/dotfiles/zsh/antigenrc
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigen/antigen.zsh
-</span><span class='line'>
-</span><span class='line'>antigen-lib
-</span><span class='line'>
-</span><span class='line'>antigen-bundle git
-</span><span class='line'>antigen-bundle autojump
-</span><span class='line'>antigen-bundle ruby
-</span><span class='line'>antigen-bundle rbenv
-</span><span class='line'>antigen-bundle bundler
-</span><span class='line'>
-</span><span class='line'>antigen-bundle zsh-users/zsh-syntax-highlighting
-</span><span class='line'>
-</span><span class='line'>antigen-theme gallois
-</span><span class='line'>
-</span><span class='line'>antigen-apply
-</span></code></pre></td></tr></table></div></figure>
+antigenの設定ファイルを作る
 
-<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br><br>
-細かい設定は後々詰めるとして今日のところはこの辺で終了</p>
+&#8220;`
+source ~/dotfiles/zsh/antigen/antigen.zsh
+
+antigen-lib
+
+antigen-bundle git
+antigen-bundle autojump
+antigen-bundle ruby
+antigen-bundle rbenv
+antigen-bundle bundler
+
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+antigen-theme gallois
+
+antigen-apply
+&#8220;`
+
+zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した  
+細かい設定は後々詰めるとして今日のところはこの辺で終了
+
 </div>
 
 
@@ -213,14 +197,7 @@ Alternatively, install Zsh with /etc disabled:
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-02T01:26:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-02T01:26:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>1:26 am</span></time>
       
 
 
@@ -228,7 +205,7 @@ Alternatively, install Zsh with /etc disabled:
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/01/02/zsh/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/01/02/zsh/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://chiastolite.github.io/blog/2013/01/02/zsh.markdown/" data-via="chiastolite" data-counturl="http://chiastolite.github.io/blog/2013/01/02/zsh.markdown/" >Tweet</a>
   
   
   
@@ -263,6 +240,10 @@ Alternatively, install Zsh with /etc disabled:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -278,17 +259,13 @@ Alternatively, install Zsh with /etc disabled:
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub
@@ -337,8 +314,8 @@ Alternatively, install Zsh with /etc disabled:
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://chiastolite.github.io/blog/2013/01/02/zsh/';
-        var disqus_url = 'http://chiastolite.github.io/blog/2013/01/02/zsh/';
+        var disqus_identifier = 'http://chiastolite.github.io/blog/2013/01/02/zsh.markdown/';
+        var disqus_url = 'http://chiastolite.github.io/blog/2013/01/02/zsh.markdown/';
         var disqus_script = 'embed.js';
       
     (function () {

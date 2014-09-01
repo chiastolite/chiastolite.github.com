@@ -91,14 +91,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T22:10:00+09:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-06-05T22:10:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:10 pm</span></time>
         
       </p>
     
@@ -115,14 +108,15 @@
 <li>報告書/提案書を作成</li>
 </ol>
 
+
 <p>というイベントです</p>
 
 <p>……せっかくのお休みに嬉々として障害対応しに行くんだから<del>どうかんがえてもドMですほんとうにありが(ry</del>意識の高い参加者の方々でした</p>
 
 <h2>概要</h2>
 
-<p>運用を受託されているECサイトで障害発生<br><br>
-18時にはテレビでサイトが放映されるため、それまでに解決しなくてはならない  </p>
+<p>運用を受託されているECサイトで障害発生<br/>
+18時にはテレビでサイトが放映されるため、それまでに解決しなくてはならない</p>
 
 <p>タイムテーブル的にはこんな感じ</p>
 
@@ -134,29 +128,30 @@
 18:00 本放送
 </pre>
 
+
 <p>詳細は<a href="http://t.co/DIkEmqof">こんな</a></p>
 
-<p>…今見ても胃がキリキリする(&#8211;;</p>
+<p>…今見ても胃がキリキリする(&ndash;;</p>
 
-<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br><br>
-負荷対策も…といった感じ<br><br>
-それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br><br>
-自分は主にアプリの修正等々をやってましたが、DBを調査してくれた方の情報と合わせてなんとかアプリ復旧までこぎつけたのはよかったなと思います  </p>
+<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br/>
+負荷対策も…といった感じ<br/>
+それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br/>
+自分は主にアプリの修正等々をやってましたが、DBを調査してくれた方の情報と合わせてなんとかアプリ復旧までこぎつけたのはよかったなと思います</p>
 
-<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br><br>
+<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br/>
 だから休日なのになんでこんな悲しいお話聞いてるんだろう、自分たち…</p>
 
 <h2>お客様(@tmaeさん)よりのお説教タイム</h2>
 
-<p>マジお通夜状態<br><br>
+<p>マジお通夜状態<br/>
 リアルでこんなんなったら泣きます…</p>
 
 <p>@tmaeさんのお話を聞いて思ったこと等々</p>
 
 <h3>もっとお客さんの立場を考えるべき</h3>
 
-<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br><br>
-大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br><br>
+<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br/>
+大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br/>
 お客さんの立場からすれば何が起きているのか、どういう対応をしているのかを知りたいはずなのでまずは状況の説明だけでも構わないので一次報告は迅速にすべきだなぁ</p>
 
 <h3>なにを最優先すべきなのか</h3>
@@ -165,16 +160,16 @@
 
 <h2>馬場さん(@netmarkjp)の解説タイム</h2>
 
-<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥<br>
+<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥
 そこに気付ければ1時間は変わった気がする</p>
 
-<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br><br>
-ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br><br>
+<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br/>
+ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br/>
 まだまだクラウド脳にシフトしてないな</p>
 
 <p>その後は懇親会で山◯くんどうなん?とかそもそもあの手順書(?)にOK出るのはどうなんだ等々、本当に障害対応後のような空気にw</p>
 
-<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br><br>
+<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br/>
 次回もトラブル直しに来ようと思います</p>
 </div>
 
@@ -191,14 +186,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T22:10:00+09:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-06-05T22:10:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>10:10 pm</span></time>
       
 
 
@@ -217,7 +205,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/05/21/using-chef-part1/" title="Previous Post: Chef を使ってみる その1">&laquo; Chef を使ってみる その1</a>
+        <a class="basic-alignment left" href="/blog/2012/05/21/using-chef-part1.markdown/" title="Previous Post: Chef を使ってみる その1">&laquo; Chef を使ってみる その1</a>
       
       
         <a class="basic-alignment right" href="/blog/2012/06/20/githug-ja/" title="Next Post: Githugをやってみたついでに問題を意訳してみた">Githugをやってみたついでに問題を意訳してみた &raquo;</a>
@@ -241,6 +229,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -256,17 +248,13 @@
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

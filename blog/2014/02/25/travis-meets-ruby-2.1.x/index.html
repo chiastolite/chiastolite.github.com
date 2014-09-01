@@ -90,32 +90,28 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-02-25T23:18:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
+<time class='entry-date' datetime='2014-02-25T23:18:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:18 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た<br>
+<div class="entry-content"><p>Ruby2.1.0以降のバージョニングルールの変更されてから初のリリース、Ruby2.1.1が出た
 いろいろあってTravisCIでの2.1.0以降のテストについて調べた</p>
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <p>発端は@sonotsさんのツイート</p>
 
 <blockquote class="twitter-tweet" lang="ja"><p>.travis.yml、2.1.1 にしなくちゃ？</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438130700789633024">2014, 2月 25</a></blockquote>
 
+
 <p>そして口は災いの元の見本</p>
 
 <blockquote class="twitter-tweet" lang="ja"><p><a href="https://twitter.com/chiastolite">@chiastolite</a> はやく下さい！今後2.1.2が出た時にまたすぐ書き換えなくてもすむように 2.1.* 的な指定ができるかどうかまで調べてくれると大分ハッピー :D</p>&mdash; そのっつ (SEO Naotoshi) (@sonots) <a href="https://twitter.com/sonots/statuses/438134885484478464">2014, 2月 25</a></blockquote>
+
 
 <h2>調べたのは以下の2点</h2>
 
@@ -124,12 +120,14 @@
 <li>2.1.*のようにした場合はどうなるか</li>
 </ol>
 
+
 <h2>2.1.1を指定した場合</h2>
 
 <ul>
 <li>2.1.1動いた</li>
 <li>Travisのコンテナには入ってないバージョンのため取得用のダウンロードが走る(+30secぐらい)</li>
 </ul>
+
 
 <p>参考: <a href="https://travis-ci.org/chiastolite/travis-test/builds/19588293">https://travis-ci.org/chiastolite/travis-test/builds/19588293</a></p>
 
@@ -153,6 +151,7 @@
 </span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.0
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>試しにdocker上でrvmを最新ver(1.25.19)して同様に2.1.*を渡してみたところ、この場合は2.1.1で動作した</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -171,6 +170,7 @@
 </span><span class='line'>Using /home/travis/.rvm/gems/ruby-2.1.1
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>これにより、現在のTravisCI上ではrvmのバージョンが古いため、2.1.*が最新にはならないことがわかった</p>
 
 <p>rvmを更新できないかというIssueも上がっていたが現状動作を確認することができていない</p>
@@ -181,8 +181,8 @@
 
 <h2>まとめ</h2>
 
-<p>2.1.*などの指定ではTravisCIの更新を待つ必要があるが、バージョンを直接指定すればRubyの最新バージョンを追うことができることがわかった<br>
-ビッグウェーブに乗る必要がある人はリリースの度にバージョンを更新して、それ以外の場合は2.1.*などとしてTravis側の対応を待てばいいと思う</p>
+<p>2.1.<em>などの指定ではTravisCIの更新を待つ必要があるが、バージョンを直接指定すればRubyの最新バージョンを追うことができることがわかった
+ビッグウェーブに乗る必要がある人はリリースの度にバージョンを更新して、それ以外の場合は2.1.</em>などとしてTravis側の対応を待てばいいと思う</p>
 
 <p>(Travisの更新速度がどれぐらいかわからないけど)</p>
 </div>
@@ -200,14 +200,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-02-25T23:18:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2014</time>
+<time class='entry-date' datetime='2014-02-25T23:18:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>11:18 pm</span></time>
       
 
 
@@ -244,6 +237,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -259,17 +256,13 @@
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

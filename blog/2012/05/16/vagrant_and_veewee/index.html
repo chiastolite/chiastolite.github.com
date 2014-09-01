@@ -90,14 +90,7 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-05-16T19:15:00+09:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-05-16T19:15:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:15 pm</span></time>
         
       </p>
     
@@ -108,15 +101,15 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 
 <p>最近こんなエントリーが上がってました</p>
 
-<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a><br>
+<p><a href="http://daipresents.com/2012/2012%E5%B9%B4%E3%81%AE%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E5%8B%95%E5%90%91%E3%82%82%E3%82%8F%E3%81%8B%E3%82%8B%EF%BC%81technology-radar%E3%81%8C%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%A6/">2012年のアジャイル動向もわかる！Technology Radarが公開されていました|世界</a>
 <a href="http://www.thoughtworks.com/radar">ThoughtWorks</a></p>
 
-<p>正式版が出たVagrantの順位が上がってますね<br><br>
+<p>正式版が出たVagrantの順位が上がってますね<br/>
 ということで試してみましょう</p>
 
 <h2>Vagrantとは</h2>
 
-<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです  </p>
+<p>VirtualBoxの仮想マシンをコマンドラインから作ってくれるRubyのライブラリです</p>
 
 <h3>Vagrantの流れ</h3>
 
@@ -126,16 +119,18 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 <li>(ﾟДﾟ)ｳﾏｰ</li>
 </ol>
 
+
 <h3>実際にやってみる</h3>
 
-<p>ちなみに Ruby は入ってる前提です<br><br>
+<p>ちなみに Ruby は入ってる前提です<br/>
 まずはgemを入れましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>gem install vagrant</span></code></pre></td></tr></table></div></figure>
 
-<p>終わったら使用するboxを選びます<br><br>
-<a href="http://vagrantbox.es/">http://vagrantbox.es/</a> から適当なのを選んでみましょう<br><br>
+
+<p>終わったら使用するboxを選びます<br/>
+<a href="http://vagrantbox.es/">http://vagrantbox.es/</a> から適当なのを選んでみましょう<br/>
 ここでは<strong>当然</strong> Gentooを選びました</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -147,19 +142,21 @@ ThoughtWorks 正式版が出たVagrantの順位が上がってますね &hellip;
 </span><span class='line'># 雛形となるboxを指定します
 </span><span class='line'>vagrant init gentoo</span></code></pre></td></tr></table></div></figure>
 
-<p>この時点でカレントフォルダにVagrantfileができます<br><br>
-Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br><br>
+
+<p>この時点でカレントフォルダにVagrantfileができます<br/>
+Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を記述できます<br/>
 設定し終わったら仮想マシンを立ち上げます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vagrant up</span></code></pre></td></tr></table></div></figure>
 
+
 <p>あとはvagrant sshなどで中にはいってゴリゴリ開発が可能です</p>
 
 <h3>ただし…</h3>
 
-<p>この時点ではBoxには何が入ってるかよくわかりません<br><br>
-出来ればプレーンなBoxを作りたいですよね<br><br>
+<p>この時点ではBoxには何が入ってるかよくわかりません<br/>
+出来ればプレーンなBoxを作りたいですよね<br/>
 ということでBoxを作るためのgem, <strong>veewee</strong> を使ってみましょう</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -167,9 +164,10 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </pre></td><td class='code'><pre><code class=''><span class='line'># gemのインストール
 </span><span class='line'>gem install veewee --pre</span></code></pre></td></tr></table></div></figure>
 
-<p>ここでは開発版のgemを入れてみます  </p>
 
-<p>テンプレートからBoxを作ります<br><br>
+<p>ここでは開発版のgemを入れてみます</p>
+
+<p>テンプレートからBoxを作ります<br/>
 使用できるテンプレートの一覧はこれで確認できます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -177,7 +175,8 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </pre></td><td class='code'><pre><code class=''><span class='line'># テンプレートの表示
 </span><span class='line'>veewee vbox templates</span></code></pre></td></tr></table></div></figure>
 
-<p>いろいろ出ます<br><br>
+
+<p>いろいろ出ます<br/>
 もちろんここではGentooじゃなくてUbuntuとかもっとナチュラルなやつを選びます</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -203,6 +202,7 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 </span><span class='line'># vagrantで使えるように
 </span><span class='line'>vagrant box add 'ubuntu1204' ubuntu1204.box</span></code></pre></td></tr></table></div></figure>
 
+
 <p>ここまで来たら vagrant init から仮想マシンを作ればオッケーです</p>
 </div>
 
@@ -219,14 +219,7 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-05-16T19:15:00+09:00" pubdate data-updated="true">May 16<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-05-16T19:15:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>7:15 pm</span></time>
       
 
 
@@ -269,6 +262,10 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -284,17 +281,13 @@ Vagrantfileにはネットワークの設定だったりChef/Puppetの設定を�
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

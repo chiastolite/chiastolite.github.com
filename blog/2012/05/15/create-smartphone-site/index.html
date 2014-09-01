@@ -89,51 +89,36 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true"></time>
+<time class='entry-date' datetime='2012-05-15T00:00:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br><br>
+<div class="entry-content"><p>ここ数ヶ月関わっていた、Javaで書かれてたスマホサイトをRubyで書きなおしたときの話<br/>
 社内のWikiに書いたら外にも書けよと言われたのでブログ再開がてら書いてみる</p>
 
 <h2>元の問題</h2>
 
 <ul>
-<li>他のプロジェクトのフォークである<br>
-
-<ul>
-<li>あっちで更新があるたびマージとか無いわ…<br></li>
-</ul></li>
-<li>テストが無い…<br>
-
-<ul>
-<li>悲しいぐらいに無い<br></li>
-</ul></li>
-<li>デプロイは手動<br>
-
-<ul>
-<li>死ねる……<br></li>
-</ul></li>
+<li>他のプロジェクトのフォークである</li>
+<li>あっちで更新があるたびマージとか無いわ…</li>
+<li>テストが無い…</li>
+<li>悲しいぐらいに無い</li>
+<li>デプロイは手動</li>
+<li>死ねる……</li>
 </ul>
 
-<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br><br>
-チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br><br>
-ということになった。というかした。  </p>
+
+<p>こんな状況だったので、こりゃ作り直したほうが早いわ…と思い<br/>
+チーム内では技術の選定とかは意見通しやすかったのでRubyでやってみよう<br/>
+ということになった。というかした。</p>
 
 <h2>フロント</h2>
 
-<p>ではアプリケーション作成に使うフレームワークはどうするか?<br><br>
-ぱっと以下の3つが思い浮ぶ  </p>
+<p>ではアプリケーション作成に使うフレームワークはどうするか?<br/>
+ぱっと以下の3つが思い浮ぶ</p>
 
 <ul>
 <li>Rails</li>
@@ -141,12 +126,13 @@
 <li>Padrino</li>
 </ul>
 
+
 <p>Ruby未経験者がいて教育コストかけてられないのでRailsは即却下</p>
 
-<p>結論から言うとSinatraを採用した。<br><br>
-Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br><br>
-ただ、後から考えるとPadrinoのほうがよかったかもしれない<br><br>
-(ジェネレータもあるし、Controllerの分割等が容易なため)  </p>
+<p>結論から言うとSinatraを採用した。<br/>
+Padrinoと迷ったが自分が使ったことのあるもののほうがいいだろという理由から。<br/>
+ただ、後から考えるとPadrinoのほうがよかったかもしれない<br/>
+(ジェネレータもあるし、Controllerの分割等が容易なため)</p>
 
 <p>ViewはスマホだしHTML5。slimとか使いたかったけど教えるの大変なのでerbで記述することにした</p>
 
@@ -155,12 +141,13 @@ Padrinoと迷ったが自分が使ったことのあるもののほうがいい�
 <li>jQueryUI</li>
 </ul>
 
-<p>スマホのUIを構築するということで当然JavaScriptは必須。<br><br>
-この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br><br>
-UI系での処理を行うためにjQueryUIも導入  </p>
 
-<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br><br>
-jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り  </p>
+<p>スマホのUIを構築するということで当然JavaScriptは必須。<br/>
+この用途だとサイズが大きいかもだがjQueryがデファクトスタンダードであろうということで採用<br/>
+UI系での処理を行うためにjQueryUIも導入</p>
+
+<p>jQuery MobileはHTML作成のルール(クラス付け)だったりが大変&amp;自分が理解してないのを教えれないということで見送り<br/>
+jqMobiというのもちょうど正式版が出てはいたがこれも検証等々してる余裕はなかったので見送り</p>
 
 <h2>O/Rマッパー</h2>
 
@@ -168,12 +155,13 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 <li>DataMapper</li>
 </ul>
 
+
 <p>ActiveRecordとどちらを使うか迷ったが、既存テーブルの利用に関して処理の流れがわかりやすかったので採用</p>
 
-<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br><br>
-(最終的には既存のメソッドに手を加えることで対応)<br><br>
-あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br><br>
-(値を消してmigrateしなおし。値が残るのはauto_upgrade)  </p>
+<p>ただ、値の更新時に自動で更新日付等を入れる処理を実装するのに苦労した<br/>
+(最終的には既存のメソッドに手を加えることで対応)<br/>
+あとauto_migrateってメソッドはRailsとかでdb:migrateとかしたことある人には危険すぎる…<br/>
+(値を消してmigrateしなおし。値が残るのはauto_upgrade)</p>
 
 <h2>テスト</h2>
 
@@ -184,11 +172,12 @@ jqMobiというのもちょうど正式版が出てはいたがこれも検証�
 <li>(Capybara-webkit)</li>
 </ul>
 
-<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br><br>
-WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br><br>
-Web系のテストはCapybaraで記述。<br><br>
-JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br><br>
-周りが使えそうもないので見送り  </p>
+
+<p>テストフレームワークはいろいろなものがあるが、今回はRSpecを導入<br/>
+WebのAPIとの通信等のテストを記述する場所にはRRも用いる<br/>
+Web系のテストはCapybaraで記述。<br/>
+JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っていた(headlessテストができるため)けど<br/>
+周りが使えそうもないので見送り</p>
 
 <h2>デプロイ</h2>
 
@@ -197,9 +186,10 @@ JavaScriptが必要なものに関してはCapybara-webkitを使おうと思っ�
 <li>Capistrano-ext</li>
 </ul>
 
-<p>Ruby製のデプロイツール<br><br>
-Railsでの使用を想定して作られたが他のツールでも利用可能<br><br>
-Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用  </p>
+
+<p>Ruby製のデプロイツール<br/>
+Railsでの使用を想定して作られたが他のツールでも利用可能<br/>
+Capistrano-extを使えばStaging環境と本番環境とか複数環境に適用できるのに魅力を感じ採用</p>
 
 <h2>CI</h2>
 
@@ -207,10 +197,11 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 <li>Jenkins</li>
 </ul>
 
-<p>言わずと知れたCIツール<br><br>
-今回のプロジェクトではリポジトリ(svn)をポーリングして、<br><br>
-変更があればユニットテスト、インテグレーションテストを行い、<br><br>
-問題がなければステージング環境に自動デプロイを行う環境を構築した  </p>
+
+<p>言わずと知れたCIツール<br/>
+今回のプロジェクトではリポジトリ(svn)をポーリングして、<br/>
+変更があればユニットテスト、インテグレーションテストを行い、<br/>
+問題がなければステージング環境に自動デプロイを行う環境を構築した</p>
 
 <p>細かい設定等々は後日</p>
 </div>
@@ -228,14 +219,7 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-05-15T00:00:00+09:00" pubdate data-updated="true"></time>
+<time class='entry-date' datetime='2012-05-15T00:00:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
       
 
 
@@ -272,6 +256,10 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -287,17 +275,13 @@ Capistrano-extを使えばStaging環境と本番環境とか複数環境に適�
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

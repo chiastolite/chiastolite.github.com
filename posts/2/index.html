@@ -9,8 +9,7 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="env_http_proxy | RubyGems.org | your community gem host
-chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP. &hellip;">
+  <meta name="description" content="naoyaさんのブログだったり、AmazonのOpsWorksだったりで最近Chef熱が上がって来てるとこに素敵な勉強会が開催されるということで行ってきた。 イベント内容に関してはUstやTogetterで空気を掴んでいただければ。 2月22日 初めてのChefの教室(東京都) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://chiastolite.github.io/blog/page/2">
+  <link rel="canonical" href="http://chiastolite.github.io/posts/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="akadama" type="application/atom+xml">
@@ -84,6 +83,106 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/02/23/chef-for-beginners/">Chefの勉強会に行ってきた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-23T15:04:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>3:04 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>naoyaさんのブログだったり、AmazonのOpsWorksだったりで最近Chef熱が上がって来てるとこに素敵な勉強会が開催されるということで行ってきた。</p>
+
+<p>イベント内容に関してはUstやTogetterで空気を掴んでいただければ。</p>
+
+<ul>
+<li><a href="http://kokucheese.com/event/index/74459/">2月22日 初めてのChefの教室(東京都)</a></li>
+<li><a href="http://togetter.com/li/460798">初めてのChefの教室へのツイート - Togetter</a></li>
+<li><a href="http://www.ustream.tv/channel/eytokyo-chef#utm_campaign=togetter.com&amp;utm_source=13442338&amp;utm_medium=social">USTREAM: eytokyo-chef: . Web</a></li>
+</ul>
+
+
+<h1>気になったトピックとか</h1>
+
+<h2>Chef11での変更に関して</h2>
+
+<p>Ruby -> Erlangになってたのは聞いていたがその他にも変更がいろいろあったらしい。</p>
+
+<ul>
+<li>Private Chefのライセンス形態が永久からサブスクリプションへ</li>
+<li>サーバもクライアントもインストールが簡単になったらしい</li>
+</ul>
+
+
+<p><a href="http://www.opscode.com/chef/install/">Install Chef | Opscode</a></p>
+
+<p>インストールが楽になった(ぽい)というのはかなり嬉しいニュース。
+Chef Serverはセットアップが辛い辛いとよく言われていたが、11では2行のコマンドで実行できるとかなんとか。ミドルウェア周りで必要な手順はないのかな?
+ほんとに2行で出来るなら本当にうれしい</p>
+
+<h2>Vagrantが当たり前になってきそう</h2>
+
+<p>以前@ryuzeeさんのセッションを聞いてから使うようになったVagrant。
+ThoughtWorksのTechnology Radarでの位置付けもドンドン上がってるし、これはブレイクするかな。</p>
+
+<p>ということで自分が思うVagrantが便利だなと思うところ</p>
+
+<ul>
+<li>Chefのレシピの検証</li>
+<li>スナップショットプラグイン(sahara)を使ってロールバックがしやすい</li>
+<li>開発メンバー間での環境の統一できる</li>
+<li>特に開発機のOSが統一されてない時は必須</li>
+<li>開発環境と公開環境の統一</li>
+<li>Vagrant+Chefのレシピで(理論上)同じ環境で開発ができるので、不要なトラブルが発生しない</li>
+</ul>
+
+
+<h2>AWS OpsWorksおもしろそう</h2>
+
+<p>内部の仕組みでちょっと気になるとこあるけど(既存インスタンスへのレシピの反映とか、インスタンス生成タイミングの違いによる構成の差が出ないかとか)WebでぽちぽちしてAutoScaleとか、起動時間の設定とかできるのはいいなぁと思った。
+SSHも出来てブラックボックスにもならないし、これも要調査</p>
+
+<h2>その他</h2>
+
+<p>発表が一通り終わってからnaoyaさんにVagrantのboxは何を使ってますか?と聞いてきた。
+(↓ここにあるのを使ってるとのこと)</p>
+
+<p><a href="http://www.vagrantbox.es/">A list of base boxes for Vagrant - Vagrantbox.es</a></p>
+
+<p>そこで話になったのが<strong>理想はAmazonLinuxのイメージ使えること</strong>。
+自分もAMIをVirtualBoxで使えないか調べていたので、考えてることは間違ってなかったみたい。</p>
+
+<p>その点で言うとEngine Yard Localはすごいいいと思う。
+昨日ここの話聞けばよかったなぁ。</p>
+
+<p><a href="http://www.engineyard.co.jp/products/local">ローカル クラウド コンピューティング: Engine Yard Cloud でローカル クラウド環境を作成</a></p>
+
+<h1>最後に</h1>
+
+<p>こんなおもしろい勉強会を開催・会場を提供してくださったEngine Yardのみなさま、発表者のみなさまありがとうございました。</p>
+
+<p>会場にはアプリ/インフラの有名人がいたりして、Chefはどちらのポジションにいても重要になってきてるんだなぁというのが印象的でした。
+今年はしっかり使いこなせるように頑張ろうと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/02/12/env-http-proxy-gem/">env_http_proxy.gem をリリースしました</a></h1>
     
     
@@ -93,21 +192,14 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-02-12T10:40:00+09:00" pubdate data-updated="true">Feb 12<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-02-12T10:40:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:40 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a><br><br>
+  <div class="entry-content"><p><a href="https://rubygems.org/gems/env_http_proxy">env_http_proxy | RubyGems.org | your community gem host</a><br/>
 <a href="https://github.com/chiastolite/env_http_proxy">chiastolite/env_http_proxy · GitHub</a></p>
 
 <p>簡単に言うと「環境変数にhttp_proxyが設定されていた場合、Net::HTTP.newが呼ばれた際にはそのプロキシを利用するように強制するライブラリ」です。</p>
@@ -128,17 +220,20 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 </span><span class='line'><span class="o">(</span>略<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>Gemfileに以下の行を追加してbundle installを実行</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;env_http_proxy&#39;</span><span class="p">,</span> <span class="ss">group</span><span class="p">:</span> <span class="s1">&#39;development&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>環境変数 http_proxyを設定</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://proxy.example.com:8080/
 </span></code></pre></td></tr></table></div></figure>
+
 
 <p>再度プラグインリストの表示を行います</p>
 
@@ -164,9 +259,12 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 </span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;ar_translate&quot;</span><span class="o">]</span>
 </span><span class='line'>  - <span class="o">[</span><span class="s2">&quot;auto_locale&quot;</span><span class="o">]</span>
 </span><span class='line'>  <span class="o">(</span>以下略<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure> 
+</span></code></pre></td></tr></table></div></figure>
 
-<p>動いてますね<br><br>
+
+<p></p>
+
+<p>動いてますね<br/>
 プロキシが対応していないライブラリ/プロダクトってのは結構多く、毎回PullRequest出すのも大変なのでとりあえずこれでしのげればいいなと思います</p>
 </div>
   
@@ -189,14 +287,7 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-02-08T10:25:00+09:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-02-08T10:25:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:25 am</span></time>
         
       </p>
     
@@ -207,7 +298,7 @@ chiastolite/env_http_proxy · GitHub 簡単に言うと「環境変数にhttp_pr
 
 <p><a href="https://github.com/sstephenson/rbenv-default-gems">sstephenson/rbenv-default-gems · GitHub</a></p>
 
-<p>作者はrbenvのsstephenson<br><br>
+<p>作者はrbenvのsstephenson<br/>
 ruby-buildを実行した際に指定したgemを同時に入れてくれるプラグインのようです</p>
 
 <p>さっそく試してみます</p>
@@ -218,6 +309,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bundler
 </span><span class='line'>pry</span></code></pre></td></tr></table></div></figure>
+
 
 <p>あとはいつも通りrbenv installをするだけ</p>
 
@@ -270,7 +362,8 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 </span><span class='line'>Successfully installed pry-0.9.11.4
 </span><span class='line'>4 gems installed</span></code></pre></td></tr></table></div></figure>
 
-<p>おぉ入ってる入ってる<br><br>
+
+<p>おぉ入ってる入ってる<br/>
 毎回 gem install bundlerやるのも面倒だなと思っていたので、これはいい拡張ですね</p>
 </div>
   
@@ -293,14 +386,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-16T21:26:00+09:00" pubdate data-updated="true">Jan 16<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-16T21:26:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:26 pm</span></time>
         
       </p>
     
@@ -317,12 +403,14 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
-<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br><br>
+
+<p>FizzBuzz判定のロジックは@mametterさんの<a href="http://www.slideshare.net/mametter/ruby-2012">このスライド</a>を読んだときに知ったものだったが、行末の空白のためにバイト数を使ってしまっている<br/>
 ここは判定にバイト数を使ってもいいかもしれないと3項演算子やらを使ってみた</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts &quot;FizzBuzz&quot;[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
+
 
 <p>2バイトの削減に成功</p>
 
@@ -332,6 +420,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>1バイトの削減に成功</p>
 
 <p>そういえばevalにつけてるカッコはいらないのでは?と試してみた</p>
@@ -339,6 +428,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts :FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
+
 
 <p>動いた!! 2バイトの削減に成功</p>
 
@@ -348,9 +438,10 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">eval</span><span class="s1">&#39;%d.upto(%d){|x|puts:FizzBuzz[n=(z=x**4%%-15)&lt;0?z+1:z,n+12]||x}&#39;</span><span class="o">%</span><span class="vg">$*</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
 <p>動いた!!!! 1バイトの削減に成功</p>
 
-<p>これで72バイト!!<br><br>
+<p>これで72バイト!!<br/>
 今のロジック的にはここが限界かなぁ…?</p>
 </div>
   
@@ -373,45 +464,38 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-15T00:00:00+09:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-15T00:00:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>会場は千葉市美浜文化ホール<br><br>
+  <div class="entry-content"><p>会場は千葉市美浜文化ホール<br/>
 最寄りが検見川浜というとで移動時間片道2時間オーバー…</p>
 
-<p>カっとなってホテル取った!しかも前泊!!<br><br>
+<p>カっとなってホテル取った!しかも前泊!!<br/>
 (聞いた感じホテル取った人ほとんどいなかった。みんな都会人だな)</p>
 
-<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。  </p>
+<p>発表内容に関してはすでにいろんな方が上げてるようなので割愛。</p>
 
-<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br><br>
-(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)  </p>
+<p>個人的には前からお話を聞きたいと思っていたcookpadの井原(@ihara2525)さん、永和の田垣(@akiinyo)さんのを一緒に聞けたのが嬉しかった<br/>
+(井原さんは札幌Ruby会議、田垣さんはオブラブ収穫祭のスライド等々を見て気になってた)</p>
 
-<hr>
+<hr />
 
 <p>運営のほうを見ると、いろんなコミュニティを運営している人がいるからか、すごい気配りが効いていたなぁと思う。</p>
 
-<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br><br>
-正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br><br>
-ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。  </p>
+<p>ノベルティのバッチを使ってみたり、アンチぼっち(ランチ|ディナー)を開催してみたり。<br/>
+正直アンチぼっち(ランチ|ディナー)が無ければぼっち飯確定だった人はいるはず(オレ、オレだよ!!)<br/>
+ああいう場で発表聞くだけだともったいないし、感じた熱を周りの人と共有するという意味でもすごいいい取り組みだった気がする。</p>
 
-<p>そして、2日目の雪による影響を考えての英断。<br><br>
-運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。  </p>
+<p>そして、2日目の雪による影響を考えての英断。<br/>
+運営側としては苦渋の決断だったろうなぁと思うのですが、各種路線の状況を見るとあれが無ければ家に帰れなかったかもしれなかったので、ほんとに感謝しています。</p>
 
-<hr>
+<hr />
 
-<p>今月末には事後懇親会(通称:Q)が控えている。<br><br>
+<p>今月末には事後懇親会(通称:Q)が控えている。<br/>
 また楽しい時間を過ごせるといいなぁ。</p>
 </div>
   
@@ -434,21 +518,14 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-14T20:06:00+09:00" pubdate data-updated="true">Jan 14<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-14T20:06:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:06 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>東京Ruby会議10にて~~ささたつ~~くろたつさんからCodeIQでのコードゴルフの告知があった</p>
+  <div class="entry-content"><p>東京Ruby会議10にて<del>ささたつ</del>くろたつさんからCodeIQでのコードゴルフの告知があった</p>
 
 <p><a href="https://codeiq.jp/ace/sasata299/q161">挑戦者求む！【Ruby】コードゴルフに挑戦！ by 東京Ruby会議10 佐々木 達也│CodeIQ</a></p>
 
@@ -458,6 +535,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
 <div><script src='https://gist.github.com/4529523.js'></script>
 <noscript><pre><code>eval(&#39;%d.upto(%d){|x|puts (&quot;FizzBuzz &quot;[n=x**4%%-15,n+13]||x.to_s).strip}&#39;%$*)</code></pre></noscript></div>
+
 
 <p>wcで測ってみたら78バイトだったのでまぁまぁかなーと思ってたら、どうもトップは65とからしい。さて、どこを削ったらいいものやら</p>
 </div>
@@ -472,7 +550,7 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/02/zsh/">Zshを導入してみる</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/01/02/zsh.markdown/">Zshを導入してみる</a></h1>
     
     
       <p class="meta">
@@ -481,113 +559,96 @@ ruby-buildを実行した際に指定したgemを同時に入れてくれるプ�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-01-02T01:26:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
+<time class='entry-date' datetime='2013-01-02T01:26:00+09:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>1:26 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>正月ということで前から気になっていたzshを試してみることにした  </p>
+  <div class="entry-content">正月ということで前から気になっていたzshを試してみることにした  
 
-<h1>zshのインストール</h1>
+zshのインストール
+===
 
-<p>メイン環境はMacなのでhomebrewで入れることに<br><br>
-とりあえずinfoを見てみる</p>
+メイン環境はMacなのでhomebrewで入れることに  
+とりあえずinfoを見てみる
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew info zsh
-</span></code></pre></td></tr></table></div></figure>
-<div class="highlight"><pre><code class="text">If you have administrator privileges, you must fix an Apple miss
-configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
-/etc/zprofile, or Zsh will have the wrong PATH when executed
-non-interactively by scripts.
+&#8220;` sh
+brew info zsh
+&#8220;`
 
-Alternatively, install Zsh with /etc disabled:
+    If you have administrator privileges, you must fix an Apple miss
+    configuration in Mac OS X 10.7 Lion by renaming /etc/zshenv to
+    /etc/zprofile, or Zsh will have the wrong PATH when executed
+    non-interactively by scripts.
+    
+    Alternatively, install Zsh with /etc disabled:
+    
+      brew install &#8211;disable-etcdir zsh
 
-  brew install --disable-etcdir zsh
-</code></pre></div>
-<p>よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?<br><br>
-もしくは/etcを見ないようにオプションをつけろって感じだろうか</p>
+よくわからないけどLionの/etc/zshenvは設定がおかしいらしいから/etc/zprofileにリネームしろみたいな?  
+もしくは/etcを見ないようにオプションをつけろって感じだろうか
 
-<p>あんまシステム側のファイルに手を出したくないので今回は後者を試してみる</p>
+あんまシステム側のファイルに手を出したくないので今回は後者を試してみる
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install --disable-etcdir zsh
-</span></code></pre></td></tr></table></div></figure>
+&#8220;` sh
+brew install &#8211;disable-etcdir zsh
+&#8220;`
 
-<p>zshが起動できることを確認したので次は設定に</p>
+zshが起動できることを確認したので次は設定に
 
-<h1>antigenを入れてみる</h1>
 
-<p><a href="https://github.com/robbyrussell/oh-my-zsh">oh-my-zsh</a>といういろいろ設定をしてくれるツールがあるらしいのだが<br>
-ちょっと過剰な気もしたので、@glidenote さんのブログを元に<a href="https://github.com/zsh-users/antigen">antigen</a>を試してみることに</p>
+antigenを入れてみる
+===
 
-<p>参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる</p>
+[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)といういろいろ設定をしてくれるツールがあるらしいのだが
+ちょっと過剰な気もしたので、@glidenote さんのブログを元に[antigen](https://github.com/zsh-users/antigen)を試してみることに
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> <span class="nv">$HOME</span>/dotfiles <span class="c"># 自分の設定ファイルがいろいろ入ってるとこ</span>
-</span><span class='line'>mkdir -p <span class="nv">$HOME</span>/dotfiles/zsh
-</span><span class='line'>git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
-</span></code></pre></td></tr></table></div></figure>
+参考元ではgit cloneをしていたが、自分は設定ファイルはgithubで一括管理したいので今回はsubmoduleを使って入れてみる
 
-<h2>設定ファイルを追加</h2>
+&#8220;` sh
+cd $HOME/dotfiles # 自分の設定ファイルがいろいろ入ってるとこ
+mkdir -p $HOME/dotfiles/zsh
+git submodule add https://github.com/zsh-users/antigen.git zsh/antigen
+&#8220;`
 
-<h3>.zshrc</h3>
+設定ファイルを追加
+&#8212;
 
-<p>@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに</p>
+### .zshrc
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigenrc
-</span></code></pre></td></tr></table></div></figure>
+@glidenoteさんの設定方法を参考に antigenの設定ファイルは分離することに
 
-<h3>~/dotfiles/zsh/antigenrc</h3>
+&#8220;`
+source ~/dotfiles/zsh/antigenrc
+&#8220;`
 
-<p>antigenの設定ファイルを作る</p>
+### ~/dotfiles/zsh/antigenrc
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">source</span> ~/dotfiles/zsh/antigen/antigen.zsh
-</span><span class='line'>
-</span><span class='line'>antigen-lib
-</span><span class='line'>
-</span><span class='line'>antigen-bundle git
-</span><span class='line'>antigen-bundle autojump
-</span><span class='line'>antigen-bundle ruby
-</span><span class='line'>antigen-bundle rbenv
-</span><span class='line'>antigen-bundle bundler
-</span><span class='line'>
-</span><span class='line'>antigen-bundle zsh-users/zsh-syntax-highlighting
-</span><span class='line'>
-</span><span class='line'>antigen-theme gallois
-</span><span class='line'>
-</span><span class='line'>antigen-apply
-</span></code></pre></td></tr></table></div></figure>
+antigenの設定ファイルを作る
 
-<p>zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した<br><br>
-細かい設定は後々詰めるとして今日のところはこの辺で終了</p>
+&#8220;`
+source ~/dotfiles/zsh/antigen/antigen.zsh
+
+antigen-lib
+
+antigen-bundle git
+antigen-bundle autojump
+antigen-bundle ruby
+antigen-bundle rbenv
+antigen-bundle bundler
+
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+antigen-theme gallois
+
+antigen-apply
+&#8220;`
+
+zshを起動してみるとgit cloneとかが走って、プラグインが有効になったzshが起動した  
+細かい設定は後々詰めるとして今日のところはこの辺で終了
+
 </div>
   
   
@@ -609,21 +670,14 @@ Alternatively, install Zsh with /etc disabled:
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-06-25T01:14:00+09:00" pubdate data-updated="true">Jun 25<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-06-25T01:14:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>1:14 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>引き続きgithugの超意訳の続きです  </p>
+  <div class="entry-content"><p>引き続きgithugの超意訳の続きです</p>
 
 <h3>8. There are some files in this repository, one of the files is untracked, which file is it?</h3>
 
@@ -631,12 +685,12 @@ Alternatively, install Zsh with /etc disabled:
 
 <h3>9. A file has been removed from the working tree, however the file was not removed from the repository.  Find out what this file was and remove it.</h3>
 
-<p>あるファイルはワーキングツリーからは削除されていますがリポジトリからは消されていません<br><br>
+<p>あるファイルはワーキングツリーからは削除されていますがリポジトリからは消されていません<br/>
 あるファイルを見つけてリポジトリからも削除してください</p>
 
 <h3>10. A file (deleteme.rb) has accidentally been added to your staging area, find out which file and remove it from the staging area.  <em>NOTE</em> Do not remove the file system, only from git.</h3>
 
-<p>deleteme.rb が間違ってステージングエリアに登録されてしまいました。ステージングエリアから削除してください<br><br>
+<p>deleteme.rb が間違ってステージングエリアに登録されてしまいました。ステージングエリアから削除してください<br/>
 注! 実ファイルは消さないでください。gitからだけ消してください。</p>
 
 <h3>11. We have a file called oldfile.txt. We want to rename it to newfile.txt and stage this change.</h3>
@@ -653,16 +707,16 @@ Alternatively, install Zsh with /etc disabled:
 
 <h3>14. The README file has been committed, but it looks like the file <code>forgotten_file.rb</code> was missing from the commit.  Add the file and amend your previous commit to include it.</h3>
 
-<p>現在READMEというファイルがコミットされていますが一緒にforgotten_file.rbをコミットするのを忘れてしまいました<br><br>
+<p>現在READMEというファイルがコミットされていますが一緒にforgotten_file.rbをコミットするのを忘れてしまいました<br/>
 forgotten_file.rbをREADMEファイルと同じコミットに入れてください。</p>
 
-<h3>15. There are two files to be committed.  The goal was to add each file as a separate commit, however both were added by accident.  Unstage the file <code>to_commit_second</code> using the reset command (don&#39;t commit anything)</h3>
+<h3>15. There are two files to be committed.  The goal was to add each file as a separate commit, however both were added by accident.  Unstage the file <code>to_commit_second</code> using the reset command (don&rsquo;t commit anything)</h3>
 
-<p>これからコミットしようとしているファイルが2つあります。 別のコミットにしたいのですが、間違って一緒にaddを行ってしまいました<br><br>
-to_commit_second ファイルをresetコマンドを使ってステージングから削除してください<br><br>
+<p>これからコミットしようとしているファイルが2つあります。 別のコミットにしたいのですが、間違って一緒にaddを行ってしまいました<br/>
+to_commit_second ファイルをresetコマンドを使ってステージングから削除してください<br/>
 (コミットを行う必要はありません)</p>
 
-<h3>16. A file has been modified, but you don&#39;t want to keep the files.  Checkout the <code>config.rb</code> file from the last commit.</h3>
+<h3>16. A file has been modified, but you don&rsquo;t want to keep the files.  Checkout the <code>config.rb</code> file from the last commit.</h3>
 
 <p>あるファイルに変更を加えたのですがどうもこの変更は不要になったようです。config.rbを最後のコミットの状態に戻してください。</p>
 
@@ -686,7 +740,7 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
 
 <p>app.rbには最後のコミットからの変更があります。どの行が変更されたか行番号を答えてください</p>
 
-<h3>22. Someone has put a password inside the file &#39;config.rb&#39; find out who it was</h3>
+<h3>22. Someone has put a password inside the file &lsquo;config.rb&rsquo; find out who it was</h3>
 
 <p>config.rbにパスワードを書いてしまった人がいるようです。その人はだれでしょうか?</p>
 </div>
@@ -710,48 +764,41 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-06-21T01:54:00+09:00" pubdate data-updated="true">Jun 21<span>st</span>, 2012</time>
+<time class='entry-date' datetime='2012-06-21T01:54:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>1:54 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>先日参加したshibuya.rbにて、なぜかスクラム開発導入に関しての話になったので、<br>
-ここ数ヶ月勉強してScrum Bootcampにも参加して、現時点での&quot;スクラムを始めるのに必要だと思うこと&quot;をまとめてみる  </p>
+  <div class="entry-content"><p>先日参加したshibuya.rbにて、なぜかスクラム開発導入に関しての話になったので、
+ここ数ヶ月勉強してScrum Bootcampにも参加して、現時点での&#8221;スクラムを始めるのに必要だと思うこと&#8221;をまとめてみる</p>
 
-<p>というか自分はこうやって始めようという内容です<br><br>
-ツッコミいただけると幸い  </p>
+<p>というか自分はこうやって始めようという内容です<br/>
+ツッコミいただけると幸い</p>
 
 <h2>スクラムを始めようと思わない</h2>
 
-<p>いきなり矛盾してるようだが、スクラムを始めようと考えるのは目的と手段が違うんじゃないかな?という意味で。<br><br>
-スクラムのここに魅力を感じてとか、こういう効果を期待してとか目的があってスクラムを導入するべきかなと。  </p>
+<p>いきなり矛盾してるようだが、スクラムを始めようと考えるのは目的と手段が違うんじゃないかな?という意味で。<br/>
+スクラムのここに魅力を感じてとか、こういう効果を期待してとか目的があってスクラムを導入するべきかなと。</p>
 
-<p>また、スクラムを始める!というのが至上命題になってたりすると、内容がわからないメンバーには<br>
-やらされ感もつきまとうと思うので価値とか考えを理解してもらった上で導入するのがいいのではないかな。  </p>
+<p>また、スクラムを始める!というのが至上命題になってたりすると、内容がわからないメンバーには
+やらされ感もつきまとうと思うので価値とか考えを理解してもらった上で導入するのがいいのではないかな。</p>
 
 <h2>早めに成功体験を積み上げよう</h2>
 
-<p>新しいことを始めてるので、最初のうちはイテレーションを回すのが大変だと思う。<br><br>
-その時点で目標を高くかかげすぎると目標達成できなくてテンションが下がる。<br><br>
-こうならない為に目標を低めに設定するといいと思う。<br><br>
-10の成果を達成できるチームなら8を目標にしておいたほうが、12を目標にしてたときより成功体験をつめるという意味でもいいし、「ほらみたことか次はもっとやれるぜ」みたいな前向きな空気作れるんじゃないかな。  </p>
+<p>新しいことを始めてるので、最初のうちはイテレーションを回すのが大変だと思う。<br/>
+その時点で目標を高くかかげすぎると目標達成できなくてテンションが下がる。<br/>
+こうならない為に目標を低めに設定するといいと思う。<br/>
+10の成果を達成できるチームなら8を目標にしておいたほうが、12を目標にしてたときより成功体験をつめるという意味でもいいし、「ほらみたことか次はもっとやれるぜ」みたいな前向きな空気作れるんじゃないかな。</p>
 
 <h2>一度に全部やらない</h2>
 
-<p>一概にスクラムをやるといってもやること一杯ですよね<br><br>
-スクラムのプラクティスやら、XPのプラクティスやら…<br><br>
-いきなり全部とか考えないでチームメンバーが必要だと思うものからやるのがいいのかな<br><br>
-メンバーが納得できてないプラクティスを導入してもやらされ感だけ感じるんじゃないかと不安を抱いています<br><br>
-もちろんメンバーのモチベーションが高いならば全部やってみたいです  </p>
+<p>一概にスクラムをやるといってもやること一杯ですよね<br/>
+スクラムのプラクティスやら、XPのプラクティスやら…<br/>
+いきなり全部とか考えないでチームメンバーが必要だと思うものからやるのがいいのかな<br/>
+メンバーが納得できてないプラクティスを導入してもやらされ感だけ感じるんじゃないかと不安を抱いています<br/>
+もちろんメンバーのモチベーションが高いならば全部やってみたいです</p>
 
 <p>こんな感じかなと思ってます</p>
 
@@ -765,8 +812,9 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
 <li>未知の部分の仕様策定</li>
 </ul>
 
-<p>そういう(無駄な)悩みから開放され、本当に悩むべきところに集中できるのではないかなぁ<br><br>
-次組むチームで早く試したいもんです  </p>
+
+<p>そういう(無駄な)悩みから開放され、本当に悩むべきところに集中できるのではないかなぁ<br/>
+次組むチームで早く試したいもんです</p>
 </div>
   
   
@@ -788,32 +836,25 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2012-06-20T02:33:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time>
+<time class='entry-date' datetime='2012-06-20T02:33:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>2:33 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>@HIROCASTERさんのブログにてこんなエントリーが<br>
+  <div class="entry-content"><p>@HIROCASTERさんのブログにてこんなエントリーが
 <a href="http://hiroki.jp/2012/06/19/4423/">「githug」でgitの基本操作を算数ドリルみたいに学ぼう！</a></p>
 
 <p>Githugという練習プログラムがあるようです</p>
 
 <p><a href="https://github.com/Gazler/githug">Gazler/githug</a></p>
 
-<p>とりあえず一通りやってみました<br><br>
-(導入方法は@HIROCASTERさんのブログを参照してください)<br><br>
-Levelは全部で35まであるみたいですね<br><br>
-githubのほう見たらローカライズのブランチはあるようなのですが、まだ日本語の情報もなさそうなので<br><br>
-問題文を超意訳してみましたので、参考にしてみてください  </p>
+<p>とりあえず一通りやってみました<br/>
+(導入方法は@HIROCASTERさんのブログを参照してください)<br/>
+Levelは全部で35まであるみたいですね<br/>
+githubのほう見たらローカライズのブランチはあるようなのですが、まだ日本語の情報もなさそうなので<br/>
+問題文を超意訳してみましたので、参考にしてみてください</p>
 
 <h3>1 . Initialize an empty repository</h3>
 
@@ -835,13 +876,13 @@ githubのほう見たらローカライズのブランチはあるようなの�
 
 <p><a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> をクローンしてください</p>
 
-<h3>6 . Clone the repository at <a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> to &#39;my_cloned_repo&#39;</h3>
+<h3>6 . Clone the repository at <a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> to &lsquo;my_cloned_repo&rsquo;</h3>
 
 <p><a href="https://github.com/Gazler/cloneme">https://github.com/Gazler/cloneme</a> をmy_cloned_repoという名前でクローンしてください</p>
 
-<h3>7 . The text editor &#39;vim&#39; creates files ending in .swp (swap files) for all files that are currently open.  We don&#39;t want them creeping into the repository.  Make this repository ignore .swp files.</h3>
+<h3>7 . The text editor &lsquo;vim&rsquo; creates files ending in .swp (swap files) for all files that are currently open.  We don&rsquo;t want them creeping into the repository.  Make this repository ignore .swp files.</h3>
 
-<p>vimは&#39;ほげほげ.swp&#39;のようなファイルを作ることがありますが、このようなファイルがリポジトリに入らないようにしてください</p>
+<p>vimは&#8217;ほげほげ.swp&#8217;のようなファイルを作ることがありますが、このようなファイルがリポジトリに入らないようにしてください</p>
 
 <p>続きは後日!</p>
 </div>
@@ -851,119 +892,13 @@ githubのほう見たらローカライズのブランチはあるようなの�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/05/trable_shooters/">トラブル☆しゅーたーず #02に行ってきた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-05T22:10:00+09:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.zusaar.com/event/296005">トラブル☆しゅーたーず＃02　～あいつがまたやらかした～ on Zusaar</a>に参加してきました</p>
-
-<p>リンク先にもありますが要は発生した障害に対して</p>
-
-<ol>
-<li>障害を復旧させ</li>
-<li>原因を追求し</li>
-<li>報告書/提案書を作成</li>
-</ol>
-
-<p>というイベントです</p>
-
-<p>……せっかくのお休みに嬉々として障害対応しに行くんだから<del>どうかんがえてもドMですほんとうにありが(ry</del>意識の高い参加者の方々でした</p>
-
-<h2>概要</h2>
-
-<p>運用を受託されているECサイトで障害発生<br><br>
-18時にはテレビでサイトが放映されるため、それまでに解決しなくてはならない  </p>
-
-<p>タイムテーブル的にはこんな感じ</p>
-
-<pre>
-04:00 <del>あのやろう</del>山◯くんサイト更新作業完了
-14:00 お客様より第一報
-15:30 お客様へ一次報告
-16:00 番宣番組放送
-18:00 本放送
-</pre>
-
-<p>詳細は<a href="http://t.co/DIkEmqof">こんな</a></p>
-
-<p>…今見ても胃がキリキリする(&#8211;;</p>
-
-<p>結果としては、アプリは復旧できたがECCUBEの管理部は復旧できず<br><br>
-負荷対策も…といった感じ<br><br>
-それでも中間順位は2位ぐらいにつけていたので優勝までもう一歩だったかな?<br><br>
-自分は主にアプリの修正等々をやってましたが、DBを調査してくれた方の情報と合わせてなんとかアプリ復旧までこぎつけたのはよかったなと思います  </p>
-
-<p>最後には各チームでお客様へ向かって障害報告・再発防止案などを説明する謝罪タイム<br><br>
-だから休日なのになんでこんな悲しいお話聞いてるんだろう、自分たち…</p>
-
-<h2>お客様(@tmaeさん)よりのお説教タイム</h2>
-
-<p>マジお通夜状態<br><br>
-リアルでこんなんなったら泣きます…</p>
-
-<p>@tmaeさんのお話を聞いて思ったこと等々</p>
-
-<h3>もっとお客さんの立場を考えるべき</h3>
-
-<p>15:30に一次報告をと言われて結局大抵のチームはギリギリかオーバーしてしまっていた<br><br>
-大抵のチームがある程度復旧への道筋を立ててから説明しようとしてこんなことになったんだろうけど、あくまでそれはこちらの論理なんだよね<br><br>
-お客さんの立場からすれば何が起きているのか、どういう対応をしているのかを知りたいはずなのでまずは状況の説明だけでも構わないので一次報告は迅速にすべきだなぁ</p>
-
-<h3>なにを最優先すべきなのか</h3>
-
-<p>目の前に壊れてるものがあるとどうしても最優先で直したくなっちゃうけど、それがお客様の望んでいることなのかは場合による(今回は自転車の画像を引くのが最優先だった)ので、頭のどこかに置いておかないといけないよな</p>
-
-<h2>馬場さん(@netmarkjp)の解説タイム</h2>
-
-<p>まさか山◯くんがクラウド上にバックアップ取ってるとは‥<br>
-そこに気付ければ1時間は変わった気がする</p>
-
-<p>バックアップが取れていれば既存のインスタンスを破棄して、更新作業を最初から遣り直すとかもできるのはクラウドのいいところ<br><br>
-ここらへんはCROSS2012とかでも聞いていたけど、実際作業中は考えもしませんでした(汗<br><br>
-まだまだクラウド脳にシフトしてないな</p>
-
-<p>その後は懇親会で山◯くんどうなん?とかそもそもあの手順書(?)にOK出るのはどうなんだ等々、本当に障害対応後のような空気にw</p>
-
-<p>インフラ系の勉強会ということで大丈夫かなぁ…と思いましたが楽しくいろんなことを学べた気がします<br><br>
-次回もトラブル直しに来ようと思います</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
-      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+      <a class="prev" href="/posts/3">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
-    <a class="next" href="/">Newer &rarr;</a>
+    <a class="next" href="/index.html">Newer &rarr;</a>
     
   </div>
 </div>
@@ -972,6 +907,10 @@ githubのほう見たらローカライズのブランチはあるようなの�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
@@ -987,10 +926,6 @@ githubのほう見たらローカライズのブランチはあるようなの�
     
       <li class="post">
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
       </li>
     
   </ul>

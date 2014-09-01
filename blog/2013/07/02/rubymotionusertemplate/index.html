@@ -90,78 +90,84 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-07-02T23:03:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+<time class='entry-date' datetime='2013-07-02T23:03:00+09:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>11:03 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br><br>
+<div class="entry-content"><p>今日は <a href="http://rubymotion-tokyo.doorkeeper.jp/events/4577">RubyMotionTokyo meetup#2</a> に行ってきました。<br/>
 あまりやることを決めてなかったのでエディタ周りを調べた後は、<a href="https://github.com/clearsightstudio/ProMotion">ProMotion</a>を試したりソースを読むことに。</p>
 
-<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br><br>
-そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、<br>
-RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。  </p>
+<p>便利そうだなと思ったんだけど<code>motion create</code>するたびに毎回Gemfile作って、app_delegate.rbをProMotion用に修正というのはちょっと面倒。<br/>
+そこで @watson1978 さんにRailsのApplication Templateのような仕組みは無いか聞いてみたところ、
+RubyMotionは標準のios,osxのテンプレート以外にも、ユーザーが定義したテンプレートも利用可能とのこと。</p>
 
 <p>試しにテンプレートを作ってみることにした。</p>
 
-<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br><br>
+<p>/Library/RubyMotion/lib/motion/project/template.rb を見るとユーザーテンプレートの置き場は ~/Library/RubyMotion/template になっているのでこれを作る。<br/>
 とりあえず既存のios用テンプレートをコピーしてこのテンプレートが呼べるかを確認。</p>
-<div class="highlight"><pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
-<span class="nb">cd</span> ~/Library/RubyMotion/template/
-cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
-motion create sample --template<span class="o">=</span>user_template
-</code></pre></div>
-<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br><br>
-次にProMotionを導入してみる。  </p>
 
-<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br><br>
+<pre><code class="sh">mkdir -p ~/Library/RubyMotion/template/
+cd ~/Library/RubyMotion/template/
+cp -r /Library/RubyMotion/lib/motion/project/template/ios user_template
+motion create sample --template=user_template
+</code></pre>
+
+<p>sampleにテンプレートにiosを使ったときと同じファイルが出来ていることを確認。<br/>
+次にProMotionを導入してみる。</p>
+
+<p>と言っても、やるべきはテンプレートのフォルダのfilesにちょっと変更をするだけ。<br/>
 Gemfileを作って Rakefile、app_delegate.rbにも手を加える。</p>
 
 <ul>
 <li>Gemfile</li>
 </ul>
-<div class="highlight"><pre><code class="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
-<span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
-<span class="n">gem</span> <span class="s1">&#39;ProMotion&#39;</span>
-</code></pre></div>
+
+<pre><code class="ruby">source 'https://rubygems.org'
+
+gem 'rake'
+gem 'ProMotion'
+</code></pre>
+
 <ul>
 <li>Rakefile</li>
 </ul>
-<div class="highlight"><pre><code class="ruby"><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="vg">$:</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;/Library/RubyMotion/lib&quot;</span><span class="p">)</span>
-<span class="nb">require</span> <span class="s1">&#39;motion/project/template/ios&#39;</span>
 
-<span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
-<span class="no">Bundler</span><span class="o">.</span><span class="n">require</span>
 
-<span class="ss">Motion</span><span class="p">:</span><span class="ss">:Project</span><span class="o">::</span><span class="no">App</span><span class="o">.</span><span class="n">setup</span> <span class="k">do</span> <span class="o">|</span><span class="n">app</span><span class="o">|</span>
-  <span class="c1"># Use `rake config&#39; to see complete project settings.</span>
-  <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;%= name %&gt;&#39;</span>
-<span class="k">end</span>
-</code></pre></div>
+<pre><code class="ruby"># -*- coding: utf-8 -*-
+$:.unshift("/Library/RubyMotion/lib")
+require 'motion/project/template/ios'
+
+require 'bundler'
+Bundler.require
+
+Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = '&lt;%= name %&gt;'
+end
+</code></pre>
+
 <ul>
 <li>app_delegate.rb</li>
 </ul>
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">AppDelegate</span> <span class="o">&lt;</span> <span class="ss">PM</span><span class="p">:</span><span class="ss">:Delegate</span>
-  <span class="k">def</span> <span class="nf">on_load</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div>
+
+
+<pre><code class="ruby">class AppDelegate &lt; PM::Delegate
+  def on_load
+  end
+end
+</code></pre>
+
 <p>bundle installをして再びmotion create。</p>
-<div class="highlight"><pre><code class="sh">bundle install
-motion create sample --template<span class="o">=</span>user_template
-</code></pre></div>
-<p>ProMotionが使えるようになってる！<br><br>
+
+<pre><code class="sh">bundle install
+motion create sample --template=user_template
+</code></pre>
+
+<p>ProMotionが使えるようになってる！<br/>
 使うライブラリだったりがまとまってきたら、あらかじめテンプレート化することで開発が捗りそうですね。</p>
 </div>
 
@@ -178,14 +184,7 @@ motion create sample --template<span class="o">=</span>user_template
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-07-02T23:03:00+09:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+<time class='entry-date' datetime='2013-07-02T23:03:00+09:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>11:03 pm</span></time>
       
 
 
@@ -222,6 +221,10 @@ motion create sample --template<span class="o">=</span>user_template
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -237,17 +240,13 @@ motion create sample --template<span class="o">=</span>user_template
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub

@@ -9,8 +9,7 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ 環境は以下の通り
-* MacOSX
+  <meta name="description" content="流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ 環境は以下の通り * MacOSX
 * Vagrant 1.2.2
 * vagrant-aws 0.2.2
 * AmazonLinux(ami-173fbf16) 基本的な使い方はid: &hellip;">
@@ -93,14 +92,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-05-10T02:10:00+09:00" pubdate data-updated="true">May 10<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-05-10T02:10:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:10 am</span></time>
         
       </p>
     
@@ -110,33 +102,38 @@
 <div class="entry-content"><p>流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ</p>
 
 <p>環境は以下の通り</p>
-<div class="highlight"><pre><code class="text">* MacOSX
+
+<pre><code>* MacOSX
 * Vagrant 1.2.2
 * vagrant-aws 0.2.2
 * AmazonLinux(ami-173fbf16)
-</code></pre></div>
-<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br><br>
+</code></pre>
+
+<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br/>
 Vagrantfileの書き方に関してはnaoyaさんが試した時点から、SSH関連の設定方法に変更があったのでGitHubのほうも参照したほうがいいです。</p>
 
-<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br><br>
+<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br/>
 <a href="https://github.com/mitchellh/vagrant-aws">mitchellh/vagrant-aws · GitHub</a></p>
 
 <p>で、起動してみると最後に↓こんなエラーがでます。</p>
-<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+
+<pre><code>[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
 The following SSH command responded with a non-zero exit status.
 Vagrant assumes that this means the command failed!
 
-mkdir -p &#39;/vagrant&#39;
-</code></pre></div>
+mkdir -p '/vagrant'
+</code></pre>
+
 <p>なんだろ? と思ったら <code>/etc/sudoers</code> で<code>Defaults requiretty</code>が設定されているのがエラーが出ている原因らしい</p>
 
-<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。<br>
-じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。<br>
+<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。
+じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。
 ということでuser_dataを使ってみることにした。</p>
 
 <p>Vagrantfileはこんな感じ</p>
-<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
-  config.vm.box = &quot;dummy&quot;
+
+<pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
 
   config.vm.provider :aws do |aws, override|
     # 中略
@@ -144,29 +141,33 @@ mkdir -p &#39;/vagrant&#39;
     # sedでrequitettyのとこをコメントアウト
     aws.user_data = &lt;&lt;-USER_DATA
 #!/bin/sh
-sed -i -e &#39;s/^\\(Defaults.*requiretty\\)/#\\1/&#39; /etc/sudoers
+sed -i -e 's/^\\(Defaults.*requiretty\\)/#\\1/' /etc/sudoers
     USER_DATA
   end
 end
-</code></pre></div>
+</code></pre>
+
 <p>設定は<a href="https://github.com/mitchellh/vagrant-aws/pull/26">このプルリク</a>を参考にした</p>
 
 <p>で、<code>vagrant up</code>し直すと</p>
-<div class="highlight"><pre><code class="text">[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+
+<pre><code>[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
 The following SSH command responded with a non-zero exit status.
 Vagrant assumes that this means the command failed!
 
-mkdir -p &#39;/vagrant&#39;
-</code></pre></div>
+mkdir -p '/vagrant'
+</code></pre>
+
 <p>まだエラー…</p>
 
-<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br><br>
-多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br><br>
+<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br/>
+多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br/>
 ちょっと気になるけどこれでしかたないかな。</p>
 
 <p>ついでにuser_data使えば↓こんな感じでchef clientを入れることも出来ることを確認。</p>
-<div class="highlight"><pre><code class="text">Vagrant.configure(&quot;2&quot;) do |config|
-  config.vm.box = &quot;dummy&quot;
+
+<pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
 
   config.vm.provider :aws do |aws, override|
     # 中略
@@ -177,8 +178,9 @@ curl -L https://www.opscode.com/chef/install.sh | bash
     USER_DATA
   end
 end
-</code></pre></div>
-<p>これでEC2をvagrant経由で制御することが可能になった。<br><br>
+</code></pre>
+
+<p>これでEC2をvagrant経由で制御することが可能になった。<br/>
 インスタンスの立ち上げ、廃止、プロビジョニングが簡単なのはすごい捗るなぁ。</p>
 </div>
 
@@ -195,14 +197,7 @@ end
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-05-10T02:10:00+09:00" pubdate data-updated="true">May 10<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-05-10T02:10:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:10 am</span></time>
       
 
 
@@ -239,6 +234,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/02/join-to-unicon-pte-ltd/">Unicon PTE Ltdに入社しました</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/25/jaws-ug-tokyo-at-sap/">JAWS-UG TOKYOに行ってきた</a>
       </li>
     
@@ -254,17 +253,13 @@ end
         <a href="/blog/2013/07/19/quine-relay-in-vagrant/">Quine-Relayを気軽に試せるようにVagrantの設定を作った</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/14/how-to-manage-vagrantfile/">Vagrantfileはどう管理</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/chiastolite">@chiastolite</a> on GitHub
