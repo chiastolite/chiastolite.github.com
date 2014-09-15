@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://chiastolite.github.io/blog/2014/09/16/gadget-with-macbookair/</loc>
+    <lastmod>2014-09-16T09:00:00+09:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://chiastolite.github.io/blog/2014/09/02/join-to-unicon-pte-ltd/</loc>
     <lastmod>2014-09-02T02:47:00+09:00</lastmod>
     <priority>0.8</priority>
@@ -167,14 +173,14 @@
   
   <url>
     <loc>http://chiastolite.github.io/blog/archives/</loc>
-    <lastmod>2014-09-02T09:20:26+09:00</lastmod>
+    <lastmod>2014-09-16T08:55:05+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://chiastolite.github.io/</loc>
-    <lastmod>2014-09-02T09:20:26+09:00</lastmod>
+    <lastmod>2014-09-16T08:55:05+09:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
