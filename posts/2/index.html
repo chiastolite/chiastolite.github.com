@@ -9,9 +9,10 @@
   <meta name="author" content="Hiroyuki MORITA">
 
   
-  <meta name="description" content="詳しくは↓ vagrant + chef 勉強会 - vagrant + chef 勉強会
-vagrant + chef 勉強会 - Togetter 参加者の方のブログ vagrant + chef 勉強会 を開催しました - 実はhokkai7go
-vagrant + chef &hellip;">
+  <meta name="description" content="流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ 環境は以下の通り * MacOSX
+* Vagrant 1.2.2
+* vagrant-aws 0.2.2
+* AmazonLinux(ami-173fbf16) 基本的な使い方はid: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,117 @@ vagrant + chef &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/10/vagrant-aws/">Vagrant-awsを使う際はuser_dataを設定してみよう</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-10T02:10:00+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>流行りのVagrantでEC2インスタンスを制御できるvagrant-awsプラグインを使ったときの小ネタ</p>
+
+<p>環境は以下の通り</p>
+
+<pre><code>* MacOSX
+* Vagrant 1.2.2
+* vagrant-aws 0.2.2
+* AmazonLinux(ami-173fbf16)
+</code></pre>
+
+<p>基本的な使い方はid:naoyaさんのブログとかGitHubを参考に。<br/>
+Vagrantfileの書き方に関してはnaoyaさんが試した時点から、SSH関連の設定方法に変更があったのでGitHubのほうも参照したほうがいいです。</p>
+
+<p><a href="http://d.hatena.ne.jp/naoya/20130315/1363340698">Vagrant 1.1 で EC2 を vagrant up - naoyaのはてなダイアリー</a><br/>
+<a href="https://github.com/mitchellh/vagrant-aws">mitchellh/vagrant-aws · GitHub</a></p>
+
+<p>で、起動してみると最後に↓こんなエラーがでます。</p>
+
+<pre><code>[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mkdir -p '/vagrant'
+</code></pre>
+
+<p>なんだろ? と思ったら <code>/etc/sudoers</code> で<code>Defaults requiretty</code>が設定されているのがエラーが出ている原因らしい</p>
+
+<p>さて、これをどう直すか? ということなんだけど、sshで入って直すのはVagrant使ってる意味がないなと。
+じゃあ、chefで直すか?と思ってもcookbooksのsyncがコケるしそもそもchefが入ってない。
+ということでuser_dataを使ってみることにした。</p>
+
+<p>Vagrantfileはこんな感じ</p>
+
+<pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
+
+  config.vm.provider :aws do |aws, override|
+    # 中略
+
+    # sedでrequitettyのとこをコメントアウト
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+sed -i -e 's/^\\(Defaults.*requiretty\\)/#\\1/' /etc/sudoers
+    USER_DATA
+  end
+end
+</code></pre>
+
+<p>設定は<a href="https://github.com/mitchellh/vagrant-aws/pull/26">このプルリク</a>を参考にした</p>
+
+<p>で、<code>vagrant up</code>し直すと</p>
+
+<pre><code>[default] Rsyncing folder: /Users/chiastolite/workspace/vagrant/ec2/ =&gt; /vagrant
+The following SSH command responded with a non-zero exit status.
+Vagrant assumes that this means the command failed!
+
+mkdir -p '/vagrant'
+</code></pre>
+
+<p>まだエラー…</p>
+
+<p>でも<code>vagrant provison</code>し直すとエラーが起きない。<br/>
+多分、user_dataが設定される前にmkdirをしちゃっているのでエラーになってるんだと認識。<br/>
+ちょっと気になるけどこれでしかたないかな。</p>
+
+<p>ついでにuser_data使えば↓こんな感じでchef clientを入れることも出来ることを確認。</p>
+
+<pre><code>Vagrant.configure("2") do |config|
+  config.vm.box = "dummy"
+
+  config.vm.provider :aws do |aws, override|
+    # 中略
+
+    aws.user_data = &lt;&lt;-USER_DATA
+#!/bin/sh
+curl -L https://www.opscode.com/chef/install.sh | bash
+    USER_DATA
+  end
+end
+</code></pre>
+
+<p>これでEC2をvagrant経由で制御することが可能になった。<br/>
+インスタンスの立ち上げ、廃止、プロビジョニングが簡単なのはすごい捗るなぁ。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -834,78 +946,6 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/21/starting-scrum/">スクラムの始め方</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-06-21T01:54:00+09:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>1:54 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>先日参加したshibuya.rbにて、なぜかスクラム開発導入に関しての話になったので、
-ここ数ヶ月勉強してScrum Bootcampにも参加して、現時点での&#8221;スクラムを始めるのに必要だと思うこと&#8221;をまとめてみる</p>
-
-<p>というか自分はこうやって始めようという内容です<br/>
-ツッコミいただけると幸い</p>
-
-<h2>スクラムを始めようと思わない</h2>
-
-<p>いきなり矛盾してるようだが、スクラムを始めようと考えるのは目的と手段が違うんじゃないかな?という意味で。<br/>
-スクラムのここに魅力を感じてとか、こういう効果を期待してとか目的があってスクラムを導入するべきかなと。</p>
-
-<p>また、スクラムを始める!というのが至上命題になってたりすると、内容がわからないメンバーには
-やらされ感もつきまとうと思うので価値とか考えを理解してもらった上で導入するのがいいのではないかな。</p>
-
-<h2>早めに成功体験を積み上げよう</h2>
-
-<p>新しいことを始めてるので、最初のうちはイテレーションを回すのが大変だと思う。<br/>
-その時点で目標を高くかかげすぎると目標達成できなくてテンションが下がる。<br/>
-こうならない為に目標を低めに設定するといいと思う。<br/>
-10の成果を達成できるチームなら8を目標にしておいたほうが、12を目標にしてたときより成功体験をつめるという意味でもいいし、「ほらみたことか次はもっとやれるぜ」みたいな前向きな空気作れるんじゃないかな。</p>
-
-<h2>一度に全部やらない</h2>
-
-<p>一概にスクラムをやるといってもやること一杯ですよね<br/>
-スクラムのプラクティスやら、XPのプラクティスやら…<br/>
-いきなり全部とか考えないでチームメンバーが必要だと思うものからやるのがいいのかな<br/>
-メンバーが納得できてないプラクティスを導入してもやらされ感だけ感じるんじゃないかと不安を抱いています<br/>
-もちろんメンバーのモチベーションが高いならば全部やってみたいです</p>
-
-<p>こんな感じかなと思ってます</p>
-
-<h2>最後に</h2>
-
-<p>自分はスクラムによってもたらされるものの1つ悩みの排除があるという持論をもっています</p>
-
-<ul>
-<li>作業の優先順位</li>
-<li>先が見えないスケジュール</li>
-<li>未知の部分の仕様策定</li>
-</ul>
-
-
-<p>そういう(無駄な)悩みから開放され、本当に悩むべきところに集中できるのではないかなぁ<br/>
-次組むチームで早く試したいもんです</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -923,6 +963,10 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/12/25/birthday-advent-calendar-2014/">2014～2015</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/16/gadget-with-macbookair/">リモート勤務するにあたって買ってよかったもの</a>
       </li>
     
@@ -936,10 +980,6 @@ to_commit_second ファイルをresetコマンドを使ってステージング�
     
       <li class="post">
         <a href="/blog/2014/02/25/travis-meets-ruby-2.1.x/">Ruby2.1.0以降をTravisCIでテストするには</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/11/rubymotion-with-pixate/">RubyMotionでPixateを使う</a>
       </li>
     
   </ul>
